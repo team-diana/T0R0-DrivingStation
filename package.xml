@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+
+  <name>t0r0_gui_cameras</name>
+  <version>0.1.0</version>
+  <description>The T0R0 camera gui</description>
+  <author email="adriansagerlaganga@gmail.com">Adrian Sager</author>
+  <maintainer email="adriansagerlaganga@gmail.com">Adrian Sager</maintainer>
+  <license>CC BY SA</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+
+</package>

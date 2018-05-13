@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>rover_up-357x580.png</file>
+    </qresource>
+</RCC>
