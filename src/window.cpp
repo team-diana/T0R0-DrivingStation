@@ -1,9 +1,6 @@
 #include "window.h"
 #include <QKeyEvent>
 #include <QDebug>
-//To get the package path
-#include <ros/package.h>
-
 
 /*
 #define ROVIMG_WIDTH 375
@@ -13,9 +10,6 @@
 // Constructor
 Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 {
-  //Relative package path
-  std::string pkg_path = ros::package::getPath("gui_cameras");
-  qDebug() << "Package path is: " + pkg_path + "\n";
 
   //this->setGeometry(0, 0, screen.width(), screen.height());   // -50
   this->setGeometry(0, 0, 1920, 1080);
@@ -25,8 +19,8 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 
 	// Set backgroud color
 	pal.setColor(QPalette::Background, QColor(14,14,14,255));
-              this->setAutoFillBackground(true);
-              this->setPalette(pal);
+  this->setAutoFillBackground(true);
+  this->setPalette(pal);
 
 	/* Show Rover Image at the center of the window
     QLabel *pixlabel = new QLabel(this);
@@ -36,8 +30,10 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
   */
 
 	// Show Team D.I.A.N.A. logo at bottom-right
+  //add images to resources.qrc to use them//
+  // http://doc.qt.io/qt-5/resources.html //
 	QLabel *pixlogo = new QLabel(this);
-  QPixmap pixmaplogo(pkg_path + "/Images/diana-logo-193x90.png");
+  QPixmap pixmaplogo(":/Images/diana-logo-193x90.png");
 	pixlogo->setPixmap(pixmaplogo.scaled(193, 90, Qt::KeepAspectRatio));
 	pixlogo->setGeometry( this->width() - 238, this->height() - 120, 193, 90 );
 

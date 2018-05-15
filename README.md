@@ -34,5 +34,9 @@ compile:
 show:
 	rosrun t0r0_gui_cameras gui_cameras
 ```
+Run
+```
+make
+```
 
 *tested on Ubuntu 16.04LTS with ROS Kinetic*
