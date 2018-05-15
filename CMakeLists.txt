@@ -13,6 +13,7 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 catkin_package()
 
+#Qt5
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Gui REQUIRED)
@@ -20,8 +21,13 @@ include_directories(${Qt5Core_INCLUDE_DIRS})
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
 include_directories(${Qt5Gui_INCLUDE_DIRS})
 
-set(HEADER_FILES src/window.h)
-set(SOURCE_FILES src/main.cpp src/window.cpp)
+#C++ code
+file(GLOB HEADER_FILES "src/*.h")
+file(GLOB SOURCE_FILES "src/*.cpp")
 
-add_executable(gui_cameras ${HEADER_FILES} ${SOURCE_FILES})
+#Resource files: images, etc.
+qt5_add_resources(RESOURCES  "resources.qrc")
+
+add_executable(gui_cameras ${HEADER_FILES} ${SOURCE_FILES} ${RESOURCES})
 target_link_libraries(gui_cameras Qt5Core Qt5Widgets Qt5Gui ${catkin_LIBRARIES})
+
