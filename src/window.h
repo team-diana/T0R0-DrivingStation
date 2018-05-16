@@ -1,9 +1,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <QKeyEvent>
 #include <QLabel>
-
-#include <QString>
 
 #define XPOS_BATTGROUP 0
 #define YPOS_BATTGROUP 0
@@ -18,13 +17,10 @@ public:
 public slots:
 
 protected:
-	//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+	void keyPressEvent(QKeyEvent *e);
 
 private:
     bool connected;
-
-    // Custom elements
-	//KeyPress *key_press_event;
 };
 
 #endif // WINDOW_H

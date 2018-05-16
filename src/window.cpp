@@ -1,6 +1,7 @@
 #include "window.h"
-#include <QKeyEvent>
 #include <QDebug>
+#include <QString>
+#include <QCoreApplication>
 
 /*
 #define ROVIMG_WIDTH 375
@@ -53,21 +54,17 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 	statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
   */
 
-	//key_press_event = new KeyPress(this);
-	//key_press_event->show();
 
 }
 
-/*
 void Window::keyPressEvent (QKeyEvent *k) {
-	switch ( tolower(k->ascii()) ) {
+	switch ( tolower(char(k->key())) ) {
 	        case 'r':                               // reload
 	            qDebug("Pressed R");
 	            update();
 	            break;
 	        case 'q':                               // quit
-	            QApplication::exit();
+	            QCoreApplication::quit();
 	            break;
 	    }
 }
-*/
