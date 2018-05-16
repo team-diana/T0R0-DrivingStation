@@ -32,7 +32,7 @@ compile:
 	cd /<path>/catkin_ws	&& catkin_make
 
 show:
-	rosrun t0r0_gui_cameras gui_cameras
+	cd /<path>/catkin_ws && . devel/setup.sh && rosrun t0r0_gui_cameras gui_cameras
 ```
 Run
 ```
