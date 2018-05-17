@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/gui_cameras.dir/src/main.cpp.o CMakeFiles/gui_cameras.dir/src/window.cpp.o CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o  -o bin/gui_cameras -rdynamic -lQt5Core -lQt5Widgets -lQt5Gui 
