@@ -217,32 +217,59 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/window.o: src/window.cpp.o
+src/mediapp.o: src/mediapp.cpp.o
 
-.PHONY : src/window.o
+.PHONY : src/mediapp.o
 
 # target to build an object file
-src/window.cpp.o:
-	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/window.cpp.o
-.PHONY : src/window.cpp.o
+src/mediapp.cpp.o:
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o
+.PHONY : src/mediapp.cpp.o
 
-src/window.i: src/window.cpp.i
+src/mediapp.i: src/mediapp.cpp.i
 
-.PHONY : src/window.i
+.PHONY : src/mediapp.i
 
 # target to preprocess a source file
-src/window.cpp.i:
-	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/window.cpp.i
-.PHONY : src/window.cpp.i
+src/mediapp.cpp.i:
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/mediapp.cpp.i
+.PHONY : src/mediapp.cpp.i
 
-src/window.s: src/window.cpp.s
+src/mediapp.s: src/mediapp.cpp.s
 
-.PHONY : src/window.s
+.PHONY : src/mediapp.s
 
 # target to generate assembly for a file
-src/window.cpp.s:
-	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/window.cpp.s
-.PHONY : src/window.cpp.s
+src/mediapp.cpp.s:
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/mediapp.cpp.s
+.PHONY : src/mediapp.cpp.s
+
+src/player.o: src/player.cpp.o
+
+.PHONY : src/player.o
+
+# target to build an object file
+src/player.cpp.o:
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/player.cpp.o
+.PHONY : src/player.cpp.o
+
+src/player.i: src/player.cpp.i
+
+.PHONY : src/player.i
+
+# target to preprocess a source file
+src/player.cpp.i:
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/player.cpp.i
+.PHONY : src/player.cpp.i
+
+src/player.s: src/player.cpp.s
+
+.PHONY : src/player.s
+
+# target to generate assembly for a file
+src/player.cpp.s:
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/player.cpp.s
+.PHONY : src/player.cpp.s
 
 # Help Target
 help:
@@ -263,9 +290,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/window.o"
-	@echo "... src/window.i"
-	@echo "... src/window.s"
+	@echo "... src/mediapp.o"
+	@echo "... src/mediapp.i"
+	@echo "... src/mediapp.s"
+	@echo "... src/player.o"
+	@echo "... src/player.i"
+	@echo "... src/player.s"
 .PHONY : help
 
 

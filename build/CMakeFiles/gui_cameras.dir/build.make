@@ -86,33 +86,57 @@ CMakeFiles/gui_cameras.dir/src/main.cpp.o.provides: CMakeFiles/gui_cameras.dir/s
 CMakeFiles/gui_cameras.dir/src/main.cpp.o.provides.build: CMakeFiles/gui_cameras.dir/src/main.cpp.o
 
 
-CMakeFiles/gui_cameras.dir/src/window.cpp.o: CMakeFiles/gui_cameras.dir/flags.make
-CMakeFiles/gui_cameras.dir/src/window.cpp.o: ../src/window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/gui_cameras.dir/src/window.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gui_cameras.dir/src/window.cpp.o -c /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.cpp
+CMakeFiles/gui_cameras.dir/src/player.cpp.o: CMakeFiles/gui_cameras.dir/flags.make
+CMakeFiles/gui_cameras.dir/src/player.cpp.o: ../src/player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/gui_cameras.dir/src/player.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gui_cameras.dir/src/player.cpp.o -c /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/player.cpp
 
-CMakeFiles/gui_cameras.dir/src/window.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui_cameras.dir/src/window.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.cpp > CMakeFiles/gui_cameras.dir/src/window.cpp.i
+CMakeFiles/gui_cameras.dir/src/player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui_cameras.dir/src/player.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/player.cpp > CMakeFiles/gui_cameras.dir/src/player.cpp.i
 
-CMakeFiles/gui_cameras.dir/src/window.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui_cameras.dir/src/window.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.cpp -o CMakeFiles/gui_cameras.dir/src/window.cpp.s
+CMakeFiles/gui_cameras.dir/src/player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui_cameras.dir/src/player.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/player.cpp -o CMakeFiles/gui_cameras.dir/src/player.cpp.s
 
-CMakeFiles/gui_cameras.dir/src/window.cpp.o.requires:
+CMakeFiles/gui_cameras.dir/src/player.cpp.o.requires:
 
-.PHONY : CMakeFiles/gui_cameras.dir/src/window.cpp.o.requires
+.PHONY : CMakeFiles/gui_cameras.dir/src/player.cpp.o.requires
 
-CMakeFiles/gui_cameras.dir/src/window.cpp.o.provides: CMakeFiles/gui_cameras.dir/src/window.cpp.o.requires
-	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/window.cpp.o.provides.build
-.PHONY : CMakeFiles/gui_cameras.dir/src/window.cpp.o.provides
+CMakeFiles/gui_cameras.dir/src/player.cpp.o.provides: CMakeFiles/gui_cameras.dir/src/player.cpp.o.requires
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/player.cpp.o.provides.build
+.PHONY : CMakeFiles/gui_cameras.dir/src/player.cpp.o.provides
 
-CMakeFiles/gui_cameras.dir/src/window.cpp.o.provides.build: CMakeFiles/gui_cameras.dir/src/window.cpp.o
+CMakeFiles/gui_cameras.dir/src/player.cpp.o.provides.build: CMakeFiles/gui_cameras.dir/src/player.cpp.o
+
+
+CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o: CMakeFiles/gui_cameras.dir/flags.make
+CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o: ../src/mediapp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o -c /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/mediapp.cpp
+
+CMakeFiles/gui_cameras.dir/src/mediapp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui_cameras.dir/src/mediapp.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/mediapp.cpp > CMakeFiles/gui_cameras.dir/src/mediapp.cpp.i
+
+CMakeFiles/gui_cameras.dir/src/mediapp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui_cameras.dir/src/mediapp.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/mediapp.cpp -o CMakeFiles/gui_cameras.dir/src/mediapp.cpp.s
+
+CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.requires:
+
+.PHONY : CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.requires
+
+CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.provides: CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.requires
+	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.provides.build
+.PHONY : CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.provides
+
+CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.provides.build: CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o
 
 
 CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o: CMakeFiles/gui_cameras.dir/flags.make
 CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o: qrc_resources.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o -c /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/qrc_resources.cpp
 
 CMakeFiles/gui_cameras.dir/qrc_resources.cpp.i: cmake_force
@@ -136,7 +160,7 @@ CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o.provides.build: CMakeFiles/gui_ca
 
 CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o: CMakeFiles/gui_cameras.dir/flags.make
 CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o: gui_cameras_automoc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o -c /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/gui_cameras_automoc.cpp
 
 CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.i: cmake_force
@@ -161,7 +185,8 @@ CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o.provides.build: CMakeFiles/
 # Object files for target gui_cameras
 gui_cameras_OBJECTS = \
 "CMakeFiles/gui_cameras.dir/src/main.cpp.o" \
-"CMakeFiles/gui_cameras.dir/src/window.cpp.o" \
+"CMakeFiles/gui_cameras.dir/src/player.cpp.o" \
+"CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o" \
 "CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o" \
 "CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o"
 
@@ -169,12 +194,19 @@ gui_cameras_OBJECTS = \
 gui_cameras_EXTERNAL_OBJECTS =
 
 bin/gui_cameras: CMakeFiles/gui_cameras.dir/src/main.cpp.o
-bin/gui_cameras: CMakeFiles/gui_cameras.dir/src/window.cpp.o
+bin/gui_cameras: CMakeFiles/gui_cameras.dir/src/player.cpp.o
+bin/gui_cameras: CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o
 bin/gui_cameras: CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o
 bin/gui_cameras: CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o
 bin/gui_cameras: CMakeFiles/gui_cameras.dir/build.make
+bin/gui_cameras: /usr/lib/x86_64-linux-gnu/libQt5GStreamerUi-1.0.so.1.2.0
+bin/gui_cameras: /usr/lib/x86_64-linux-gnu/libQt5GStreamer-1.0.so.1.2.0
+bin/gui_cameras: /usr/lib/x86_64-linux-gnu/libQt5GLib-2.0.so.1.2.0
+bin/gui_cameras: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1
+bin/gui_cameras: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1
+bin/gui_cameras: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1
 bin/gui_cameras: CMakeFiles/gui_cameras.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable bin/gui_cameras"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable bin/gui_cameras"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gui_cameras.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -183,7 +215,8 @@ CMakeFiles/gui_cameras.dir/build: bin/gui_cameras
 .PHONY : CMakeFiles/gui_cameras.dir/build
 
 CMakeFiles/gui_cameras.dir/requires: CMakeFiles/gui_cameras.dir/src/main.cpp.o.requires
-CMakeFiles/gui_cameras.dir/requires: CMakeFiles/gui_cameras.dir/src/window.cpp.o.requires
+CMakeFiles/gui_cameras.dir/requires: CMakeFiles/gui_cameras.dir/src/player.cpp.o.requires
+CMakeFiles/gui_cameras.dir/requires: CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o.requires
 CMakeFiles/gui_cameras.dir/requires: CMakeFiles/gui_cameras.dir/qrc_resources.cpp.o.requires
 CMakeFiles/gui_cameras.dir/requires: CMakeFiles/gui_cameras.dir/gui_cameras_automoc.cpp.o.requires
 

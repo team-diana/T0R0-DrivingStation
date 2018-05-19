@@ -18,6 +18,9 @@ apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins
 ```
 sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 ```
+```
+sudo apt-get install libqt5glib-2.0-0 libqt5gstreamer-1.0-0 libqt5gstreamer-dev libqt5gstreamerquick-1.0-0 libqt5gstreamerui-1.0-0 libqt5gstreamerutils-1.0-0
+```
 
 # Compile from command line
 ```

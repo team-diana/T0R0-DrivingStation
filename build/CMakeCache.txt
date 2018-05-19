@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=Boost_DIR-NOTFOUND
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/usr/include
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -165,14 +171,41 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for Qml.
+Qml_DIR:PATH=Qml_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for Qt4or5.
+Qt4or5_DIR:PATH=Qt4or5_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt5Core.
 Qt5Core_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core
+
+//The directory containing a CMake configuration file for Qt5GStreamer.
+Qt5GStreamer_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5GStreamer
 
 //The directory containing a CMake configuration file for Qt5Gui.
 Qt5Gui_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui
 
+//The directory containing a CMake configuration file for Qt5Qml.
+Qt5Qml_DIR:PATH=Qt5Qml_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt5Widgets.
 Qt5Widgets_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets
+
+//The directory containing a CMake configuration file for Qt5.
+Qt5_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5
+
+//The directory containing a CMake configuration file for QtGStreamer.
+QtGStreamer_DIR:PATH=QtGStreamer_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for QtQml.
+QtQml_DIR:PATH=QtQml_DIR-NOTFOUND
+
+//Path to a file.
+_QTGSTREAMER_CONFIG_COMMON_FILE:FILEPATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5GStreamer/QtGStreamerConfigCommon.cmake
+
+//Path to a file.
+_QTGSTREAMER_TARGETS_FILE:FILEPATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5GStreamer/Qt5GStreamerTargets.cmake
 
 //Value Computed by CMake
 t0r0_gui_cameras_BINARY_DIR:STATIC=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build
@@ -185,6 +218,10 @@ t0r0_gui_cameras_SOURCE_DIR:STATIC=/home/adrian/Windows/Desktop/team_DIANA/gitRe
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_INCLUDE_DIR
+Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
@@ -310,4 +347,12 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Components requested for this build tree.
+_Boost_COMPONENTS_SEARCHED:INTERNAL=
+//Last used Boost_INCLUDE_DIR value.
+_Boost_INCLUDE_DIR_LAST:INTERNAL=/usr/include
+//Last used Boost_NAMESPACE value.
+_Boost_NAMESPACE_LAST:INTERNAL=boost
+//Last used Boost_USE_MULTITHREADED value.
+_Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
 

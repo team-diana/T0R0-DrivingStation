@@ -14,7 +14,7 @@ class Window : public QWidget
 public:
     explicit Window(QRect screen, QWidget *parent = 0);
 
-public slots:
+public Q_SLOTS:
 
 protected:
 	void keyPressEvent(QKeyEvent *e);

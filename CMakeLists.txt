@@ -16,6 +16,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+#Gstreamer:
+find_package(Qt5GStreamer REQUIRED)
+include_directories(${QTGSTREAMER_INCLUDES})
+add_definitions(${QTGSTREAMER_DEFINITIONS})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${QTGSTREAMER_FLAGS}")
+
 #Qt5
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -25,8 +31,12 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS})
 include_directories(${Qt5Gui_INCLUDE_DIRS})
 
 #C++ code
-file(GLOB HEADER_FILES "src/*.h")
-file(GLOB SOURCE_FILES "src/*.cpp")
+#file(GLOB HEADER_FILES "src/*.h")
+#file(GLOB SOURCE_FILES "src/*.cpp")
+set(SOURCE_FILES src/main.cpp src/player.cpp src/mediapp.cpp)
+set(HEADER_FILES src/player.h src/mediapp.h)
+
+#UI files
 file(GLOB UIS "*.ui" "src/*.ui")
 
 #Resource files: images, etc.
@@ -38,4 +48,4 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 add_executable(gui_cameras ${HEADER_FILES} ${SOURCE_FILES} ${RESOURCES} ${UIS})
-target_link_libraries(gui_cameras Qt5Core Qt5Widgets Qt5Gui)
+target_link_libraries(gui_cameras Qt5Core Qt5Widgets Qt5Gui ${QTGSTREAMER_UI_LIBRARIES})

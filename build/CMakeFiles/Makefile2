@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_works
 CMakeFiles/gui_cameras.dir/all: CMakeFiles/gui_cameras_automoc.dir/all
 	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/depend
 	$(MAKE) -f CMakeFiles/gui_cameras.dir/build.make CMakeFiles/gui_cameras.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target gui_cameras"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target gui_cameras"
 .PHONY : CMakeFiles/gui_cameras.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/gui_cameras.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/gui_cameras.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/gui_cameras.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles 0
 .PHONY : CMakeFiles/gui_cameras.dir/rule
@@ -103,7 +103,7 @@ clean: CMakeFiles/gui_cameras.dir/clean
 CMakeFiles/gui_cameras_automoc.dir/all:
 	$(MAKE) -f CMakeFiles/gui_cameras_automoc.dir/build.make CMakeFiles/gui_cameras_automoc.dir/depend
 	$(MAKE) -f CMakeFiles/gui_cameras_automoc.dir/build.make CMakeFiles/gui_cameras_automoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=7 "Built target gui_cameras_automoc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles --progress-num=8 "Built target gui_cameras_automoc"
 .PHONY : CMakeFiles/gui_cameras_automoc.dir/all
 
 # Build rule for subdir invocation for target.

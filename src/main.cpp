@@ -1,22 +1,36 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QDebug>
-//#include "KeyPress.h"
+//Gstreamer:
+#include <QGst/Init>
 
-#include "window.h"
+//#include "window.h"
+#include "mediapp.h"
 
 int main(int argc, char **argv)
 {
 	QApplication app(argc, argv);
+	//QT Gstreamer initialization:
+  QGst::init(&argc, &argv);
 
+	/*
 	QDesktopWidget *desktop = app.desktop();
 
 	Window window(desktop->screenGeometry());
  	window.showFullScreen();
 
   //show message on console.
-	qDebug() << "\nStart successful\n";
+	qDebug() << "\nWindow opened successfully\n";
+	*/
 
+  MediaApp media;
+  media.show();
+  if (argc == 2) {
+      media.openFile(argv[1]);
+
+			qDebug() << "Successfully opened file \"" << (argv[1]) << "\"\n";
+  }
+	else qDebug() <<"Use the command line to give a file name.\n";
 
 	return app.exec();
 }
