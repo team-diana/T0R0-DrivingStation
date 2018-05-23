@@ -28,9 +28,10 @@ protected:
 
 private:
     bool connected;
-		//Video player test:
+		//Video player test://
 		Player *player;
 		QLabel *label;
+		//////////////////////
 };
 
 #endif // WINDOW_H
