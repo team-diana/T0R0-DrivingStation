@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/main.cpp" "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles/gui_cameras.dir/src/main.cpp.o"
   "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/mediapp.cpp" "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles/gui_cameras.dir/src/mediapp.cpp.o"
   "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/player.cpp" "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles/gui_cameras.dir/src/player.cpp.o"
+  "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.cpp" "/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/CMakeFiles/gui_cameras.dir/src/window.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

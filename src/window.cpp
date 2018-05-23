@@ -1,8 +1,13 @@
 #include "window.h"
+
+//Video player test:
+#include "player.h"
+
 #include <QDebug>
 #include <QString>
 #include <QCoreApplication>
-
+#include <QLabel>
+#include <QBoxLayout>
 
 // Constructor
 Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
@@ -29,7 +34,36 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
   connected = false;
 
 
+  //VIdeo player test://
+  player = new Player(this);
+  connect(player, SIGNAL(positionChanged()), this, SLOT(onPositionChanged()));
+  connect(player, SIGNAL(stateChanged()), this, SLOT(onStateChanged()));
+  player->setMouseTracking(true);
+
+  label = new QLabel();
+  label->setText("Video\n");
+
+  QVBoxLayout *appLayout = new QVBoxLayout;
+  appLayout->setContentsMargins(0, 0, 0, 0);
+  appLayout->addWidget(player);
+  appLayout->addWidget(label);
+  appLayout->addWidget(pixlogo);
+  setLayout(appLayout);
+  /////////////////////
 }
+
+Window::~Window()
+{
+  delete player;
+}
+
+//VIDEO PLAYER TEST://
+void Window::openFile(const QString & filename){
+    player->stop();
+    player->setUri(filename);
+    player->play();
+}
+//////////////////////
 
 void Window::keyPressEvent (QKeyEvent *k) {
 	switch ( tolower(char(k->key())) ) {

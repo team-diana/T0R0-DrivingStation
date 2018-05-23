@@ -25,6 +25,16 @@ QGst/Ui/VideoWidget
 -
 
 /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/gui_cameras_automoc.cpp
+moc_window.cpp
+/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/moc_window.cpp
+
+/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/moc_window.cpp
+../../../../../../../../../../mnt/EE1EB4AA1EB46D69/Users/Lenovo/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.h
+/mnt/EE1EB4AA1EB46D69/Users/Lenovo/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
 
 /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/build/qrc_resources.cpp
 
@@ -37,8 +47,8 @@ QDebug
 -
 QGst/Init
 -
-mediapp.h
-/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/mediapp.h
+window.h
+/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.h
 
 /home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/mediapp.cpp
 mediapp.h
@@ -106,6 +116,34 @@ QTime
 QGst/Pipeline
 -
 QGst/Ui/VideoWidget
+-
+
+/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.cpp
+window.h
+/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.h
+player.h
+/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/player.h
+QDebug
+-
+QString
+-
+QCoreApplication
+-
+QLabel
+-
+QBoxLayout
+-
+
+/home/adrian/Windows/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.h
+QKeyEvent
+-
+QLabel
+-
+
+/mnt/EE1EB4AA1EB46D69/Users/Lenovo/Desktop/team_DIANA/gitRepos/catkin_workspace/src/t0r0-gui-cameras/src/window.h
+QKeyEvent
+-
+QLabel
 -
 
 /usr/include/Qt5GStreamer/QGlib/Connect
@@ -455,6 +493,10 @@ global.h
 /usr/include/Qt5GStreamer/QGlib/value.h
 QtCore/QString
 -
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QCoreApplication
+qcoreapplication.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QDate
 qdatetime.h
@@ -1247,6 +1289,10 @@ algorithm
 -
 QtCore/qpoint.h
 -
+
+/usr/include/x86_64-linux-gnu/qt5/QtGui/QKeyEvent
+qevent.h
+/usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtGui/QMouseEvent
 qevent.h
