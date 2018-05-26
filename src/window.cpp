@@ -1,18 +1,24 @@
 #include "window.h"
+
 #include <QDebug>
 #include <QString>
 #include <QCoreApplication>
+#include <QLabel>
+#include <QBoxLayout>
 
-/*
-#define ROVIMG_WIDTH 375
-#define ROVIMG_HEIGHT 580
-*/
+//LibVLC://
+#include <QFileDialog>
+#include <QInputDialog>
+
+#include <VLCQtCore/Common.h>
+#include <VLCQtCore/Instance.h>
+#include <VLCQtCore/Media.h>
+#include <VLCQtCore/MediaPlayer.h>
+////////////
 
 // Constructor
 Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 {
-
-  //this->setGeometry(0, 0, screen.width(), screen.height());   // -50
   this->setGeometry(0, 0, 1920, 1080);
 
   // set black background
@@ -23,12 +29,6 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
   this->setAutoFillBackground(true);
   this->setPalette(pal);
 
-	/* Show Rover Image at the center of the window
-    QLabel *pixlabel = new QLabel(this);
-    QPixmap pixrover("/home/francesco/catkin_ws/src/t0r0_driving_gui/Images/rover_up-357x580.png");
-	pixlabel->setPixmap(pixrover.scaled(ROVIMG_WIDTH, ROVIMG_HEIGHT, Qt::KeepAspectRatio));
-	pixlabel->setGeometry( (this->width() - ROVIMG_WIDTH) /2, (this->height() - ROVIMG_HEIGHT) /2, ROVIMG_WIDTH, ROVIMG_HEIGHT );
-  */
 
 	// Show Team D.I.A.N.A. logo at bottom-right
   //add images to resources.qrc to use them//
@@ -40,22 +40,41 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 
   connected = false;
 
-  /*/ Custom elements
-  start_button = new StartButton(this);
-  start_button->setGeometry(this->width()/ 2 - 100, this->height() - 100, 200, 100);
-
-  rover = new RoverShow(this);
-  rover->setGeometry(300, 0, this->width() - 600, this->height() - 100);
-
-	batterydisplay = new BatteryDisplay(this);
-	batterydisplay->setGeometry(BAT_DISPLAY_POSX, (this->height() - BAT_DISPLAY_HEIGHT) / 2, BAT_DISPLAY_WIDTH + 2, BAT_DISPLAY_HEIGHT + 2);
-
-	statusdisplay = new StatusDisplay(this);
-	statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
-  */
-
-
+  //LibVLC://
+  _instance = new VlcInstance(VlcCommon::args(), this);
+  _player = new VlcMediaPlayer(_instance);
+  ///////////
 }
+
+Window::~Window(){
+  delete _player;
+  delete _media;
+  delete _instance;
+}
+
+//LibVLC://
+void Window::openLocal()
+{
+   QString file =
+           QFileDialog::getOpenFileName(this, tr("Open file"),
+                                        QDir::homePath(),
+                                        tr("Multimedia files(*)"));
+   if (file.isEmpty())
+       return;
+   _media = new VlcMedia(file, true, _instance);
+   _player->open(_media);
+}
+
+void Window::openUrl()
+{
+   QString url =
+           QInputDialog::getText(this, tr("Open Url"), tr("Enter the URL you want to play"));
+   if (url.isEmpty())
+       return;
+   _media = new VlcMedia(url, _instance);
+   _player->open(_media);
+}
+////////////
 
 void Window::keyPressEvent (QKeyEvent *k) {
 	switch ( tolower(char(k->key())) ) {

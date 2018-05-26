@@ -7,20 +7,37 @@
 #define XPOS_BATTGROUP 0
 #define YPOS_BATTGROUP 0
 
+class QBoxLayout;
+class QLabel;
+
+//LibVLC://
+class VlcInstance;
+class VlcMedia;
+class VlcMediaPlayer;
+///////////
+
 class Window : public QWidget
 {
 	Q_OBJECT
 
 public:
     explicit Window(QRect screen, QWidget *parent = 0);
+		~Window();
 
-public slots:
+public Q_SLOTS:
+	void openLocal();
+	void openUrl();
 
 protected:
 	void keyPressEvent(QKeyEvent *e);
 
 private:
     bool connected;
+		//LibVLC://
+		VlcInstance *_instance;
+		VlcMedia *_media;
+		VlcMediaPlayer *_player;
+		///////////
 };
 
 #endif // WINDOW_H

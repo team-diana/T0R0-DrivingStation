@@ -1,22 +1,32 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QDebug>
-//#include "KeyPress.h"
+//LIBVLC//
+#include <VLCQtCore/Common.h>
+#include <QtWidgets/QApplication>
+//////////
+#include <QTextCodec>
 
 #include "window.h"
 
 int main(int argc, char **argv)
 {
+  QCoreApplication::setApplicationName("T0R0 GUI DRIVING STATION");
 	QApplication app(argc, argv);
 
-	QDesktopWidget *desktop = app.desktop();
+	//LibVLC://
+	VlcCommon::setPluginPath(app.applicationDirPath() + "/plugins");
+	///////////
 
+	QDesktopWidget *desktop = app.desktop();
 	Window window(desktop->screenGeometry());
  	window.showFullScreen();
 
-  //show message on console.
-	qDebug() << "\nStart successful\n";
+	//choose url of camera.
+	window.openUrl();
 
+  //show message on console.
+	qDebug() << "\nWindow opened successfully\n";
 
 	return app.exec();
 }
