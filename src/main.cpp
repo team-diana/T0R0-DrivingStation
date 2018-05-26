@@ -1,37 +1,32 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QDebug>
-//Gstreamer:
-#include <QGst/Init>
+//LIBVLC//
+#include <VLCQtCore/Common.h>
+#include <QtWidgets/QApplication>
+//////////
+#include <QTextCodec>
 
 #include "window.h"
-//#include "mediapp.h"
 
 int main(int argc, char **argv)
 {
+  QCoreApplication::setApplicationName("T0R0 GUI DRIVING STATION");
 	QApplication app(argc, argv);
-	//QT Gstreamer initialization:
-  QGst::init(&argc, &argv);
+
+	//LibVLC://
+	VlcCommon::setPluginPath(app.applicationDirPath() + "/plugins");
+	///////////
 
 	QDesktopWidget *desktop = app.desktop();
-
 	Window window(desktop->screenGeometry());
-	if(argc==2) window.openFile(argv[1]);
  	window.showFullScreen();
+
+	//choose url of camera.
+	window.openUrl();
 
   //show message on console.
 	qDebug() << "\nWindow opened successfully\n";
-
-	/*
-  MediaApp media;
-  media.show();
-  if (argc == 2) {
-      media.openFile(argv[1]);
-
-			qDebug() << "Successfully opened file \"" << (argv[1]) << "\"\n";
-  }
-	else qDebug() <<"Use the command line to give a file name.\n";
-	*/
 
 	return app.exec();
 }

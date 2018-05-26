@@ -1,13 +1,20 @@
 #include "window.h"
 
-//Video player test:
-#include "player.h"
-
 #include <QDebug>
 #include <QString>
 #include <QCoreApplication>
 #include <QLabel>
 #include <QBoxLayout>
+
+//LibVLC://
+#include <QFileDialog>
+#include <QInputDialog>
+
+#include <VLCQtCore/Common.h>
+#include <VLCQtCore/Instance.h>
+#include <VLCQtCore/Media.h>
+#include <VLCQtCore/MediaPlayer.h>
+////////////
 
 // Constructor
 Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
@@ -33,37 +40,41 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 
   connected = false;
 
-
-  //VIdeo player test://
-  player = new Player(this);
-  connect(player, SIGNAL(positionChanged()), this, SLOT(onPositionChanged()));
-  connect(player, SIGNAL(stateChanged()), this, SLOT(onStateChanged()));
-  player->setMouseTracking(true);
-
-  label = new QLabel();
-  label->setText("Video\n");
-
-  QVBoxLayout *appLayout = new QVBoxLayout;
-  appLayout->setContentsMargins(0, 0, 0, 0);
-  appLayout->addWidget(player);
-  appLayout->addWidget(label);
-  appLayout->addWidget(pixlogo);
-  setLayout(appLayout);
-  /////////////////////
+  //LibVLC://
+  _instance = new VlcInstance(VlcCommon::args(), this);
+  _player = new VlcMediaPlayer(_instance);
+  ///////////
 }
 
-Window::~Window()
+Window::~Window(){
+  delete _player;
+  delete _media;
+  delete _instance;
+}
+
+//LibVLC://
+void Window::openLocal()
 {
-  delete player;
+   QString file =
+           QFileDialog::getOpenFileName(this, tr("Open file"),
+                                        QDir::homePath(),
+                                        tr("Multimedia files(*)"));
+   if (file.isEmpty())
+       return;
+   _media = new VlcMedia(file, true, _instance);
+   _player->open(_media);
 }
 
-//VIDEO PLAYER TEST://
-void Window::openFile(const QString & filename){
-    player->stop();
-    player->setUri(filename);
-    player->play();
+void Window::openUrl()
+{
+   QString url =
+           QInputDialog::getText(this, tr("Open Url"), tr("Enter the URL you want to play"));
+   if (url.isEmpty())
+       return;
+   _media = new VlcMedia(url, _instance);
+   _player->open(_media);
 }
-//////////////////////
+////////////
 
 void Window::keyPressEvent (QKeyEvent *k) {
 	switch ( tolower(char(k->key())) ) {

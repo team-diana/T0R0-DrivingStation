@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(t0r0_gui_cameras)
+project(t0r0_gui_drivingstation)
 
 # deprecated: catkin
 #find_package(catkin REQUIRED COMPONENTS roscpp)
@@ -16,11 +16,14 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-#Gstreamer:
-find_package(Qt5GStreamer REQUIRED)
-include_directories(${QTGSTREAMER_INCLUDES})
-add_definitions(${QTGSTREAMER_DEFINITIONS})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${QTGSTREAMER_FLAGS}")
+#DEPRECATED: Gstreamer
+#find_package(Qt5GStreamer REQUIRED)
+#include_directories(${QTGSTREAMER_INCLUDES})
+#add_definitions(${QTGSTREAMER_DEFINITIONS})
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${QTGSTREAMER_FLAGS}")
+
+# LIBVLC #
+find_package(VLCQt REQUIRED COMPONENTS Core Qml Widgets)
 
 #Qt5
 find_package(Qt5Core REQUIRED)
@@ -48,5 +51,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
-add_executable(gui_cameras ${HEADER_FILES} ${SOURCE_FILES} ${RESOURCES} ${UIS})
-target_link_libraries(gui_cameras Qt5Core Qt5Widgets Qt5Gui ${QTGSTREAMER_UI_LIBRARIES})
+add_executable(gui_drivingstation ${HEADER_FILES} ${SOURCE_FILES} ${RESOURCES} ${UIS})
+target_link_libraries(gui_drivingstation Qt5Core Qt5Widgets Qt5Gui
+  VLCQtCore VLCQtWidgets VLCQtQml # LIBVLC and LIBVLCQt wrapper
+)

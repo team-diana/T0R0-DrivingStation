@@ -1,22 +1,8 @@
 
 Makefile
 
-build/CMakeFiles/
-
-build/cmake_install\.cmake
-
-build/CMakeCache\.txt
-
-build/gui_cameras_automoc\.cpp
-
-build/moc_mediapp\.cpp
-
-build/moc_player\.cpp
-
-build/moc_window\.cpp
-
-build/qrc_resources\.cpp
-
-build/resources\.qrc\.depends
-
 \.atom-build\.js
+
+build/*
+build/*/
+!/build/bin/
