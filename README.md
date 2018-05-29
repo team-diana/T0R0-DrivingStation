@@ -2,7 +2,7 @@
 
 A GUI to display cameras from T0-R0 rover
 
-# Dependencies installation
+## Dependencies installation
 ### QT5
   Dowload and install components from <a href="https://download.qt.io/official_releases/qt/5.10/5.10.1/">here</a>
 
