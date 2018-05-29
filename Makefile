@@ -1,7 +1,7 @@
-all: update compile run
+all: compile run
 
 update:
-	#git pull origin master
+	git pull origin master
 
 compile:
 	echo "-> Compiling..."
