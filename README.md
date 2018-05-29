@@ -35,24 +35,26 @@ sudo apt update
 sudo apt-get install libvlc-qt-core2 libvlc-qt-widgets2 libvlc-qt-dbg libvlc-qt-dev
 ```
 
-## Compile and Run - with Makefile
+## Compile and Run
+
+### With Makefile
 
 Change to main project directory and run Makefile using <code>make</code>
 
-## Compile from command line
+### Compile from command line
 ```
 cd /<path>/build
 cmake ..
 make gui_drivingstation
 ```
 
-## Launch from Command-Line
+### Launch from Command-Line
 ```
 cd /<path>/build
 ./bin/gui_drivingstation
 ```
 
-## Use Makefile to update project from Git, Compile & Launch it
+### Use Makefile to update project from Git, Compile & Launch it
 
 Create a Makefile with the following content. Substitute \<path\> with the path of your t0r0-gui-cameras folder accordingly
 ```
@@ -67,6 +69,3 @@ compile:
 run:
 	cd /<path>/build && ./bin/gui_drivingstation
 ```
-
-
-*tested on Ubuntu 16.04LTS*
