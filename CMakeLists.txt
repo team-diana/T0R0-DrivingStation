@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(t0r0_gui_cameras)
+project(t0r0_gui_drivingstation)
 
 # deprecated: catkin
 #find_package(catkin REQUIRED COMPONENTS roscpp)
@@ -31,10 +31,11 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS})
 include_directories(${Qt5Gui_INCLUDE_DIRS})
 
 #C++ code
-#file(GLOB HEADER_FILES "src/*.h")
-#file(GLOB SOURCE_FILES "src/*.cpp")
-set(SOURCE_FILES src/main.cpp src/player.cpp src/mediapp.cpp)
-set(HEADER_FILES src/player.h src/mediapp.h)
+file(GLOB HEADER_FILES "src/*.h")
+file(GLOB SOURCE_FILES "src/*.cpp")
+#DELETE ME:
+#set(SOURCE_FILES src/main.cpp src/player.cpp src/mediapp.cpp)
+#set(HEADER_FILES src/player.h src/mediapp.h)
 
 #UI files
 file(GLOB UIS "*.ui" "src/*.ui")
