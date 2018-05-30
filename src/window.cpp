@@ -6,9 +6,22 @@
 #include <QLabel>
 #include <QBoxLayout>
 
+//Gstreamer://
+#include <QGlib/Connect>
+#include <QGlib/Error>
+#include <QGst/Pipeline>
+#include <QGst/Bus>
+#include <QGst/Message>
+#include <QGst/ElementFactory>
+#include <QGst/Pad>
+
+#include <QGst/Ui/VideoWidget>
+
+#include <QDialog>
+//////////////
 
 // Constructor
-Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
+Window::Window(QWidget *parent) : QWidget(parent)
 {
   this->setGeometry(0, 0, 1920, 1080);
 
@@ -30,10 +43,83 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 	pixlogo->setGeometry( this->width() - 238, this->height() - 120, 193, 90 );
 
   connected = false;
+
+  m_videoWidget = new QGst::Ui::VideoWidget(this);
+  m_videoWidget->setGeometry( 100, 100, 640, 480 );
 }
 
 Window::~Window(){
+  //Gstremer://
+  m_pipeline->setState(QGst::StateNull);
+  m_videoWidget->stopPipelineWatch();
+  m_pipeline.clear();
+  /////////////
 }
+
+//GStreamer://
+void Window::startVideo(){
+	m_pipeline = QGst::Pipeline::create();
+	QGst::ElementPtr rtpbin = QGst::ElementFactory::make("rtpbin");
+	if (!rtpbin) {
+			qFatal("Failed to create rtpbin");
+	}
+	m_pipeline->add(rtpbin);
+
+  QGst::ElementPtr videosrc;
+  try {
+      videosrc = QGst::Bin::fromDescription(
+          "udpsrc port=1234 ! application/x-rtp, encoding-name=JPEG, payload=26 ! rtpjpegdepay ! jpegdec ! xvimagesink"
+      );
+  } catch (const QGlib::Error & error) {
+      qCritical() << error;
+      qFatal("One ore more required elements are missing. Aborting...");
+  }
+  m_pipeline->add(videosrc);
+  videosrc->link(rtpbin, "send_rtp_sink_2");
+
+  //watch for the receiving side src pads
+  QGlib::connect(rtpbin, "pad-added", this, &Window::onRtpBinPadAdded);
+  //watch the bus
+  m_pipeline->bus()->addSignalWatch();
+  QGlib::connect(m_pipeline->bus(), "message::error", this, &Window::onBusErrorMessage);
+  //switch to the video view and connect the video widget
+  m_videoWidget->watchPipeline(m_pipeline);
+  //go!
+  m_pipeline->setState(QGst::StatePlaying);
+}
+
+void Window::onRtpBinPadAdded(const QGst::PadPtr & pad)
+{
+    QGst::ElementPtr bin;
+    try {
+        //recv_rtp_src_1_* -> session 1 - audio
+        if (pad->name().startsWith(QLatin1String("recv_rtp_src_1"))) {
+            bin = QGst::Bin::fromDescription(
+                "rtpspeexdepay ! speexdec ! audioconvert ! autoaudiosink"
+            );
+        } else { //recv_rtp_src_2_* -> session 2 - video
+            bin = QGst::Bin::fromDescription(
+                "rtph264depay ! avdec_h264 ! videoconvert ! autovideosink"
+            );
+        }
+    } catch (const QGlib::Error & error) {
+        qCritical() << error;
+        qFatal("One ore more required elements are missing. Aborting...");
+    }
+    m_pipeline->add(bin);
+    bin->syncStateWithParent();
+    pad->link(bin->getStaticPad("sink"));
+}
+
+void Window::onBusErrorMessage(const QGst::MessagePtr & msg)
+{
+    qCritical() << "Error from bus:" << msg.staticCast<QGst::ErrorMessage>()->error();
+    //stop the call
+    m_pipeline->setState(QGst::StateNull);
+    m_videoWidget->stopPipelineWatch();
+    m_pipeline.clear();
+}
+//////////////
 
 void Window::keyPressEvent (QKeyEvent *k) {
 	switch ( tolower(char(k->key())) ) {

@@ -1,4 +1,4 @@
-
+/*
 #include "ui_voip.h"
 #include <QApplication>
 #include <QDialog>
@@ -68,7 +68,7 @@ void VoipExample::on_startCallButton_clicked()
 					qFatal("One ore more required elements are missing. Aborting...");
 			}
 			m_pipeline->add(videosrc);
-			videosrc->link(rtpbin, "send_rtp_sink_2");
+			videosrc->link(rtpbin, "send_rtp_sink_2");*/
 //			QGst::ElementPtr rtpudpsink = QGst::ElementFactory::make("udpsink");
 //			if (!rtpudpsink) {
 //					qFatal("Failed to create udpsink. Aborting...");
@@ -101,7 +101,7 @@ void VoipExample::on_startCallButton_clicked()
 			rtcpudpsink->setProperty("async", false);
 			m_pipeline->add(rtcpudpsink);
 			rtpbin->link("send_rtcp_src_2", rtcpudpsink);*/
-	}
+	/*}
 	//watch for the receiving side src pads
 	QGlib::connect(rtpbin, "pad-added", this, &VoipExample::onRtpBinPadAdded);
 	//watch the bus
@@ -148,12 +148,20 @@ void VoipExample::on_endCallButton_clicked()
     m_ui.stackedWidget->setCurrentIndex(0);
     m_pipeline.clear();
 }
+*/
+
+#include "window.h"
+#include <QApplication>
+#include <QGst/Init>
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QGst::init(&argc, &argv);
-    VoipExample gui;
-    gui.show();
+
+    Window window;
+    window.show();
+    window.startVideo();
 
     return app.exec();
 }
