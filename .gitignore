@@ -1,6 +1,4 @@
 
 \.atom-build\.js
 
-build/*
-build/*/
-#!/build/bin/
+build/
