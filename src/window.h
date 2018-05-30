@@ -22,8 +22,8 @@ class Window : public QWidget
 	Q_OBJECT
 
 public:
-    explicit Window(QWidget *parent = 0);
-		~Window();
+  explicit Window(QWidget *parent = 0);
+	~Window();
 
 public Q_SLOTS:
 	//Gstreamer://
@@ -34,14 +34,14 @@ protected:
 	void keyPressEvent(QKeyEvent *e);
 
 private:
-    bool connected;
-		//Gstreamer://
-    QGst::PipelinePtr m_pipeline;
-		QGst::Ui::VideoWidget *m_videoWidget;
+  bool connected;
+	//Gstreamer://
+  QGst::PipelinePtr m_pipeline;
+	QGst::Ui::VideoWidget *m_videoWidget;
 
-		void onRtpBinPadAdded(const QGst::PadPtr & pad);
-    void onBusErrorMessage(const QGst::MessagePtr & msg);
-		//////////////
+	void onRtpBinPadAdded(const QGst::PadPtr & pad);
+  void onBusErrorMessage(const QGst::MessagePtr & msg);
+	//////////////
 };
 
 #endif // WINDOW_H
