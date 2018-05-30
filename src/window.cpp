@@ -123,6 +123,10 @@ void Window::onBusErrorMessage(const QGst::MessagePtr & msg)
 //////////////
 
 void Window::keyPressEvent (QKeyEvent *keyevent) {
+
+  // CTRL + ALT + Q --> Quit the setApplicationName
+  // R --> reload
+  
 	switch ( keyevent->key() ) {
 	        case Qt::Key_R:                               // reload
 	            qDebug("Pressed R");
