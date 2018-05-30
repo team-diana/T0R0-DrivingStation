@@ -31,7 +31,9 @@ public Q_SLOTS:
 	//////////////
 
 protected:
-	void keyPressEvent(QKeyEvent *e);
+	void keyPressEvent(QKeyEvent *k);
+	void keyReleaseEvent (QKeyEvent *k);
+  int key[3]={0,0,0};
 
 private:
   bool connected;

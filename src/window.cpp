@@ -4,6 +4,7 @@
 #include <QString>
 #include <QCoreApplication>
 #include <QLabel>
+#include <QKeyEvent>
 #include <QBoxLayout>
 
 //Gstreamer://
@@ -122,13 +123,47 @@ void Window::onBusErrorMessage(const QGst::MessagePtr & msg)
 //////////////
 
 void Window::keyPressEvent (QKeyEvent *k) {
-	switch ( tolower(char(k->key())) ) {
-	        case 'r':                               // reload
+	switch ( event->key() ) {
+	        case Qt::Key_R:                               // reload
 	            qDebug("Pressed R");
 	            update();
 	            break;
-	        case 'q':                               // quit
-	            QCoreApplication::quit();
+	        case Qt::key_Q:
+              qDebug("Pressed Q")
+	            key[0] = 1;
 	            break;
+         case Qt::key_Alt:
+              qDebug("Pressed Alt")
+              key[1] = 1;
+              break;
+         case Qt::key_Control:
+              qDebug("Pressed Ctrl")
+              key[2] = 1;
+              break;
+
 	    }
+
+      if (key[0] && key[1] && key[2])
+      {
+        qDebug("Ctrl-Alt-Q all Pressed")
+        QCoreApplication::quit();
+      }
+}
+
+void Window::keyReleaseEvent (QKeyEvent *k) {
+  switch ( event->key() ) {
+        case Qt::key_Q:
+            qDebug("Released Q")
+            key[0] = 0;
+            break;
+        case Qt::key_Alt:
+            qDebug("Released Alt")
+            key[1] = 0;
+            break;
+        case Qt::key_Control:
+            qDebug("Released Ctrl");
+            key[2] = 0;
+            break;
+
+      }
 }
