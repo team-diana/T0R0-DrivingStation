@@ -1,4 +1,4 @@
-all: compile run
+default: compile run
 
 update:
 	git pull origin master

@@ -3,6 +3,7 @@
 A GUI to display cameras from T0-R0 rover
 
 ## Dependencies installation
+
 ### QT5
   Dowload and install components from <a href="https://download.qt.io/official_releases/qt/5.10/5.10.1/">here</a>
 
@@ -10,30 +11,15 @@ A GUI to display cameras from T0-R0 rover
 
 <h> Follow the instruction, and PIN the checkbox "QT 5.10.1" </h>
 
-### LibVLC
-
+### GStreamer
 Run the following commands
 ```
-sudo apt-get install vlc
+apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools
 ```
 ```
-sudo apt-get install libvlc-dev libvlccore-dev
+sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 ```
 
-### VLC-Qt
-
-- A wrapper of LibVLC for Qt.
-
-Run the following commands
-```
-sudo add-apt-repository ppa:ntadej/tano
-```
-```
-sudo apt update
-```
-```
-sudo apt-get install libvlc-qt-core2 libvlc-qt-widgets2 libvlc-qt-dbg libvlc-qt-dev
-```
 
 ## Compile and Run
 

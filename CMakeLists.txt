@@ -48,5 +48,5 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
-add_executable(gui_cameras ${HEADER_FILES} ${SOURCE_FILES} ${RESOURCES} ${UIS})
-target_link_libraries(gui_cameras Qt5Core Qt5Widgets Qt5Gui ${QTGSTREAMER_UI_LIBRARIES})
+add_executable(gui_drivingstation ${HEADER_FILES} ${SOURCE_FILES} ${RESOURCES} ${UIS})
+target_link_libraries(gui_drivingstation Qt5Core Qt5Widgets Qt5Gui ${QTGSTREAMER_UI_LIBRARIES})

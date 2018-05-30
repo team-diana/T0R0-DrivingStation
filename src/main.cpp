@@ -100,9 +100,9 @@ void VoipExample::on_startCallButton_clicked()
 			rtcpudpsink->setProperty("sync", false);
 			rtcpudpsink->setProperty("async", false);
 			m_pipeline->add(rtcpudpsink);
-			rtpbin->link("send_rtcp_src_2", rtcpudpsink);
+			rtpbin->link("send_rtcp_src_2", rtcpudpsink);*/
 	}
-	//watch for the receiving side src pads*/
+	//watch for the receiving side src pads
 	QGlib::connect(rtpbin, "pad-added", this, &VoipExample::onRtpBinPadAdded);
 	//watch the bus
 	m_pipeline->bus()->addSignalWatch();
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
     QGst::init(&argc, &argv);
     VoipExample gui;
     gui.show();
-		startVideo();
+
     return app.exec();
 }
 #include "main.moc"
