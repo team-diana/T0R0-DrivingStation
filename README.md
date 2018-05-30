@@ -1,8 +1,8 @@
-# t0r0-gui-drivingstation
+# T0-R0 Driving Station GUI
 
 A GUI to display cameras from T0-R0 rover
 
-# Dependencies installation
+## Dependencies installation
 ### QT5
   Dowload and install components from <a href="https://download.qt.io/official_releases/qt/5.10/5.10.1/">here</a>
 
@@ -35,34 +35,24 @@ sudo apt update
 sudo apt-get install libvlc-qt-core2 libvlc-qt-widgets2 libvlc-qt-dbg libvlc-qt-dev
 ```
 
-# Compile from command line
+## Compile and Run
+
+### With Makefile
+
+In the terminal go to main project directory and run Makefile using
+```
+make
+```
+
+### Compile from command line
 ```
 cd /<path>/build
 cmake ..
 make gui_drivingstation
 ```
 
-# Launch from Command-Line
+### Launch from Command-Line
 ```
 cd /<path>/build
 ./bin/gui_drivingstation
 ```
-
-# Use Makefile to update project from Git, Compile & Launch it
-
-Create a Makefile with the following content. Substitute \<path\> with the path of your t0r0-gui-cameras folder accordingly
-```
-all:	 update	compile	show
-
-update:
-	cd /<path>/ && git pull origin master
-
-compile:
-	cd /<path>/build && cmake .. && make gui_drivingstation
-
-show:
-	cd /<path>/build && ./bin/gui_drivingstation
-```
-Run Makefile using <code>make</code>.
-
-*tested on Ubuntu 16.04LTS*
