@@ -31,8 +31,8 @@ public Q_SLOTS:
 	//////////////
 
 protected:
-	void keyPressEvent(QKeyEvent *k);
-	void keyReleaseEvent (QKeyEvent *k);
+	void keyPressEvent(QKeyEvent *keyevent);
+	void keyReleaseEvent (QKeyEvent *keyevent);
   int key[3]={0,0,0};
 
 private:

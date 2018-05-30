@@ -122,8 +122,8 @@ void Window::onBusErrorMessage(const QGst::MessagePtr & msg)
 }
 //////////////
 
-void Window::keyPressEvent (QKeyEvent *k) {
-	switch ( event->key() ) {
+void Window::keyPressEvent (QKeyEvent *keyevent) {
+	switch ( keyevent->key() ) {
 	        case Qt::Key_R:                               // reload
 	            qDebug("Pressed R");
 	            update();
@@ -150,8 +150,8 @@ void Window::keyPressEvent (QKeyEvent *k) {
       }
 }
 
-void Window::keyReleaseEvent (QKeyEvent *k) {
-  switch ( event->key() ) {
+void Window::keyReleaseEvent (QKeyEvent *keyevent) {
+  switch ( keyevent->key() ) {
         case Qt::key_Q:
             qDebug("Released Q")
             key[0] = 0;
