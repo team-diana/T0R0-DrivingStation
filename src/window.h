@@ -32,7 +32,6 @@ protected:
 	void keyPressEvent(QKeyEvent *k);
 	void keyReleaseEvent (QKeyEvent *k);
   int key[3]={0,0,0};
-	//ciao
 
 private:
     bool connected;
