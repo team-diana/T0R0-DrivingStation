@@ -128,16 +128,16 @@ void Window::keyPressEvent (QKeyEvent *keyevent) {
 	            qDebug("Pressed R");
 	            update();
 	            break;
-	        case Qt::key_Q:
-              qDebug("Pressed Q")
+	        case Qt::Key_Q:
+              qDebug("Pressed Q");
 	            key[0] = 1;
 	            break;
-         case Qt::key_Alt:
-              qDebug("Pressed Alt")
+         case Qt::Key_Alt:
+              qDebug("Pressed Alt");
               key[1] = 1;
               break;
-         case Qt::key_Control:
-              qDebug("Pressed Ctrl")
+         case Qt::Key_Control:
+              qDebug("Pressed Ctrl");
               key[2] = 1;
               break;
 
@@ -145,22 +145,22 @@ void Window::keyPressEvent (QKeyEvent *keyevent) {
 
       if (key[0] && key[1] && key[2])
       {
-        qDebug("Ctrl-Alt-Q all Pressed")
+        qDebug("Ctrl-Alt-Q all Pressed");
         QCoreApplication::quit();
       }
 }
 
 void Window::keyReleaseEvent (QKeyEvent *keyevent) {
   switch ( keyevent->key() ) {
-        case Qt::key_Q:
-            qDebug("Released Q")
+        case Qt::Key_Q:
+            qDebug("Released Q");
             key[0] = 0;
             break;
-        case Qt::key_Alt:
-            qDebug("Released Alt")
+        case Qt::Key_Alt:
+            qDebug("Released Alt");
             key[1] = 0;
             break;
-        case Qt::key_Control:
+        case Qt::Key_Control:
             qDebug("Released Ctrl");
             key[2] = 0;
             break;
