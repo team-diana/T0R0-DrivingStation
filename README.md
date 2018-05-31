@@ -29,6 +29,7 @@ In the terminal go to main project directory and run Makefile using
 ```
 make
 ```
+If it fails, try to run <code>mkdir build</code> to create the build folder. Then retry the previous command.
 
 ### Compile from command line
 ```
