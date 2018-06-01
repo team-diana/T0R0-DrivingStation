@@ -2,3 +2,5 @@
 \.atom-build\.js
 
 build/
+
+\.atom-build\.yml
