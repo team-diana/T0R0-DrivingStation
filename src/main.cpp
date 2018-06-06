@@ -15,11 +15,6 @@ int main(int argc, char *argv[])
     //show message on console.
     qDebug() << "\nWindow opened successfully\n";
 
-
-    window.startVideo();
-
-    qDebug() << "\nVideo started successfully\n";
-
     return app.exec();
 }
 #include "main.moc"

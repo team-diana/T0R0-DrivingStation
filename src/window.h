@@ -2,20 +2,16 @@
 #define WINDOW_H
 
 #include <QKeyEvent>
-#include <QLabel>
 
 //Gstreamer://
 #include <QGst/Pipeline>
 #include <QGst/Ui/VideoWidget>
 //////////////
 
-
 #define XPOS_BATTGROUP 0
 #define YPOS_BATTGROUP 0
 
-class QBoxLayout;
-class QLabel;
-
+class WindowUi;
 
 class Window : public QWidget
 {
@@ -26,9 +22,7 @@ public:
 	~Window();
 
 public Q_SLOTS:
-	//Gstreamer://
-	void startVideo();
-	//////////////
+	//
 
 protected:
 	void keyPressEvent(QKeyEvent *keyevent);
@@ -37,13 +31,10 @@ protected:
 
 private:
   bool connected;
-	//Gstreamer://
-  QGst::PipelinePtr m_pipeline;
-	QGst::Ui::VideoWidget *m_videoWidget;
 
-	void onRtpBinPadAdded(const QGst::PadPtr & pad);
-  void onBusErrorMessage(const QGst::MessagePtr & msg);
-	//////////////
+	//UI://
+	WindowUi *ui;
+	///////
 };
 
 #endif // WINDOW_H
