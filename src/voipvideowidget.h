@@ -32,12 +32,10 @@ protected:
   //
 
 private:
-  bool connected;
-
-	//Gstreamer://
   int port;
   QString s_port;
 
+	//Gstreamer://
   QGst::PipelinePtr pipeline;
 	QGst::Ui::VideoWidget *videoWidget;
 

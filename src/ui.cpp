@@ -14,7 +14,7 @@ WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
   //Gstremer://
   //Set port of the camera
   camera1_videoWidget->setPort(1234);
-  
+
   //START VIDEO
   camera1_videoWidget->startPipeline();
 
@@ -50,7 +50,7 @@ void WindowUi::CreateUI(){
 
   //Gstremer://
   camera1_videoWidget = new VoipVideoWidget(this);
-  camera1_videoWidget->setGeometry( 100, 100, 640, 480 );
+  camera1_videoWidget->setGeometry( (this->width()-960)/2, (this->height()-600)/2, 960, 600 );
   /////////////
 }
 ///////

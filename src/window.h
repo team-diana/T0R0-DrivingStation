@@ -2,11 +2,7 @@
 #define WINDOW_H
 
 #include <QKeyEvent>
-
-//Gstreamer://
-#include <QGst/Pipeline>
-#include <QGst/Ui/VideoWidget>
-//////////////
+#include <QWidget>
 
 #define XPOS_BATTGROUP 0
 #define YPOS_BATTGROUP 0
