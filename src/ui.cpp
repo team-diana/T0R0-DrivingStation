@@ -19,8 +19,10 @@ WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
   camera1_videoWidget->startPipeline();
 
   qDebug() << "\nVideo started successfully\n";
+
   /////////////
 }
+///////
 
 WindowUi::~WindowUi(){
 }
@@ -52,5 +54,11 @@ void WindowUi::CreateUI(){
   camera1_videoWidget = new VoipVideoWidget(this);
   camera1_videoWidget->setGeometry( (this->width()-960)/2, (this->height()-600)/2, 960, 600 );
   /////////////
+
+  //INPUT://
+  jstick_lbl = new QLabel(this);
+  jstick_lbl->setGeometry(5, 5, 500, 50);
+  jstick_lbl->setText("NO INPUT");
+  jstick_lbl->setStyleSheet( "color : white;" );
+  //////////
 }
-///////

@@ -18,28 +18,28 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <iostream>
-#include <string>
+#include <QString>
 #include <sstream>
 #include "unistd.h"
 
-Joystick::Joystick()
-{
-  openPath("/dev/input/js0");
-}
+//QT://
+#include <QDebug>
+#include <QThread>
+///////
 
-Joystick::Joystick(int joystickNumber)
+/*
+Joystick::Joystick(QObject *parent, int joystickNumber)
+  : QThread(parent)
 {
   std::stringstream sstm;
   sstm << "/dev/input/js" << joystickNumber;
   openPath(sstm.str());
 }
+*/
 
-Joystick::Joystick(std::string devicePath)
-{
-  openPath(devicePath);
-}
-
-Joystick::Joystick(std::string devicePath, bool blocking)
+Joystick::Joystick(QObject *parent, std::string devicePath, bool blocking)
+  : QThread(parent)
+  , m_stop(false)
 {
   openPath(devicePath, blocking);
 }
@@ -67,17 +67,66 @@ bool Joystick::isFound()
   return _fd >= 0;
 }
 
+//QT://
+void Joystick::stop()
+{
+  m_stop = true;
+}
+
+void Joystick::run()
+{
+  uint16_t data = 42;
+
+  qDebug() << "\nJoystick: Started\n";
+
+  // Ensure that it was found and that we can use it
+  if (!this->isFound())
+  {
+    qDebug() << "Joystick: open failed.\n";
+    exit(1);
+  }
+
+  while (true)
+  {
+    // Attempt to sample an event from the joystick
+    JoystickEvent event;
+    if (this->sample(&event) < 1)
+    {
+      if (event.isButton())
+      {
+        printf("Button %u is %s\n",
+          event.number,
+          event.value == 0 ? "up" : "down");
+
+        Q_EMIT ButtonUpdate(event.number, event.value);
+      }
+      if (event.isAxis())
+      {
+        //if(event.number == 0) {
+          printf("Axis %u is at position %d\n", event.number, event.value);
+          data = (uint16_t) ~((unsigned int) event.value);
+          printf("Data = %hu\n", data);
+          //printf("Sending %hu\n", data);
+          //socket->send16(data);
+        //}
+
+        Q_EMIT AxisUpdate(event.number, event.value);
+      }
+
+      //Stop thread:
+      if (m_stop) break;
+
+      // Restrict rate
+      usleep(100000);
+    }
+  }
+
+}
+///////
+
 Joystick::~Joystick()
 {
   close(_fd);
-}
-
-// --- PROCESS ---
-// Start processing data.
-void Joystick::process() {
-    // allocate resources using new here
-    qDebug("Hello World!");
-    emit finished();
 }
 
 std::ostream& operator<<(std::ostream& os, const JoystickEvent& e)

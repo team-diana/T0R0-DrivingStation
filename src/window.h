@@ -9,6 +9,10 @@
 
 class WindowUi;
 
+//INPUT://
+class Joystick;
+//////////
+
 class Window : public QWidget
 {
 	Q_OBJECT
@@ -16,6 +20,10 @@ class Window : public QWidget
 public:
   explicit Window(QWidget *parent = 0);
 	~Window();
+
+	//INPUT://
+	Joystick *jstick;
+	//////////
 
 public Q_SLOTS:
 	//
@@ -31,6 +39,9 @@ private:
 	//UI://
 	WindowUi *ui;
 	///////
+
+	void ChangeText_Button(int n, int pressed);
+	void ChangeText_Axis(int n, int position);
 };
 
 #endif // WINDOW_H

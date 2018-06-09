@@ -15,21 +15,20 @@
 #ifndef __JOYSTICK_HH__
 #define __JOYSTICK_HH__
 
-#include <string>
+#include <QString>
+#include <QThread>
+#include <QObject>
 #include <iostream>
 
 #define JS_EVENT_BUTTON 0x01 // button pressed/released
 #define JS_EVENT_AXIS   0x02 // joystick moved
 #define JS_EVENT_INIT   0x80 // initial state of device
 
-////////////////////////////////////
-
-
 /**
  * Encapsulates all data relevant to a sampled joystick event.
  */
-class JoystickEvent {
-
+class JoystickEvent
+{
 public:
   /** Minimum value of axes range */
   static const short MIN_AXES_VALUE = -32768;
@@ -83,12 +82,6 @@ public:
   {
     return (type & JS_EVENT_INIT) != 0;
   }
-
-  /**
-   * The ostream inserter needs to be a friend so it can access the
-   * internal data structures.
-   */
-  friend std::ostream& operator<<(std::ostream& os, const JoystickEvent& e);
 };
 
 /**
@@ -100,58 +93,48 @@ std::ostream& operator<<(std::ostream& os, const JoystickEvent& e);
 /**
  * Represents a joystick device. Allows data to be sampled from it.
  */
- class Joystick : public QWidget {
+class Joystick : public QThread
+{
     Q_OBJECT
 
 private:
   void openPath(std::string devicePath, bool blocking=false);
 
-int _fd;
+  int _fd;
 
-public slots:
-  void process();
+  //QT://
+  bool m_stop;
+  ///////
 
-signals:
-  void finished();
-  void error(QString err);
+protected:
+  //QT://
+  void run() override;
+  ///////
 
 public:
-
-  explicit Joystick (QWidget *parent = 0);
-
   ~Joystick();
-
-  /**
-   * Initialises an instance for the first joystick: /dev/input/js0
-   */
-  Joystick();
 
   /**
    * Initialises an instance for the joystick with the specified,
    * zero-indexed number.
-   */
-  Joystick(int joystickNumber);
-
-  /**
-   * Initialises an instance for the joystick device specified.
-   */
-  Joystick(std::string devicePath);
+  Joystick(QObject *parent = 0, int joystickNumber=0);
+  */
 
   /**
    * Joystick objects cannot be copied
-   */
-  Joystick(Joystick const&) = delete;
+  Joystick(QObject *parent = 0, Joystick const&) = delete;
+  */
 
   /**
    * Joystick objects can be moved
-   */
-  Joystick(Joystick &&) = default;
+  Joystick(QObject *parent = 0, Joystick &&) = default;
+  */
 
   /**
    * Initialises an instance for the joystick device specified and provide
    * the option of blocking I/O.
    */
-  Joystick(std::string devicePath, bool blocking);
+  Joystick(QObject *parent = 0, std::string devicePath="/dev/input/js0", bool blocking=false);
 
   /**
    * Returns true if the joystick was found and may be used, otherwise false.
@@ -163,6 +146,17 @@ public:
    * from the joystick. Returns true if data is available, otherwise false.
    */
   bool sample(JoystickEvent* event);
+
+  //QT://
+
+  public Q_SLOTS:
+    void stop();
+
+  Q_SIGNALS:
+    void ButtonUpdate(int n, int pressed);
+    void AxisUpdate(int n, int position);
+
+  ///////
 };
 
 #endif

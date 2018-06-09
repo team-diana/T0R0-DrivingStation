@@ -14,6 +14,8 @@ public:
   explicit WindowUi(QWidget *parent = 0);
 	~WindowUi();
 
+	QLabel *jstick_lbl;
+
 public Q_SLOTS:
   //
 
@@ -22,7 +24,7 @@ protected:
 
 private:
 	void CreateUI();
-  
+
   //Gstreamer://
   VoipVideoWidget *camera1_videoWidget;
   //////////////
