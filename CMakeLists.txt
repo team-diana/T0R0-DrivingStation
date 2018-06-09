@@ -34,8 +34,8 @@ include_directories(${Qt5Gui_INCLUDE_DIRS})
 file(GLOB HEADER_FILES "src/*.h")
 file(GLOB SOURCE_FILES "src/*.cpp")
 #DELETE ME:
-#set(SOURCE_FILES src/main.cpp src/window.cpp src/voipvideowidget.cpp src/ui.cpp)
-#set(HEADER_FILES src/window.h src/voipvideowidget.h src/ui.h)
+#set(SOURCE_FILES src/main.cpp src/player.cpp src/mediapp.cpp)
+#set(HEADER_FILES src/player.h src/mediapp.h)
 
 #UI files
 file(GLOB UIS "*.ui" "src/*.ui")
