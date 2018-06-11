@@ -26,9 +26,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${QTGSTREAMER_FLAGS}")
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Gui REQUIRED)
+find_package(Qt5Network REQUIRED)
 include_directories(${Qt5Core_INCLUDE_DIRS})
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
 include_directories(${Qt5Gui_INCLUDE_DIRS})
+include_directories(${Qt5Network_INCLUDE_DIRS})
 
 #C++ code
 file(GLOB HEADER_FILES "src/*.h")
@@ -49,4 +51,4 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 add_executable(gui_drivingstation ${HEADER_FILES} ${SOURCE_FILES} ${RESOURCES} ${UIS})
-target_link_libraries(gui_drivingstation Qt5Core Qt5Widgets Qt5Gui ${QTGSTREAMER_UI_LIBRARIES})
+target_link_libraries(gui_drivingstation Qt5Core Qt5Widgets Qt5Gui Qt5Network ${QTGSTREAMER_UI_LIBRARIES})

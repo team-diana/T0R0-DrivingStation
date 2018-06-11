@@ -8,12 +8,18 @@
 
 //JOYSTICK//
 #include "joystick.h"
+#include <QTcpServer>
+
 
 
 // Constructor
 Window::Window(QWidget *parent) : QWidget(parent)
 {
   ui = new WindowUi(this);
+
+  // TCP CLIENT //
+  QTcpSocket t;
+  t.connectToHost("127.0.0.1", 9000);
 
   //INPUT://
   jstick = new Joystick(this);
@@ -30,6 +36,25 @@ Window::~Window(){
   jstick->stop();
   jstick->wait();
   delete ui;
+}
+
+// TCP //
+void Window::connectTcp()
+{
+    QByteArray data; // <-- fill with data
+
+    _pSocket = new QTcpSocket( this ); // <-- needs to be a member variable: QTcpSocket * _pSocket;
+    connect( _pSocket, SIGNAL(readyRead()), this, SLOT(readTcpData()) );
+
+    _pSocket->connectToHost("127.0.0.1", 9000);
+    if( _pSocket->waitForConnected() ) {
+        _pSocket->write( data );
+    }
+}
+
+void Window::readTcpData()
+{
+    QByteArray data = pSocket->readAll();
 }
 
 //INPUT://
