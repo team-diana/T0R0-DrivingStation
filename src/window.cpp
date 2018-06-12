@@ -6,6 +6,8 @@
 #include <QCoreApplication>
 #include <QKeyEvent>
 
+#include "qtcpclient.h"
+
 //JOYSTICK//
 #include "joystick.h"
 #include <QTcpServer>
@@ -18,8 +20,11 @@ Window::Window(QWidget *parent) : QWidget(parent)
   ui = new WindowUi(this);
 
   // TCP CLIENT //
-  QTcpSocket t;
-  t.connectToHost("127.0.0.1", 9000);
+  QTcpClient client;
+  client.connect("127.0.0.1", 50100);
+
+  //QTcpSocket t;
+  //t.connectToHost("127.0.0.1", 9000);
 
   //INPUT://
   jstick = new Joystick(this);
