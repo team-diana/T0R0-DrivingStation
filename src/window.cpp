@@ -20,7 +20,7 @@ Window::Window(QWidget *parent) : QWidget(parent)
   ui = new WindowUi(this);
 
   // TCP CLIENT //
-  QTcpClient client;
+  Client client;
   client.connect("127.0.0.1", 50100);
 
   //QTcpSocket t;

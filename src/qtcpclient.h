@@ -4,21 +4,24 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QDebug>
+#include <QByteArray>
 
-class QTcpClient : public QObject
+class Client : public QObject
 {
   Q_OBJECT
 
 public:
-  explicit QTcpClient (QObject *parent = 0);
-  void connect(const char* address, int port);
+  explicit Client (QObject *parent = 0);
+  bool connect(const char* address, int port);
+  bool writeData(QByteArray data);
+  //QByteArray IntToArray(qint32 source);
 
 Q_SIGNALS:
 
 public Q_SLOTS:
 
 private:
-
+  QTcpSocket *socket;
 };
 
 #endif // QTCPCLIENT_H
