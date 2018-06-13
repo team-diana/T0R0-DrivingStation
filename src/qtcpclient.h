@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QDebug>
+
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/socket.h>
@@ -15,16 +16,11 @@ class Client : public QObject
   Q_OBJECT
 
 public:
-  Client (QObject *parent = 0, const char* address, int port);
+  Client (QObject *parent = 0, const char* address = "127.0.0.1", int port = 8088);
   ~Client();
   void send8(uint8_t data);
   void send16(uint16_t data);
   bool isConnected();
-
-
-  bool connect(const char* address, int port);
-  bool writeData(uint8_t data);
-  QByteArray IntToArray(qint32 source);
 
 Q_SIGNALS:
 

@@ -18,7 +18,7 @@ Client::Client (QObject *parent, const char* address, int port) : QObject (paren
       printf("\n Socket creation error \n");
       return;
   }
-
+  /*
   // Convert IPv4 and IPv6 addresses from text to binary form
   if(inet_pton(AF_INET, address, &serv_addr.sin_addr) <= 0)
   {
@@ -30,22 +30,22 @@ Client::Client (QObject *parent, const char* address, int port) : QObject (paren
   {
       printf("\nConnection Failed \n");
       return;
-  }
+  }*/
 
   connected = true;
 }
 
-TcpClient::~TcpClient()
+Client::~Client()
 {
     close(sock);
 }
 
-void TcpClient::send8(uint8_t data)
+void Client::send8(uint8_t data)
 {
     send(sock , &data , 1 , 0);
 }
 
-void TcpClient::send16(uint16_t data)
+void Client::send16(uint16_t data)
 {
     uint8_t bytes[2];
 
@@ -55,7 +55,7 @@ void TcpClient::send16(uint16_t data)
     send(sock, bytes, 2, 0);
 }
 
-bool TcpClient::isConnected()
+bool Client::isConnected()
 {
     return connected;
 }
