@@ -19,6 +19,7 @@ bool Client::writeData(QByteArray data)
 {
     if(socket->state() == QAbstractSocket::ConnectedState)
     {
+        qDebug() << "Writing data to TCP " << data;
         socket->write(IntToArray(data.size())); //write size of data
         socket->write(data); //write the data itself
         return socket->waitForBytesWritten();
@@ -27,11 +28,11 @@ bool Client::writeData(QByteArray data)
         return false;
 }
 
-QByteArray IntToArray(qint32 source) //Use qint32 to ensure that the number have 4 bytes
+QByteArray Client::IntToArray(qint32 source) //Use qint32 to ensure that the number have 4 bytes
 {
     //Avoid use of cast, this is the Qt way to serialize objects
     QByteArray temp;
-    QDataStream data(&temp, QIODevice::ReadWrite);
+    QDataStream data (&temp, QIODevice::ReadWrite);
     data << source;
     return temp;
 }

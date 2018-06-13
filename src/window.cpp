@@ -22,6 +22,8 @@ Window::Window(QWidget *parent) : QWidget(parent)
   // TCP CLIENT //
   Client client;
   client.connect("127.0.0.1", 50100);
+  uint16_t datetosend = 1234;
+  client.writeData(datetosend);
 
   //QTcpSocket t;
   //t.connectToHost("127.0.0.1", 9000);

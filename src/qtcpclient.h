@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QDebug>
 #include <QByteArray>
+#include <QDataStream>
 
 class Client : public QObject
 {
@@ -14,7 +15,7 @@ public:
   explicit Client (QObject *parent = 0);
   bool connect(const char* address, int port);
   bool writeData(QByteArray data);
-  //QByteArray IntToArray(qint32 source);
+  QByteArray IntToArray(qint32 source);
 
 Q_SIGNALS:
 
