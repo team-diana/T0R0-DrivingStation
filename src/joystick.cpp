@@ -103,9 +103,11 @@ void Joystick::run()
       if (event.isAxis())
       {
         //if(event.number == 0) {
-          printf("Axis %u is at position %d\n", event.number, event.value);
+          //  printf("Axis %u is at position %d\n", event.number, event.value);
           data = (uint16_t) ~((unsigned int) event.value);
-          printf("Data = %hu\n", data);
+          //  printf("Data = %hu\n", data);
+
+
           //printf("Sending %hu\n", data);
           //socket->send16(data);
         //}

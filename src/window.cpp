@@ -6,14 +6,28 @@
 #include <QCoreApplication>
 #include <QKeyEvent>
 
+
+
 //JOYSTICK//
 #include "joystick.h"
+#include <QTcpServer>
+
 
 
 // Constructor
 Window::Window(QWidget *parent) : QWidget(parent)
 {
   ui = new WindowUi(this);
+
+  // TCP CLIENT //
+  left_client = new TcpClient("127.0.0.1", 50100);
+  right_client = new TcpClient("127.0.0.1", 50101);
+
+  uint8_t left_command = 0;
+  left_client->send8(left_command);
+
+  uint8_t right_command = 0;
+  right_client->send8(right_command);
 
   //INPUT://
   jstick = new Joystick(this);
@@ -32,6 +46,7 @@ Window::~Window(){
   delete ui;
 }
 
+
 //INPUT://
 void Window::ChangeText_Button(int n, int pressed){
   QString txt = QString("Button %1 is %2").arg(
@@ -45,6 +60,20 @@ void Window::ChangeText_Axis(int n, int position){
                     QString::number(n),
                     QString::number(position));
   ui->jstick_lbl->setText(txt);
+
+  uint16_t position_uint16 = (uint16_t) (position + 32768);
+  uint8_t position_uint8 = (uint8_t) (position_uint16 / 256);
+
+  if (n == 0)
+  {
+    left_client->send8(position_uint8);
+    qDebug() << "Invio comando motori lato sinistro " << position_uint8;
+  }
+  else if (n == 1)
+  {
+    right_client->send8(position_uint8);
+    qDebug() << "Invio comando motori lato destro " << position_uint8;
+  }
 }
 
 //////////
