@@ -61,19 +61,23 @@ void Window::ChangeText_Axis(int n, int position){
                     QString::number(position));
   ui->jstick_lbl->setText(txt);
 
-  uint16_t position_uint16 = (uint16_t) (position + 32768);
-  uint8_t position_uint8 = (uint8_t) (position_uint16 / 256);
+  uint8_t speed[2] = {0, 0};
 
-  if (n == 0)
+  if (position >= 0) // Right
   {
-    left_client->send8(position_uint8);
-    qDebug() << "Invio comando motori lato sinistro " << position_uint8;
+    speed[0] = 0;
+    speed[1] = (uint8_t) (position / 128);
   }
-  else if (n == 1)
+  else  // Left
   {
-    right_client->send8(position_uint8);
-    qDebug() << "Invio comando motori lato destro " << position_uint8;
+    speed[1] = 0;
+    speed[0] = (uint8_t) ((-position) / 128);
   }
+
+
+  qDebug() << "Invio comandi motori (sinistro, destro):\t" << speed[0] << "\t" << speed[0];
+  left_client->send8(speed[0]);
+  right_client->send8(speed[1]);
 }
 
 //////////
