@@ -6,7 +6,7 @@
 #include <QCoreApplication>
 #include <QKeyEvent>
 
-#include "TcpClient.h"
+
 
 //JOYSTICK//
 #include "joystick.h"
@@ -20,12 +20,14 @@ Window::Window(QWidget *parent) : QWidget(parent)
   ui = new WindowUi(this);
 
   // TCP CLIENT //
-  TcpClient *client = new TcpClient("127.0.0.1", 50100);
-  //uint8_t datetosend = 122;
-  //client.writeData(datetosend);
+  left_client = new TcpClient("127.0.0.1", 50100);
+  right_client = new TcpClient("127.0.0.1", 50101);
 
-  //QTcpSocket t;
-  //t.connectToHost("127.0.0.1", 9000);
+  uint8_t left_command = 0;
+  left_client->send8(left_command);
+
+  uint8_t right_command = 0;
+  right_client->send8(right_command);
 
   //INPUT://
   jstick = new Joystick(this);
@@ -44,24 +46,6 @@ Window::~Window(){
   delete ui;
 }
 
-// TCP //
-void Window::connectTcp()
-{
-    QByteArray data; // <-- fill with data
-
-    _pSocket = new QTcpSocket( this ); // <-- needs to be a member variable: QTcpSocket * _pSocket;
-    connect( _pSocket, SIGNAL(readyRead()), this, SLOT(readTcpData()) );
-
-    _pSocket->connectToHost("127.0.0.1", 9000);
-    if( _pSocket->waitForConnected() ) {
-        _pSocket->write( data );
-    }
-}
-
-void Window::readTcpData()
-{
-    QByteArray data = pSocket->readAll();
-}
 
 //INPUT://
 void Window::ChangeText_Button(int n, int pressed){
@@ -76,6 +60,20 @@ void Window::ChangeText_Axis(int n, int position){
                     QString::number(n),
                     QString::number(position));
   ui->jstick_lbl->setText(txt);
+
+  uint16_t position_uint16 = (uint16_t) (position + 32768);
+  uint8_t position_uint8 = (uint8_t) (position_uint16 / 256);
+
+  if (n == 0)
+  {
+    left_client->send8(position_uint8);
+    qDebug() << "Invio comando motori lato sinistro " << position_uint8;
+  }
+  else if (n == 1)
+  {
+    right_client->send8(position_uint8);
+    qDebug() << "Invio comando motori lato destro " << position_uint8;
+  }
 }
 
 //////////

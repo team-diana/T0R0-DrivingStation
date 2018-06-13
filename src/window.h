@@ -6,6 +6,8 @@
 #include <QTcpSocket>
 #include <QByteArray>
 
+#include "TcpClient.h"
+
 #define XPOS_BATTGROUP 0
 #define YPOS_BATTGROUP 0
 
@@ -31,17 +33,14 @@ public Q_SLOTS:
 	//
 
 protected:
-	void connectTcp();
-	void readTcpData();
+
 	void keyPressEvent(QKeyEvent *keyevent);
 	void keyReleaseEvent (QKeyEvent *keyevent);
   int key[3]={0,0,0};
 
 private:
-  bool connected;
-	QTcpSocket *_pSocket;
-	QTcpSocket *pSocket;
 
+	TcpClient *left_client, *right_client;
 	//UI://
 	WindowUi *ui;
 	///////
