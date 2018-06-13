@@ -15,12 +15,12 @@ bool Client::connect (const char* address, int port)
   return socket->waitForConnected();
 }
 
-bool Client::writeData(QByteArray data)
+bool Client::writeData(uint8_t data)
 {
     if(socket->state() == QAbstractSocket::ConnectedState)
     {
         qDebug() << "Writing data to TCP " << data;
-        socket->write(IntToArray(data.size())); //write size of data
+        //socket->write(IntToArray(data.size())); //write size of data
         socket->write(data); //write the data itself
         return socket->waitForBytesWritten();
     }

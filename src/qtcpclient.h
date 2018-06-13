@@ -14,7 +14,7 @@ class Client : public QObject
 public:
   explicit Client (QObject *parent = 0);
   bool connect(const char* address, int port);
-  bool writeData(QByteArray data);
+  bool writeData(uint8_t data);
   QByteArray IntToArray(qint32 source);
 
 Q_SIGNALS:
