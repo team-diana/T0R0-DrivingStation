@@ -20,8 +20,7 @@ Window::Window(QWidget *parent) : QWidget(parent)
   ui = new WindowUi(this);
 
   // TCP CLIENT //
-  Client client;
-  client.connect("127.0.0.1", 50100);
+  Client client = new Client(this, "127.0.0.1", 50100);
   uint8_t datetosend = 122;
   client.writeData(datetosend);
 

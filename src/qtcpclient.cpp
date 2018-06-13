@@ -1,41 +1,61 @@
 #include "qtcpclient.h"
 
-Client::Client (QObject *parent) : QObject (parent)
-{
-
-}
-
-bool Client::connect (const char* address, int port)
+Client::Client (QObject *parent, const char* address, int port) : QObject (parent)
 {
   qDebug() << "Connecting to " << address << " on port " << port;
 
-  // Connect to TCP Host (or server)
-  socket = new QTcpSocket(this);
-  socket->connectToHost(address, port);
-  return socket->waitForConnected();
+  this->port = port;
+  strcpy(this->address, address);
+
+  struct sockaddr_in serv_addr;
+  serv_addr.sin_family = AF_INET;
+  serv_addr.sin_port = htons(port);
+
+  connected = false;
+
+  if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+  {
+      printf("\n Socket creation error \n");
+      return;
+  }
+
+  // Convert IPv4 and IPv6 addresses from text to binary form
+  if(inet_pton(AF_INET, address, &serv_addr.sin_addr) <= 0)
+  {
+      printf("\nInvalid address/ Address not supported \n");
+      return;
+  }
+
+  if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+  {
+      printf("\nConnection Failed \n");
+      return;
+  }
+
+  connected = true;
 }
 
-bool Client::writeData(uint8_t data)
+TcpClient::~TcpClient()
 {
-    if(socket->state() == QAbstractSocket::ConnectedState)
-    {
-        qDebug() << "Writing data to TCP " << data;
-        //socket->write(IntToArray(data.size())); //write size of data
-        socket->write(data); //write the data itself
-        return socket->waitForBytesWritten();
-    }
-    else
-        return false;
+    close(sock);
 }
 
-QByteArray Client::IntToArray(qint32 source) //Use qint32 to ensure that the number have 4 bytes
+void TcpClient::send8(uint8_t data)
 {
-    //Avoid use of cast, this is the Qt way to serialize objects
-    QByteArray temp;
-    QDataStream data (&temp, QIODevice::ReadWrite);
-    data << source;
-    return temp;
+    send(sock , &data , 1 , 0);
 }
 
-// Part of the code is based on https://www.youtube.com/watch?v=u5OdR46542M
-// and on https://stackoverflow.com/questions/20546750/qtcpsocket-reading-and-writing
+void TcpClient::send16(uint16_t data)
+{
+    uint8_t bytes[2];
+
+    bytes[0] = (data & 0xFF00) >> 8;
+    bytes[1] = data & 0x00FF;
+
+    send(sock, bytes, 2, 0);
+}
+
+bool TcpClient::isConnected()
+{
+    return connected;
+}
