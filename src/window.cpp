@@ -6,7 +6,7 @@
 #include <QCoreApplication>
 #include <QKeyEvent>
 
-#include "qtcpclient.h"
+#include "TcpClient.h"
 
 //JOYSTICK//
 #include "joystick.h"
@@ -20,7 +20,7 @@ Window::Window(QWidget *parent) : QWidget(parent)
   ui = new WindowUi(this);
 
   // TCP CLIENT //
-  Client client = new Client(this, "127.0.0.1", 50100);
+  TcpClient *client = new TcpClient("127.0.0.1", 50100);
   //uint8_t datetosend = 122;
   //client.writeData(datetosend);
 
