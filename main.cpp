@@ -1,4 +1,4 @@
-#include "window.h"
+#include "mainwindow.h"
 #include <QApplication>
 #include <QDebug>
 #include <QGst/Init>
@@ -9,13 +9,11 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QGst::init(&argc, &argv);
 
-    Window window;
-    window.showFullScreen();
-
+    MainWindow mainwindow;
+    mainwindow.showFullScreen();
 
     //show message on console.
     qDebug() << "\nWindow opened successfully\n";
 
     return app.exec();
 }
-#include "main.moc"

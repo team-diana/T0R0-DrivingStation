@@ -9,14 +9,14 @@ TcpServer::TcpServer(int port)
     address.sin_port = htons(port);
 
     addrlen = sizeof(address);
-      
+
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
         perror("socket failed");
         return;
     }
-     
+
     // Forcefully attaching socket to the port
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)))
     {

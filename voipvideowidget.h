@@ -10,19 +10,19 @@ class QString;
 
 class VoipVideoWidget : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
   explicit VoipVideoWidget(QWidget *parent = 0);
-	~VoipVideoWidget();
+    ~VoipVideoWidget();
 
-	//Gstreamer://
-	void startPipeline();
+    //Gstreamer://
+    void startPipeline();
 
   void setPort(int p);
 
   void stopPipeline();
-	//////////////
+    //////////////
 
 
 public Q_SLOTS:
@@ -35,13 +35,13 @@ private:
   int port;
   QString s_port;
 
-	//Gstreamer://
+    //Gstreamer://
   QGst::PipelinePtr pipeline;
-	QGst::Ui::VideoWidget *videoWidget;
+    QGst::Ui::VideoWidget *videoWidget;
 
-	void onRtpBinPadAdded(const QGst::PadPtr & pad);
+    void onRtpBinPadAdded(const QGst::PadPtr & pad);
   void onBusErrorMessage(const QGst::MessagePtr & msg);
-	//////////////
+    //////////////
 
 };
 

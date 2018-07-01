@@ -8,13 +8,13 @@ class VoipVideoWidget;
 
 class WindowUi : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
   explicit WindowUi(QWidget *parent = 0);
-	~WindowUi();
+    ~WindowUi();
 
-	QLabel *jstick_lbl;
+    QLabel *jstick_lbl;
 
 public Q_SLOTS:
   //
@@ -23,7 +23,7 @@ protected:
   //
 
 private:
-	void CreateUI();
+    void CreateUI();
 
   //Gstreamer://
   VoipVideoWidget *camera1_videoWidget;

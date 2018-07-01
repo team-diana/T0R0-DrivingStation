@@ -53,12 +53,12 @@ void VoipVideoWidget::setPort(int p){
 
 //GStreamer://
 void VoipVideoWidget::startPipeline(){
-	pipeline = QGst::Pipeline::create();
-	QGst::ElementPtr rtpbin = QGst::ElementFactory::make("rtpbin");
-	if (!rtpbin) {
-			qFatal("Failed to create rtpbin");
-	}
-	pipeline->add(rtpbin);
+    pipeline = QGst::Pipeline::create();
+    QGst::ElementPtr rtpbin = QGst::ElementFactory::make("rtpbin");
+    if (!rtpbin) {
+            qFatal("Failed to create rtpbin");
+    }
+    pipeline->add(rtpbin);
 
   QGst::ElementPtr videosrc;
   try {

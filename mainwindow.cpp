@@ -1,4 +1,4 @@
-#include "window.h"
+#include "mainwindow.h"
 #include "ui.h"
 
 #include <QDebug>
@@ -15,7 +15,7 @@
 
 
 // Constructor
-Window::Window(QWidget *parent) : QWidget(parent)
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
   ui = new WindowUi(this);
 
@@ -34,12 +34,12 @@ Window::Window(QWidget *parent) : QWidget(parent)
   //Joystick is a thread so we have to start it:
   jstick->start();
 
-  connect(jstick, &Joystick::ButtonUpdate, this, &Window::ChangeText_Button);
-  connect(jstick, &Joystick::AxisUpdate, this, &Window::ChangeText_Axis);
+  connect(jstick, &Joystick::ButtonUpdate, this, &MainWindow::ChangeText_Button);
+  connect(jstick, &Joystick::AxisUpdate, this, &MainWindow::ChangeText_Axis);
   //////////
 }
 
-Window::~Window(){
+MainWindow::~MainWindow(){
   //Stop thread:
   jstick->stop();
   jstick->wait();
@@ -48,14 +48,15 @@ Window::~Window(){
 
 
 //INPUT://
-void Window::ChangeText_Button(int n, int pressed){
+
+void MainWindow::ChangeText_Button(int n, int pressed){
   QString txt = QString("Button %1 is %2").arg(
                     QString::number(n),
                     pressed == 0 ? "up" : "down");
   ui->jstick_lbl->setText(txt);
 }
 
-void Window::ChangeText_Axis(int n, int position){
+void MainWindow::ChangeText_Axis(int n, int position){
   QString txt = QString("Axis %1 is at position %2").arg(
                     QString::number(n),
                     QString::number(position));
@@ -82,20 +83,20 @@ void Window::ChangeText_Axis(int n, int position){
 
 //////////
 
-void Window::keyPressEvent (QKeyEvent *keyevent) {
+void MainWindow::keyPressEvent (QKeyEvent *keyevent) {
 
   // CTRL + ALT + Q --> Quit the setApplicationName
   // R --> reload
 
-	switch ( keyevent->key() ) {
-	        case Qt::Key_R:                               // reload
-	            qDebug("Pressed R");
-	            update();
-	            break;
-	        case Qt::Key_Q:
+    switch ( keyevent->key() ) {
+            case Qt::Key_R:                               // reload
+                qDebug("Pressed R");
+                update();
+                break;
+            case Qt::Key_Q:
               qDebug("Pressed Q");
-	            key[0] = 1;
-	            break;
+                key[0] = 1;
+                break;
          case Qt::Key_Alt:
               qDebug("Pressed Alt");
               key[1] = 1;
@@ -105,7 +106,7 @@ void Window::keyPressEvent (QKeyEvent *keyevent) {
               key[2] = 1;
               break;
 
-	    }
+        }
 
       if (key[0] && key[1] && key[2])
       {
@@ -114,7 +115,7 @@ void Window::keyPressEvent (QKeyEvent *keyevent) {
       }
 }
 
-void Window::keyReleaseEvent (QKeyEvent *keyevent) {
+void MainWindow::keyReleaseEvent (QKeyEvent *keyevent) {
   switch ( keyevent->key() ) {
         case Qt::Key_Q:
             qDebug("Released Q");
