@@ -5,7 +5,7 @@ A GUI to display cameras from T0-R0 rover
 ## Dependencies installation
 
 ### QT5
-  Dowload and install components from <a href="https://download.qt.io/official_releases/qt/5.10/5.10.1/">here</a>
+  Download and install components from <a href="https://download.qt.io/official_releases/qt/5.10/5.10.1/">here</a>
 
 ```
 cd Download
@@ -27,23 +27,4 @@ sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libqt5gstr
 
 ## Compile and Run
 
-### With Makefile
-
-In the terminal go to main project directory and run Makefile using
-```
-make
-```
-If it fails, try to run <code>mkdir build</code> to create the build folder. Then retry the previous command.
-
-### Compile from command line
-```
-cd /<path>/build
-cmake ..
-make gui_drivingstation
-```
-
-### Launch from Command-Line
-```
-cd /<path>/build
-./bin/gui_drivingstation
-```
+Directly inside of QtCreator
