@@ -5,6 +5,8 @@
 #include <QString>
 #include <QLabel>
 
+//GAMEPAD//
+#include "gamepad.h"
 
 WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
 {
@@ -39,7 +41,7 @@ void WindowUi::CreateUI(){
 
 
     // Show Team D.I.A.N.A. logo at bottom-right
-     //add images to resources.qrc to use them//
+    //add images to resources.qrc to use them//
     // http://doc.qt.io/qt-5/resources.html //
     QLabel *pixlogo = new QLabel(this);
     QPixmap pixmaplogo(":/Images/diana-logo-193x90.png");
@@ -59,4 +61,7 @@ void WindowUi::CreateUI(){
     jstick_lbl->setText("NO INPUT");
     jstick_lbl->setStyleSheet( "color : white;" );
     //////////
+
+    //GAMEPAD://
+    gamepad = new Gamepad();
 }

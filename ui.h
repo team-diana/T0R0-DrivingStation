@@ -4,6 +4,9 @@
 #include <QKeyEvent>
 #include <QLabel>
 
+//GAMEPAD//
+#include "gamepad.h"
+
 class VoipVideoWidget;
 
 class WindowUi : public QWidget
@@ -27,6 +30,10 @@ private:
 
   //Gstreamer://
   VoipVideoWidget *camera1_videoWidget;
+  //////////////
+
+  //GAMEPAD://
+  Gamepad *gamepad;
   //////////////
 };
 

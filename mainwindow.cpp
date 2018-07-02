@@ -6,13 +6,9 @@
 #include <QCoreApplication>
 #include <QKeyEvent>
 
-
-
 //JOYSTICK//
 #include "joystick.h"
 #include <QTcpServer>
-
-
 
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)

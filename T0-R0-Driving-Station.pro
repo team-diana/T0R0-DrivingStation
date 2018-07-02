@@ -53,6 +53,10 @@ DEFINES += QT_NO_KEYWORDS
 # TCPSERVER
 QT += network
 
+# GAMEPAD
+QT += gamepad
+#CONFIG += c++11
+
 RESOURCES     += resources.qrc
 
 SOURCES += \
@@ -62,7 +66,8 @@ SOURCES += \
     voipvideowidget.cpp \
     joystick.cpp \
     TcpClient.cpp \
-    TcpServer.cpp
+    TcpServer.cpp \
+    gamepad.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -70,7 +75,8 @@ HEADERS += \
     voipvideowidget.h \
     joystick.h \
     TcpClient.h \
-    TcpServer.h
+    TcpServer.h \
+    gamepad.h
 
 FORMS += \
     mainwindow.ui
