@@ -75,6 +75,7 @@ void MainWindow::ChangeText_Axis(int n, int position){
                     QString::number(position));
   ui->jstick_lbl->setText(txt);
 
+  /*
   uint8_t speed[2] = {0, 0};
 
   if (position >= 0) // Right
@@ -92,6 +93,7 @@ void MainWindow::ChangeText_Axis(int n, int position){
   qDebug() << "Invio comandi motori (sinistro, destro):\t" << speed[0] << "\t" << speed[0];
   left_client->send8(speed[0]);
   right_client->send8(speed[1]);
+  */
 }
 
 //////////
