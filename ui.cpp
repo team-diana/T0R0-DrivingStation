@@ -5,9 +5,6 @@
 #include <QString>
 #include <QLabel>
 
-//GAMEPAD//
-#include "gamepad.h"
-
 WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
 {
     CreateUI();
@@ -55,13 +52,10 @@ void WindowUi::CreateUI(){
     camera1_videoWidget->setGeometry( (this->width()-960)/2, (this->height()-600)/2, 960, 600 );
     /////////////
 
-    //INPUT://
+    //JOYSTICK://
     jstick_lbl = new QLabel(this);
     jstick_lbl->setGeometry(5, 5, 500, 50);
     jstick_lbl->setText("NO INPUT");
     jstick_lbl->setStyleSheet( "color : white;" );
     //////////
-
-    //GAMEPAD://
-    gamepad = new Gamepad();
 }

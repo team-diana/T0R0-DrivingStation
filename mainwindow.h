@@ -4,6 +4,10 @@
 #include "joystick.h"
 #include "TcpClient.h"
 
+//GAMEPAD//
+//#include "gamepad.h"
+#include <QtGamepad/QGamepad>
+
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QWidget>
@@ -15,7 +19,7 @@
 
 class WindowUi;
 
-//INPUT://
+//JOYSTICK://
 class Joystick;
 //////////
 
@@ -31,9 +35,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    //INPUT://
+    //JOYSTICK://
     Joystick *jstick;
     //////////
+
+    //GAMEPAD://
+    QGamepad *gamepad;
+    //////////////
 
 public Q_SLOTS:
     //

@@ -76,7 +76,8 @@ HEADERS += \
     joystick.h \
     TcpClient.h \
     TcpServer.h \
-    gamepad.h
+    gamepad.h \
+    config.h
 
 FORMS += \
     mainwindow.ui

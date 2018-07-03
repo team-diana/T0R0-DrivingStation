@@ -25,13 +25,30 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
   uint8_t right_command = 0;
   right_client->send8(right_command);
 
-  //INPUT://
+  //JOYSTICK://
   jstick = new Joystick(this);
   //Joystick is a thread so we have to start it:
   jstick->start();
 
   connect(jstick, &Joystick::ButtonUpdate, this, &MainWindow::ChangeText_Button);
   connect(jstick, &Joystick::AxisUpdate, this, &MainWindow::ChangeText_Axis);
+  //////////
+
+  //GAMEPAD://
+  gamepad = new QGamepad();
+
+  connect(gamepad, &QGamepad::axisLeftXChanged, this, [](double value){
+      qDebug() << "Left X" << value;
+  });
+  connect(gamepad, &QGamepad::axisLeftYChanged, this, [](double value){
+      qDebug() << "Left Y" << value;
+  });
+  connect(gamepad, &QGamepad::axisRightXChanged, this, [](double value){
+      qDebug() << "Right X" << value;
+  });
+  connect(gamepad, &QGamepad::axisRightYChanged, this, [](double value){
+      qDebug() << "Right Y" << value;
+  });
   //////////
 }
 
@@ -43,7 +60,7 @@ MainWindow::~MainWindow(){
 }
 
 
-//INPUT://
+//JOYSTICK://
 
 void MainWindow::ChangeText_Button(int n, int pressed){
   QString txt = QString("Button %1 is %2").arg(
