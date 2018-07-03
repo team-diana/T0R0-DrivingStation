@@ -76,7 +76,7 @@ void MainWindow::ChangeText_Axis(int n, int position){
                     QString::number(position));
   ui->jstick_lbl->setText(txt);
 
-  /*
+  /* DEPRECATED *
   uint8_t speed[2] = {0, 0};
 
   if (position >= 0) // Right
