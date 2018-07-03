@@ -14,7 +14,7 @@ public:
   explicit WindowUi(QWidget *parent = 0);
     ~WindowUi();
 
-    QLabel *jstick_lbl;
+    QLabel *jstick_lbl, *gamepad_lbl;
 
 public Q_SLOTS:
   //

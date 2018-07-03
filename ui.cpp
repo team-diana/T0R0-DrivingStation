@@ -58,7 +58,14 @@ void WindowUi::CreateUI(){
     //JOYSTICK://
     jstick_lbl = new QLabel(this);
     jstick_lbl->setGeometry(5, 5, 500, 50);
-    jstick_lbl->setText("NO INPUT");
+    jstick_lbl->setText("JOYSTICK NO INPUT");
     jstick_lbl->setStyleSheet( "color : white;" );
+    //////////
+
+    //JOYSTICK://
+    gamepad_lbl = new QLabel(this);
+    gamepad_lbl->setGeometry(5, 55, 500, 50);
+    gamepad_lbl->setText("GAMEPAD NO INPUT");
+    gamepad_lbl->setStyleSheet( "color : white;" );
     //////////
 }

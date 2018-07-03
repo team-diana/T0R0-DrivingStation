@@ -75,7 +75,7 @@ void Joystick::stop()
 
 void Joystick::run()
 {
-  uint16_t data = 42;
+  //uint16_t data = 42;
 
   qDebug() << "\nJoystick: Started\n";
 
@@ -104,7 +104,7 @@ void Joystick::run()
       {
         //if(event.number == 0) {
           //  printf("Axis %u is at position %d\n", event.number, event.value);
-          data = (uint16_t) ~((unsigned int) event.value);
+          //data = (uint16_t) ~((unsigned int) event.value);
           //  printf("Data = %hu\n", data);
 
 

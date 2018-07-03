@@ -38,18 +38,36 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
   //GAMEPAD://
   gamepad = new QGamepad();
 
-  connect(gamepad, &QGamepad::axisLeftXChanged, this, [](double value){
-      qDebug() << "Left X" << value;
-  });
+  auto gamepads = QGamepadManager::instance()->connectedGamepads();
+  if (gamepads.isEmpty()) {
+      qDebug() << "Did not find any connected gamepads";
+      return;
+  }
+
+  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadLeftXAxis);
+  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadLeftYAxis);
+  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadRightXAxis);
+  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadRightYAxis);
+  /*
   connect(gamepad, &QGamepad::axisLeftYChanged, this, [](double value){
       qDebug() << "Left Y" << value;
+      QString txt_gamepad = QString("Axis Left Y is at position %1").arg(
+                        QString::number(value));
+      ui->gamepad_lbl->setText(txt_gamepad);
   });
   connect(gamepad, &QGamepad::axisRightXChanged, this, [](double value){
       qDebug() << "Right X" << value;
+      QString txt_gamepad = QString("Axis Right X is at position %1").arg(
+                        QString::number(value));
+      ui->gamepad_lbl->setText(txt_gamepad);
   });
   connect(gamepad, &QGamepad::axisRightYChanged, this, [](double value){
       qDebug() << "Right Y" << value;
+      QString txt_gamepad = QString("Axis Right Y is at position %1").arg(
+                        QString::number(value));
+      ui->gamepad_lbl->setText(txt_gamepad);
   });
+  */
   //////////
 }
 
@@ -60,6 +78,34 @@ MainWindow::~MainWindow(){
   delete ui;
 }
 
+//* GAMEPAD *//
+void MainWindow::GamepadLeftXAxis(double value){
+      qDebug() << "Left X" << value;
+      QString txt_gamepad = QString("Axis Left X is at position %1").arg(
+                        QString::number(value));
+      ui->gamepad_lbl->setText(txt_gamepad);
+  }
+
+void MainWindow::GamepadLeftYAxis(double value){
+      qDebug() << "Left Y" << value;
+      QString txt_gamepad = QString("Axis Left Y is at position %1").arg(
+                        QString::number(value));
+      ui->gamepad_lbl->setText(txt_gamepad);
+  }
+
+void MainWindow::GamepadRightXAxis(double value){
+      qDebug() << "Right X" << value;
+      QString txt_gamepad = QString("Axis Right X is at position %1").arg(
+                        QString::number(value));
+      ui->gamepad_lbl->setText(txt_gamepad);
+  }
+
+void MainWindow::GamepadRightYAxis(double value){
+      qDebug() << "Right Y" << value;
+      QString txt_gamepad = QString("Axis Right Y is at position %1").arg(
+                        QString::number(value));
+      ui->gamepad_lbl->setText(txt_gamepad);
+  }
 
 //JOYSTICK://
 

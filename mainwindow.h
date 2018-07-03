@@ -59,6 +59,11 @@ private:
 
     void ChangeText_Button(int n, int pressed);
     void ChangeText_Axis(int n, int position);
+
+    void GamepadLeftXAxis(double value);
+    void GamepadLeftYAxis(double value);
+    void GamepadRightXAxis(double value);
+    void GamepadRightYAxis(double value);
 };
 
 #endif // MAINWINDOW_H
