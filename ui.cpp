@@ -1,5 +1,6 @@
 #include "ui.h"
 #include "voipvideowidget.h"
+#include "config.h"
 
 #include <QDebug>
 #include <QString>
@@ -26,7 +27,9 @@ WindowUi::~WindowUi(){
 
 //UI://
 void WindowUi::CreateUI(){
-    this->setGeometry(0, 0, 1920, 1080);
+    this->setGeometry(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    qDebug() << "MainWindow set to " << this->width() << "x" << this->height();
+
 
     // set black background
     QPalette pal = palette();
@@ -38,7 +41,7 @@ void WindowUi::CreateUI(){
 
 
     // Show Team D.I.A.N.A. logo at bottom-right
-    //add images to resources.qrc to use them//
+    // add images to resources.qrc to use them//
     // http://doc.qt.io/qt-5/resources.html //
     QLabel *pixlogo = new QLabel(this);
     QPixmap pixmaplogo(":/Images/diana-logo-193x90.png");
@@ -49,7 +52,7 @@ void WindowUi::CreateUI(){
 
     //Gstremer://
     camera1_videoWidget = new VoipVideoWidget(this);
-    camera1_videoWidget->setGeometry( (this->width()-960)/2, (this->height()-600)/2, 960, 600 );
+    camera1_videoWidget->setGeometry( (this->width()-CAMERA_WIDTH)/2, (this->height()-CAMERA_HEIGHT)/2, CAMERA_WIDTH, CAMERA_HEIGHT );
     /////////////
 
     //JOYSTICK://
