@@ -10,4 +10,11 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+//* IPs *//
+#define IP_ROVER "127.0.0.1"
+
+//* PORTS TO ROVER *//
+#define PORT_MOBILITY_LEFT 50100
+#define PORT_MOBILITY_RIGHT 50101
+
 #endif // CONFIG_H

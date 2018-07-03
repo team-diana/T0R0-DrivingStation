@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui.h"
+#include "config.h"
 
 #include <QDebug>
 #include <QString>
@@ -16,8 +17,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
   ui = new WindowUi(this);
 
   // TCP CLIENT //
-  left_client = new TcpClient("127.0.0.1", 50100);
-  right_client = new TcpClient("127.0.0.1", 50101);
+  left_client = new TcpClient(IP_ROVER, PORT_MOBILITY_LEFT);
+  right_client = new TcpClient(IP_ROVER, PORT_MOBILITY_RIGHT);
 
   uint8_t left_command = 0;
   left_client->send8(left_command);
