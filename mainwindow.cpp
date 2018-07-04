@@ -126,6 +126,7 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
     }
     n=-1;
     position=0;
+    data=32768;
 }
 //////////
 
