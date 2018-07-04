@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Sending Gamepad L3 R3 through TCP ports (uint16)
+- Input Map for Joystick and Gamepad --> "inputmapping.h"
+- Sending Gamepad L3 R3 through TCP ports (converted to uint16)
 
 ### Changed
 - Using Joystick library also for Gamepad
