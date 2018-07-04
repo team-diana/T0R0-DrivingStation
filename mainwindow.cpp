@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui.h"
 #include "config.h"
+#include "inputmapping.h"
 
 #include <QDebug>
 #include <QString>
@@ -100,10 +101,31 @@ void MainWindow::GamepadChangeText_Button(int n, int pressed){
 }
 
 void MainWindow::GamepadChangeText_Axis(int n, int position){
-  QString txt = QString("Axis %1 is at position %2").arg(
+    QString txt = QString("Axis %1 is at position %2").arg(
                     QString::number(n),
                     QString::number(position));
-  ui->gamepad_lbl->setText(txt);
+    ui->gamepad_lbl->setText(txt);
+
+    //uint8_t bytes[2] = {0, 0};
+    uint16_t data = (uint16_t) position + 32768;
+
+    if (n == GAMEPAD_L3Y) // Left
+    {
+        left_client->send16( data );
+        qDebug() << "Sent to Mobility Driver LEFT:\t" << data;
+    }
+    else if (n == GAMEPAD_R3Y) // Right
+    {
+        right_client->send16( data);
+        qDebug() << "Sent to Mobility Driver RIGHT:\t" << data;
+    }
+    else {      // EXPERIMENTAL
+        data=32768;
+        left_client->send16( data );
+        right_client->send16( data );
+    }
+    n=-1;
+    position=0;
 }
 //////////
 

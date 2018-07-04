@@ -77,7 +77,8 @@ HEADERS += \
     TcpClient.h \
     TcpServer.h \
     gamepad.h \
-    config.h
+    config.h \
+    inputmapping.h
 
 FORMS += \
     mainwindow.ui
