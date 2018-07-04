@@ -28,5 +28,5 @@ sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libqt5gstr
 ## Compile and Run
 Directly inside of QtCreator
 
-## Note - Known Issue
-Connect Joystick before Gamepad otherwise they can misinterpreted.
+## Note - Known Issues
+Connect Joystick before Gamepad otherwise they can be misinterpreted.
