@@ -30,4 +30,12 @@
 #define CAMERA_HEIGHT 600
 ///////////
 
+//* JOYSTICK *//
+#define JOYSTICK_PATH "/dev/input/js0"
+///////////
+
+//* GAMEPAD *//
+#define GAMEPAD_PATH "/dev/input/js1"
+///////////
+
 #endif // CONFIG_H

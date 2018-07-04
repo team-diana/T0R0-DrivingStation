@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
   right_client->send8(right_command);
 
   //JOYSTICK://
-  jstick = new Joystick(this);
+  jstick = new Joystick(this, JOYSTICK_PATH);
   //Joystick is a thread so we have to start it:
   jstick->start();
 
@@ -36,38 +36,14 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
   //////////
 
   //GAMEPAD://
-  gamepad = new QGamepad();
+  gamepad = new Joystick(this, GAMEPAD_PATH);
+  //Joystick is a thread so we have to start it:
+  gamepad->start();
 
-  auto gamepads = QGamepadManager::instance()->connectedGamepads();
-  if (gamepads.isEmpty()) {
-      qDebug() << "Did not find any connected gamepads";
-      return;
-  }
+  connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
+  connect(gamepad, &Joystick::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
 
-  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadLeftXAxis);
-  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadLeftYAxis);
-  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadRightXAxis);
-  connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::GamepadRightYAxis);
-  /*
-  connect(gamepad, &QGamepad::axisLeftYChanged, this, [](double value){
-      qDebug() << "Left Y" << value;
-      QString txt_gamepad = QString("Axis Left Y is at position %1").arg(
-                        QString::number(value));
-      ui->gamepad_lbl->setText(txt_gamepad);
-  });
-  connect(gamepad, &QGamepad::axisRightXChanged, this, [](double value){
-      qDebug() << "Right X" << value;
-      QString txt_gamepad = QString("Axis Right X is at position %1").arg(
-                        QString::number(value));
-      ui->gamepad_lbl->setText(txt_gamepad);
-  });
-  connect(gamepad, &QGamepad::axisRightYChanged, this, [](double value){
-      qDebug() << "Right Y" << value;
-      QString txt_gamepad = QString("Axis Right Y is at position %1").arg(
-                        QString::number(value));
-      ui->gamepad_lbl->setText(txt_gamepad);
-  });
-  */
+
   //////////
 }
 
@@ -78,37 +54,7 @@ MainWindow::~MainWindow(){
   delete ui;
 }
 
-//* GAMEPAD *//
-void MainWindow::GamepadLeftXAxis(double value){
-      qDebug() << "Left X" << value;
-      QString txt_gamepad = QString("Axis Left X is at position %1").arg(
-                        QString::number(value));
-      ui->gamepad_lbl->setText(txt_gamepad);
-  }
-
-void MainWindow::GamepadLeftYAxis(double value){
-      qDebug() << "Left Y" << value;
-      QString txt_gamepad = QString("Axis Left Y is at position %1").arg(
-                        QString::number(value));
-      ui->gamepad_lbl->setText(txt_gamepad);
-  }
-
-void MainWindow::GamepadRightXAxis(double value){
-      qDebug() << "Right X" << value;
-      QString txt_gamepad = QString("Axis Right X is at position %1").arg(
-                        QString::number(value));
-      ui->gamepad_lbl->setText(txt_gamepad);
-  }
-
-void MainWindow::GamepadRightYAxis(double value){
-      qDebug() << "Right Y" << value;
-      QString txt_gamepad = QString("Axis Right Y is at position %1").arg(
-                        QString::number(value));
-      ui->gamepad_lbl->setText(txt_gamepad);
-  }
-
 //JOYSTICK://
-
 void MainWindow::ChangeText_Button(int n, int pressed){
   QString txt = QString("Button %1 is %2").arg(
                     QString::number(n),
@@ -143,6 +89,22 @@ void MainWindow::ChangeText_Axis(int n, int position){
   */
 }
 
+//////////
+
+//* GAMEPAD *//
+void MainWindow::GamepadChangeText_Button(int n, int pressed){
+  QString txt = QString("Button %1 is %2").arg(
+                    QString::number(n),
+                    pressed == 0 ? "up" : "down");
+  ui->gamepad_lbl->setText(txt);
+}
+
+void MainWindow::GamepadChangeText_Axis(int n, int position){
+  QString txt = QString("Axis %1 is at position %2").arg(
+                    QString::number(n),
+                    QString::number(position));
+  ui->gamepad_lbl->setText(txt);
+}
 //////////
 
 void MainWindow::keyPressEvent (QKeyEvent *keyevent) {

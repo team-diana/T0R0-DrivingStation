@@ -35,13 +35,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    //JOYSTICK://
-    Joystick *jstick;
+    //* INPUT *//
+    Joystick *jstick, *gamepad;
     //////////
-
-    //GAMEPAD://
-    QGamepad *gamepad;
-    //////////////
 
 public Q_SLOTS:
     //
@@ -60,10 +56,8 @@ private:
     void ChangeText_Button(int n, int pressed);
     void ChangeText_Axis(int n, int position);
 
-    void GamepadLeftXAxis(double value);
-    void GamepadLeftYAxis(double value);
-    void GamepadRightXAxis(double value);
-    void GamepadRightYAxis(double value);
+    void GamepadChangeText_Button(int n, int pressed);
+    void GamepadChangeText_Axis(int n, int position);
 };
 
 #endif // MAINWINDOW_H
