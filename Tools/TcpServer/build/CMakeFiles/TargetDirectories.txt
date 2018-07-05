@@ -1,3 +1,0 @@
-/home/francesco/develop/TcpSocket/TcpServer/build/CMakeFiles/edit_cache.dir
-/home/francesco/develop/TcpSocket/TcpServer/build/CMakeFiles/rebuild_cache.dir
-/home/francesco/develop/TcpSocket/TcpServer/build/CMakeFiles/TcpServer.dir

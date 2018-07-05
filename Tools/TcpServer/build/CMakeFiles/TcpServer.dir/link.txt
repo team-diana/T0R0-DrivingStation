@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/TcpServer.dir/TcpServer.cpp.o CMakeFiles/TcpServer.dir/test.cpp.o  -o TcpServer -rdynamic -lpthread 
