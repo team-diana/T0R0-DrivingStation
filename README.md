@@ -28,5 +28,12 @@ sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libqt5gstr
 ## Compile and Run
 Directly inside of QtCreator
 
+## Tools
+### TcpServerSimulator
+Go to Tools/TcpServerSimulator and launch
+```
+make
+```
+
 ## Note - Known Issues
-Connect Joystick before Gamepad otherwise they can be misinterpreted.
+- Connect Joystick before Gamepad otherwise they can be misinterpreted.
