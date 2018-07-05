@@ -1,8 +1,8 @@
 all: compile run
 
 compile:
-	mkdir build
-	cd ${CURDIR}/build && cmake .. && make
+        mkdir -p build
+        cd ${CURDIR}/build && cmake .. && make
 
 run:
-	cd ${CURDIR}/build/bin && ./TcpServerSimulator
+        cd ${CURDIR}/build && ./TcpServerSimulator
