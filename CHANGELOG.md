@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - QGamepad library
 
+### Fixes
+- When initializing MainWindow constructor, the initialization of TCP ports of the Gamepad
+	was sent uin8_t instead of uint16_t.
+
 ## [0.3] - 2018-07-01
 ### Added
 - QtCreator Support

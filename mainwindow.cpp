@@ -21,11 +21,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
   left_client = new TcpClient(IP_ROVER, PORT_MOBILITY_LEFT);
   right_client = new TcpClient(IP_ROVER, PORT_MOBILITY_RIGHT);
 
-  uint8_t left_command = 0;
-  left_client->send8(left_command);
+  uint16_t left_command = 0;
+  left_client->send16(left_command);
 
-  uint8_t right_command = 0;
-  right_client->send8(right_command);
+  uint16_t right_command = 0;
+  right_client->send16(right_command);
 
   //JOYSTICK://
   jstick = new Joystick(this, JOYSTICK_PATH);
