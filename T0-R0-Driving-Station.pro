@@ -67,6 +67,7 @@ SOURCES += \
     joystick.cpp \
     TcpClient.cpp \
     TcpServer.cpp \
+    mathfunctions.cpp
 
 
 HEADERS += \
@@ -77,7 +78,8 @@ HEADERS += \
     TcpClient.h \
     TcpServer.h \
     config.h \
-    inputmapping.h
+    inputmapping.h \
+    mathfunctions.h
 
 FORMS += \
     mainwindow.ui
