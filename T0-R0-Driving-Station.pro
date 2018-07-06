@@ -67,7 +67,7 @@ SOURCES += \
     joystick.cpp \
     TcpClient.cpp \
     TcpServer.cpp \
-    gamepad.cpp
+
 
 HEADERS += \
     mainwindow.h \
@@ -76,7 +76,6 @@ HEADERS += \
     joystick.h \
     TcpClient.h \
     TcpServer.h \
-    gamepad.h \
     config.h \
     inputmapping.h
 
