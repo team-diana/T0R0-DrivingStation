@@ -30,7 +30,14 @@ Directly inside of QtCreator
 
 ## Tools
 ### TcpServerSimulator
-Go to Tools/TcpServerSimulator and launch
+This tool is used to test TcpClient connections.
+Go to Tools/TcpServerSimulator and launch:
+```
+make
+```
+### LibraryUpdater
+This tool update all TcpSocket library inside all the project.
+Go to Tools/LibraryUpdater and launch:
 ```
 make
 ```
