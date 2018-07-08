@@ -13,25 +13,23 @@ int main()
 
     uint16_t dataL = 0, dataR = 0;
     int valL = 0, valR = 0;
-    uint16_t vec[10] = {0, 32768, 65535, 20123, 49654};
 
-    for (int i=0; i<5; i++) printf("%d\t%u\n", i, vec[i]);
+    printf("Server is listening...\n", );
 
     while(true)
     {
         if(serverLeft->newDataAvailable())
         {
             dataL = serverLeft->readLast16();
-
             //valL = (int) dataL;
-            printf("LEFT %hhu\n", dataL);
+            printf("LEFT %hu\n", dataL);
         }
 
         if(serverRight->newDataAvailable())
         {
             dataR = serverRight->readLast16();
-            valR = (int) dataR;
-            printf("RIGHT %d\n", valR);
+            //valR = (int) dataR;
+            printf("RIGHT %hu\n", dataR);
         }
     }
 

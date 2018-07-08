@@ -34,11 +34,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     //for (int i=0; i<5; i++) left_client->send16(vec[i]);
 
 
-    //left_client->send16(0);
+    left_client->send16(0);
     left_client->send16(20123);
-    //left_client->send16(32768);
-    //left_client->send16(49654);
-    //left_client->send16(65535);
+    left_client->send16(32768);
+    left_client->send16(49654);
+    left_client->send16(65535);
 
     //JOYSTICK://
   jstick = new Joystick(this, JOYSTICK_PATH);
