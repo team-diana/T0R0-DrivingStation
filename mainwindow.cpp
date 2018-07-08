@@ -15,19 +15,32 @@
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
-  ui = new WindowUi(this);
+    ui = new WindowUi(this);
 
-  // TCP CLIENT //
-  left_client = new TcpClient(IP_ROVER, PORT_MOBILITY_LEFT);
-  right_client = new TcpClient(IP_ROVER, PORT_MOBILITY_RIGHT);
+    // TCP CLIENT //
+    left_client = new TcpClient(IP_ROVER, PORT_MOBILITY_LEFT);
+    right_client = new TcpClient(IP_ROVER, PORT_MOBILITY_RIGHT);
 
-  uint16_t left_command = 0;
-  left_client->send16(left_command);
+    //uint16_t left_command = 0;
+    //left_client->send16(left_command);
 
-  uint16_t right_command = 0;
-  right_client->send16(right_command);
+    //uint16_t right_command = 0;
+    //right_client->send16(right_command);
 
-  //JOYSTICK://
+
+
+    //uint16_t vec[10] = {0, 32768, 65535, 20123, 49654};
+
+    //for (int i=0; i<5; i++) left_client->send16(vec[i]);
+
+
+    //left_client->send16(0);
+    left_client->send16(20123);
+    //left_client->send16(32768);
+    //left_client->send16(49654);
+    //left_client->send16(65535);
+
+    //JOYSTICK://
   jstick = new Joystick(this, JOYSTICK_PATH);
   //Joystick is a thread so we have to start it:
   jstick->start();
@@ -111,19 +124,22 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
 
     if (n == GAMEPAD_L3Y) // Left
     {
-        left_client->send16( data );
+        //left_client->send16( data );
         qDebug() << "Sent to Mobility Driver LEFT:\t" << data;
     }
     else if (n == GAMEPAD_R3Y) // Right
     {
-        right_client->send16( data);
+        //right_client->send16( data);
         qDebug() << "Sent to Mobility Driver RIGHT:\t" << data;
     }
     else {      // EXPERIMENTAL
         data=32768;
-        left_client->send16( data );
-        right_client->send16( data );
+        //left_client->send16( data );
+        //right_client->send16( data );
     }
+
+
+
     n=-1;
     position=0;
     data=32768;

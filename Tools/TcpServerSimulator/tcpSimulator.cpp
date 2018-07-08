@@ -11,18 +11,27 @@ int main()
     TcpServer *serverRight = new TcpServer(50101);
     serverRight->start16();
 
+    uint16_t dataL = 0, dataR = 0;
+    int valL = 0, valR = 0;
+    uint16_t vec[10] = {0, 32768, 65535, 20123, 49654};
+
+    for (int i=0; i<5; i++) printf("%d\t%u\n", i, vec[i]);
+
     while(true)
     {
         if(serverLeft->newDataAvailable())
         {
-            uint16_t data = serverLeft->readLast16();
-            printf("LEFT %u\n", data);
+            dataL = serverLeft->readLast16();
+
+            //valL = (int) dataL;
+            printf("LEFT %hhu\n", dataL);
         }
 
         if(serverRight->newDataAvailable())
         {
-            uint16_t data = serverRight->readLast16();
-            printf("RIGHT %u\n", data);
+            dataR = serverRight->readLast16();
+            valR = (int) dataR;
+            printf("RIGHT %d\n", valR);
         }
     }
 
