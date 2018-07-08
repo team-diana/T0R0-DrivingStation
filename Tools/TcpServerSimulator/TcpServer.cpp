@@ -9,14 +9,14 @@ TcpServer::TcpServer(int port)
     address.sin_port = htons(port);
 
     addrlen = sizeof(address);
-      
+
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
         perror("socket failed");
         return;
     }
-     
+
     // Forcefully attaching socket to the port
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)))
     {
@@ -107,17 +107,17 @@ void TcpServer::read8(int sockid)
 void TcpServer::read16(int sockid)
 {
     int n_bytes;
-    uint16_t data;
+    uint8_t data[2];
 
     while(true)
     {
-        n_bytes = read(sockets[sockid], &data, 2);
+        n_bytes = read(sockets[sockid], data, 2);
 
         if(n_bytes == -1)
          exit(0);
         else if(n_bytes == 2)
         {
-            last16 = data;
+            last16 = (data[0] * 256) + data[1];
             new_data_available = true;
         }
     }
