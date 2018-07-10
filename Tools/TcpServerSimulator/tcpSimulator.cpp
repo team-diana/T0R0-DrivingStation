@@ -13,8 +13,7 @@ int main()
 
     uint16_t dataL = 0, dataR = 0;
     int valL = 0, valR = 0;
-
-    printf("Server is listening...\n", );
+    printf("Server is listening...\n");
 
     while(true)
     {
