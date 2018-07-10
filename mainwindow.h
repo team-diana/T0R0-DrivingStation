@@ -51,7 +51,7 @@ protected:
 private:
     WindowUi *ui;
 
-    TcpClient *left_client, *right_client;
+    TcpClient *client_wheel_FL, *client_wheel_FR, *client_wheel_RL, *client_wheel_RR;
 
     void ChangeText_Button(int n, int pressed);
     void ChangeText_Axis(int n, int position);
