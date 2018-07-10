@@ -43,4 +43,4 @@ make
 ```
 
 ## Note - Known Issues
-- Connect Joystick before Gamepad otherwise they can be misinterpreted.
+- Connect Gamepad before Joystick otherwise they can be misinterpreted.
