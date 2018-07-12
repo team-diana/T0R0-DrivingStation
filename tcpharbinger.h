@@ -5,12 +5,13 @@
 #include <QWidget>
 
 #include "TcpClient.h"
+#include "joystick.h"
 
 class tcpHarbinger : public QWidget
 {
     Q_OBJECT
 public:
-    explicit tcpHarbinger(QWidget *parent = 0, TcpClient *tcpclient = 0);
+    explicit tcpHarbinger(QWidget *parent = 0, TcpClient *tcpclient = 0, Joystick *inputhid);
     ~tcpHarbinger();
 };
 
