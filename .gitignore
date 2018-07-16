@@ -1,10 +1,9 @@
 build/*
 
 Tools/TcpServerSimulator/build/*
-Tools/TcpServerSimulator/temp
-Tools/TcpServerSimulator/temp/*
-Tools/TcpServerSimulator/temp/TcpSocket
-Tools/TcpServerSimulator/temp/TcpSocket/*
+
+Tools/LibrariesUpdater/temp
+Tools/LibrariesUpdater/temp/*
 
 T0-R0-Driving-Station\.pro\.user
 
