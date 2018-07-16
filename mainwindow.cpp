@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //joystick_tcp = new TcpHarbinger();
 
-    gamepad_tcp = new TcpHarbinger(this, GAMEPAD_PATH, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, 4, 50110, 10);
+    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, 4, 50110, 10);
 
     connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
     connect(gamepad, &Joystick::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);

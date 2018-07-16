@@ -2,7 +2,7 @@
 
 
 
-TcpHarbinger::TcpHarbinger(QWidget *parent, Joystick *inputHid, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QWidget(parent)
+TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QWidget(parent)
 {
     nAxis = _nAxis;
     startPortAxis = _startPortAxis;
