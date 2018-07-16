@@ -27,7 +27,7 @@ TcpHarbinger::~TcpHarbinger()
 
 }
 
-void tcpLoop () {
+void TcpHarbinger::tcpLoop () {
 
   while (this->m_loop)  // Loop -> if  m_loop = true
   {
@@ -38,7 +38,7 @@ void tcpLoop () {
   }
 }
 
-void Joystick::stop()
+void TcpHarbinger::Joystick::stop()
 {
   this->m_loop = false;
 }
@@ -54,7 +54,7 @@ int writeAxis (int axis, int16_t value)
   return retStatus; // return 0 if OK, -1 if problem is encuntered
 }
 
-int writeButton (int button, bool pressed)
+int TcpHarbinger::writeButton (int button, bool pressed)
 {
   int retStatus = 0;
   if (button < nButton && nButton >= 0)
@@ -65,12 +65,12 @@ int writeButton (int button, bool pressed)
   return retStatus; // return 0 if OK, -1 if problem is encuntered
 }
 
-int16_t readLastAxisValue (int axis)
+int16_t TcpHarbinger::readLastAxisValue (int axis)
 {
     return (int16_t) this->dataAxis[axis] - 32768;
 }
 
-bool writeLastButtonState (int button)
+bool TcpHarbinger::writeLastButtonState (int button)
 {
     return (bool) this->dataButton[button];
 }
