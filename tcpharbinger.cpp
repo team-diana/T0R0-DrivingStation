@@ -9,7 +9,7 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, Joystick *inputHid, const char* addr
     startPortButton = _startPortButton;
     nButton = _nButton;
 
-    m_loop = false;
+    m_loop = true;
 
     // Create TCP connection for each axis
     for (int i=0; i < nAxis; i++) {
