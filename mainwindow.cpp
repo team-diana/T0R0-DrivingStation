@@ -2,7 +2,6 @@
 #include "ui.h"
 #include "config.h"
 #include "inputmapping.h"
-#include "tcpharbinger.h"
 
 #include <QDebug>
 #include <QString>
@@ -19,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     ui = new WindowUi(this);
 
     // TCP CLIENT //
+    /* DEPRECATED
     client_wheel_FL = new TcpClient(IP_ROVER, PORT_MOBILITY_FRONTLEFT);
     client_wheel_FR = new TcpClient(IP_ROVER, PORT_MOBILITY_FRONTRIGHT);
     client_wheel_RL = new TcpClient(IP_ROVER, PORT_MOBILITY_REARLEFT);
@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     client_wheel_FR->send16(0);
     client_wheel_RL->send16(0);
     client_wheel_RR->send16(0);
+    */
 
     //JOYSTICK://
     jstick = new Joystick(this, JOYSTICK_PATH);

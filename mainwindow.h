@@ -3,6 +3,7 @@
 
 #include "joystick.h"
 #include "TcpClient.h"
+#include "tcpharbinger.h"
 
 //GAMEPAD//
 //#include "gamepad.h"
