@@ -21,8 +21,8 @@ public:
     void tcpLoop();
     void stop();        // Stop tcpLoop()
 
-    void writeAxis(int axis, int16_t value);
-    void writeButton(int button, bool pressed);
+    int writeAxis(int axis, int16_t value);
+    int writeButton(int button, bool pressed);
 
     int16_t readLastAxisValue (int axis);
     bool writeLastButtonState (int button);

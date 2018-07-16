@@ -43,14 +43,26 @@ void Joystick::stop()
   m_loop = false;
 }
 
-void writeAxis (int axis, int16_t value)
+int writeAxis (int axis, int16_t value)
 {
-  dataAxis[axis] = (uint16_t) value + 32768;
+  int retStatus = 0;
+  if (axis < nAxis && axis >= 0)
+    dataAxis[axis] = (uint16_t) value + 32768;
+  else
+    retStatus = -1;
+
+  return retStatus; // return 0 if OK, -1 if problem is encuntered
 }
 
-void writeButton (int button, bool pressed)
+int writeButton (int button, bool pressed)
 {
+  int retStatus = 0;
+  if (button < nButton && nButton >= 0)
     dataButton[button] = (bool) pressed;
+  else
+    retStatus = -1;
+
+  return retStatus; // return 0 if OK, -1 if problem is encuntered
 }
 
 int16_t readLastAxisValue (int axis)
