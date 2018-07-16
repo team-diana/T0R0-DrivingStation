@@ -17,13 +17,21 @@ class TcpHarbinger : public QWidget
 public:
     explicit TcpHarbinger(QWidget *parent = 0, Joystick *inputHid, const char* address, int startPortAxis, int nAxis, int startPortButton, int nButton);
     ~TcpHarbinger();
+
     void tcpLoop();
-    void writeAxis ();
     void stop();        // Stop tcpLoop()
+
+    void writeAxis(int axis, int16_t value);
+    void writeButton(int button, bool pressed);
+
+    int16_t readLastAxisValue (int axis);
+    bool writeLastButtonState (int button);
+
 
 private:
     int nAxis, startPortAxis, startPortButton, nButton;
-    uint16_t  *dataxis[10], *dataButton[20];;
+    uint16_t  *dataxis[10];
+    bool dataButton[20];
     TcpClient *clientAxis[10], *clientButton[20];
 
     bool m_loop;

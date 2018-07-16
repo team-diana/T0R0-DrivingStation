@@ -38,12 +38,27 @@ void tcpLoop () {
   }
 }
 
-void writeAxis (int axis, int16_t value)
-{
-  dataAxis[axis] = value;
-}
-
 void Joystick::stop()
 {
   m_loop = false;
+}
+
+void writeAxis (int axis, int16_t value)
+{
+  dataAxis[axis] = (uint16_t) value + 32768;
+}
+
+void writeButton (int button, bool pressed)
+{
+    dataButton[button] = (bool) pressed;
+}
+
+int16_t readLastAxisValue (int axis)
+{
+    return (int16_t) dataAxis[axis] - 32768;
+}
+
+bool writeLastButtonState (int button)
+{
+    return (bool) dataButton[button];
 }
