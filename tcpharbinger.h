@@ -19,11 +19,14 @@ public:
     ~TcpHarbinger();
     void tcpLoop();
     void writeAxis ();
+    void stop();        // Stop tcpLoop()
 
 private:
     int nAxis, startPortAxis, startPortButton, nButton;
     uint16_t  *dataxis[10], *dataButton[20];;
     TcpClient *clientAxis[10], *clientButton[20];
+
+    bool m_loop;
 };
 
 #endif // TCPHARBINGER_H

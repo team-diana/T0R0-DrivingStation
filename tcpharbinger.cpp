@@ -9,6 +9,8 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, Joystick *inputHid, const char* addr
     startPortButton = _startPortButton;
     nButton = _nButton;
 
+    m_loop = false;
+
     // Create TCP connection for each axis
     for (int i=0; i < nAxis; i++) {
       clientAxis[i] = new TcpClient(address, startPortAxis + i);
@@ -27,7 +29,7 @@ TcpHarbinger::~TcpHarbinger()
 
 void tcpLoop () {
 
-  while (true)  // Loop
+  while (m_loop)  // Loop -> if  m_loop = true
   {
     for (int i=0; i < nAxis; i++) {     // Read data array and send trough TCP
         clientAxis[i]->send16(dataAxis[i]);
@@ -39,4 +41,9 @@ void tcpLoop () {
 void writeAxis (int axis, int16_t value)
 {
   dataAxis[axis] = value;
+}
+
+void Joystick::stop()
+{
+  m_loop = false;
 }
