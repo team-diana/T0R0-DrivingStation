@@ -83,7 +83,7 @@ void MainWindow::GamepadChangeText_Button(int n, int pressed){
                     pressed == 0 ? "up" : "down");
     ui->gamepad_lbl->setText(txt);
 
-    gamepad->writeAxis(n, pressed);
+    gamepad_tcp->writeAxis(n, pressed);
 }
 
 void MainWindow::GamepadChangeText_Axis(int n, int position){
@@ -94,7 +94,7 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
 
     uint16_t data = (uint16_t) position + 32768;
 
-    gamepad->writeAxis(n, data);
+    gamepad_tcp->writeAxis(n, data);
 
     /* DEPRECATED
     if (n == GAMEPAD_L3Y) // Left
