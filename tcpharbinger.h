@@ -30,7 +30,7 @@ public:
 
 private:
     int nAxis, startPortAxis, startPortButton, nButton;
-    uint16_t  *dataxis[10];
+    uint16_t  dataAxis[10];
     bool dataButton[20];
     TcpClient *clientAxis[10], *clientButton[20];
 
