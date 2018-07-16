@@ -38,12 +38,12 @@ void TcpHarbinger::tcpLoop () {
   }
 }
 
-void TcpHarbinger::Joystick::stop()
+void TcpHarbinger::stop()
 {
   m_loop = false;
 }
 
-int writeAxis (int axis, int16_t value)
+int TcpHarbinger::writeAxis (int axis, int16_t value)
 {
   int retStatus = 0;
   if (axis < nAxis && axis >= 0)
