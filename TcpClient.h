@@ -13,7 +13,7 @@ class TcpClient
     public:
         TcpClient(const char* address, int port);
         ~TcpClient();
-
+        
         void send8(uint8_t data);
         void send16(uint16_t data);
 
