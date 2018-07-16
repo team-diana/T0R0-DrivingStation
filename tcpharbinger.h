@@ -15,7 +15,7 @@ class TcpHarbinger : public QWidget
     Q_OBJECT
 
 public:
-    explicit TcpHarbinger(QWidget *parent = 0, Joystick *inputHid, const char* address, int startPortAxis, int nAxis, int startPortButton, int nButton);
+    explicit TcpHarbinger(QWidget *parent = 0, Joystick *inputHid = "/dev/input/js0", const char* address = "127.0.0.1", int startPortAxis = 8080, int nAxis = 1, int startPortButton = 8180, int nButton = 1);
     ~TcpHarbinger();
 
     void tcpLoop();
