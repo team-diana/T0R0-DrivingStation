@@ -86,7 +86,6 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
                     QString::number(position));
     ui->gamepad_lbl->setText(txt);
 
-    //uint8_t bytes[2] = {0, 0};
     uint16_t data = (uint16_t) position + 32768;
 
     gamepad->writeAxis(n, data);
