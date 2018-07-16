@@ -13,34 +13,34 @@ class VoipVideoWidget : public QWidget
     Q_OBJECT
 
 public:
-  explicit VoipVideoWidget(QWidget *parent = 0);
+    explicit VoipVideoWidget(QWidget *parent = 0);
     ~VoipVideoWidget();
 
     //Gstreamer://
     void startPipeline();
 
-  void setPort(int p);
+    void setPort(int p);
 
-  void stopPipeline();
+    void stopPipeline();
     //////////////
 
 
 public Q_SLOTS:
-  //
+    //
 
 protected:
-  //
+    //
 
 private:
-  int port;
-  QString s_port;
+    int port;
+    QString s_port;
 
     //Gstreamer://
-  QGst::PipelinePtr pipeline;
+    QGst::PipelinePtr pipeline;
     QGst::Ui::VideoWidget *videoWidget;
 
     void onRtpBinPadAdded(const QGst::PadPtr & pad);
-  void onBusErrorMessage(const QGst::MessagePtr & msg);
+    void onBusErrorMessage(const QGst::MessagePtr & msg);
     //////////////
 
 };

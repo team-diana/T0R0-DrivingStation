@@ -38,103 +38,103 @@ Joystick::Joystick(QObject *parent, int joystickNumber)
 */
 
 Joystick::Joystick(QObject *parent, std::string devicePath, bool blocking)
-  : QThread(parent)
-  , m_stop(false)
+    : QThread(parent)
+    , m_stop(false)
 {
-  openPath(devicePath, blocking);
+    openPath(devicePath, blocking);
 }
 
 void Joystick::openPath(std::string devicePath, bool blocking)
 {
-  // Open the device using either blocking or non-blocking
-  _fd = open(devicePath.c_str(), blocking ? O_RDONLY : O_RDONLY | O_NONBLOCK);
+    // Open the device using either blocking or non-blocking
+    _fd = open(devicePath.c_str(), blocking ? O_RDONLY : O_RDONLY | O_NONBLOCK);
 }
 
 bool Joystick::sample(JoystickEvent* event)
 {
-  int bytes = read(_fd, event, sizeof(*event));
+    int bytes = read(_fd, event, sizeof(*event));
 
-  if (bytes == -1)
+    if (bytes == -1)
     return false;
 
-  // NOTE if this condition is not met, we're probably out of sync and this
-  // Joystick instance is likely unusable
-  return bytes == sizeof(*event);
+    // NOTE if this condition is not met, we're probably out of sync and this
+    // Joystick instance is likely unusable
+    return bytes == sizeof(*event);
 }
 
 bool Joystick::isFound()
 {
-  return _fd >= 0;
+    return _fd >= 0;
 }
 
 //QT://
 void Joystick::stop()
 {
-  m_stop = true;
+    m_stop = true;
 }
 
 void Joystick::run()
 {
-  //uint16_t data = 42;
+    //uint16_t data = 42;
 
-  qDebug() << "\nJoystick: Started\n";
+    qDebug() << "\nJoystick: Started\n";
 
-  // Ensure that it was found and that we can use it
-  if (!this->isFound())
-  {
-    qDebug() << "Joystick: open failed.\n";
-    exit(1);
-  }
-
-  while (true)
-  {
-    // Attempt to sample an event from the joystick
-    JoystickEvent event;
-    if (this->sample(&event) < 1)
+    // Ensure that it was found and that we can use it
+    if (!this->isFound())
     {
-      if (event.isButton())
-      {
-        printf("Button %u is %s\n",
-          event.number,
-          event.value == 0 ? "up" : "down");
-
-        Q_EMIT ButtonUpdate(event.number, event.value);
-      }
-      if (event.isAxis())
-      {
-        //if(event.number == 0) {
-          //  printf("Axis %u is at position %d\n", event.number, event.value);
-          //data = (uint16_t) ~((unsigned int) event.value);
-          //  printf("Data = %hu\n", data);
-
-
-          //printf("Sending %hu\n", data);
-          //socket->send16(data);
-        //}
-
-        Q_EMIT AxisUpdate(event.number, event.value);
-      }
-
-      //Stop thread:
-      if (m_stop) break;
-
-      // Restrict rate
-      usleep(100000);
+        qDebug() << "Joystick: open failed.\n";
+        exit(1);
     }
-  }
 
+    while (true)
+    {
+        // Attempt to sample an event from the joystick
+        JoystickEvent event;
+        if (this->sample(&event) < 1)
+        {
+            if (event.isButton())
+            {
+                printf("Button %u is %s\n",
+                event.number,
+                event.value == 0 ? "up" : "down");
+
+                Q_EMIT ButtonUpdate(event.number, event.value);
+            }
+
+            if (event.isAxis())
+            {
+                //if(event.number == 0) {
+                //  printf("Axis %u is at position %d\n", event.number, event.value);
+                //data = (uint16_t) ~((unsigned int) event.value);
+                //  printf("Data = %hu\n", data);
+
+
+                //printf("Sending %hu\n", data);
+                //socket->send16(data);
+                //}
+
+                Q_EMIT AxisUpdate(event.number, event.value);
+            }
+
+            //Stop thread:
+            if (m_stop) break;
+
+            // Restrict rate
+            usleep(100000);
+        }
+    }
 }
 ///////
 
 Joystick::~Joystick()
 {
-  close(_fd);
+    close(_fd);
 }
 
 std::ostream& operator<<(std::ostream& os, const JoystickEvent& e)
 {
-  os << "type=" << static_cast<int>(e.type)
-     << " number=" << static_cast<int>(e.number)
-     << " value=" << static_cast<int>(e.value);
-  return os;
+    os << "type=" << static_cast<int>(e.type)
+       << " number=" << static_cast<int>(e.number)
+       << " value=" << static_cast<int>(e.value);
+    return os;
 }

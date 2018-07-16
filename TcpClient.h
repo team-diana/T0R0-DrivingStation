@@ -10,21 +10,20 @@
 
 class TcpClient
 {
-    public:
-        TcpClient(const char* address, int port);
-        ~TcpClient();
+public:
+    TcpClient(const char* address, int port);
+    ~TcpClient();
 
-        void send8(uint8_t data);
-        void send16(uint16_t data);
+    void send8(uint8_t data);
+    void send16(uint16_t data);
 
-        bool isConnected();
+    bool isConnected();
 
-    private:
-        int sock;
-        int port;
-        char address[16];
-
-        bool connected;
+private:
+    int sock;
+    int port;
+    char address[16];
+    bool connected;
 };
 
 #endif

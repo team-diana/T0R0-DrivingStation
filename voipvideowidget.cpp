@@ -23,33 +23,30 @@
 // Constructor
 VoipVideoWidget::VoipVideoWidget(QWidget *parent) : QWidget(parent)
 {
-  port = 5000;
-  s_port = "5000";
+    port = 5000;
+    s_port = "5000";
 
-  //A layout helps the videoWidget resize with the VoipVideoWidget
-  QVBoxLayout *layout = new QVBoxLayout();
+    //A layout helps the videoWidget resize with the VoipVideoWidget
+    QVBoxLayout *layout = new QVBoxLayout();
 
-  //Gstremer://
-  videoWidget = new QGst::Ui::VideoWidget;
-  layout->addWidget(videoWidget);
-  /////////////
+    //Gstremer://
+    videoWidget = new QGst::Ui::VideoWidget;
+    layout->addWidget(videoWidget);
+    /////////////
 
-  this->setLayout(layout);
+    this->setLayout(layout);
 }
 
 VoipVideoWidget::~VoipVideoWidget(){
-  //Gstremer://
-  stopPipeline();
-  /////////////
+    //Gstremer://
+    stopPipeline();
+    /////////////
 }
 
 void VoipVideoWidget::setPort(int p){
-  port = p;
-  s_port = QString::number(port);
+    port = p;
+    s_port = QString::number(port);
 }
-
-
-
 
 //GStreamer://
 void VoipVideoWidget::startPipeline(){
@@ -60,29 +57,30 @@ void VoipVideoWidget::startPipeline(){
     }
     pipeline->add(rtpbin);
 
-  QGst::ElementPtr videosrc;
+    QGst::ElementPtr videosrc;
   try {
       //Connect to video from udp using port
-      videosrc = QGst::Bin::fromDescription(
-          "udpsrc port=" + s_port +
-          " ! application/x-rtp, encoding-name=JPEG, payload=26 ! rtpjpegdepay ! jpegdec ! xvimagesink"
-      );
-  } catch (const QGlib::Error & error) {
-      qCritical() << error;
-      qFatal("One ore more required elements are missing. Aborting...");
-  }
-  pipeline->add(videosrc);
-  videosrc->link(rtpbin, "send_rtp_sink_2");
+        videosrc = QGst::Bin::fromDescription(
+                    "udpsrc port=" + s_port +
+                    " ! application/x-rtp, encoding-name=JPEG, payload=26 ! rtpjpegdepay ! jpegdec ! xvimagesink"
+                    );
+    }
+    catch (const QGlib::Error & error) {
+        qCritical() << error;
+        qFatal("One ore more required elements are missing. Aborting...");
+    }
+    pipeline->add(videosrc);
+    videosrc->link(rtpbin, "send_rtp_sink_2");
 
-  //watch for the receiving side src pads
-  QGlib::connect(rtpbin, "pad-added", this, &VoipVideoWidget::onRtpBinPadAdded);
-  //watch the bus
-  pipeline->bus()->addSignalWatch();
-  QGlib::connect(pipeline->bus(), "message::error", this, &VoipVideoWidget::onBusErrorMessage);
-  //switch to the video view and connect the video widget
-  videoWidget->watchPipeline(pipeline);
-  //go!
-  pipeline->setState(QGst::StatePlaying);
+    //watch for the receiving side src pads
+    QGlib::connect(rtpbin, "pad-added", this, &VoipVideoWidget::onRtpBinPadAdded);
+    //watch the bus
+    pipeline->bus()->addSignalWatch();
+    QGlib::connect(pipeline->bus(), "message::error", this, &VoipVideoWidget::onBusErrorMessage);
+    //switch to the video view and connect the video widget
+    videoWidget->watchPipeline(pipeline);
+    //go!
+    pipeline->setState(QGst::StatePlaying);
 }
 
 void VoipVideoWidget::onRtpBinPadAdded(const QGst::PadPtr & pad)
@@ -116,8 +114,8 @@ void VoipVideoWidget::onBusErrorMessage(const QGst::MessagePtr & msg)
 }
 
 void VoipVideoWidget::stopPipeline(){
-  pipeline->setState(QGst::StateNull);
-  videoWidget->stopPipelineWatch();
-  pipeline.clear();
+    pipeline->setState(QGst::StateNull);
+    videoWidget->stopPipelineWatch();
+    pipeline.clear();
 }
 //////////////
