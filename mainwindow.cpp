@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     //Joystick is a thread so we have to start it:
     gamepad->start();
 
-    connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
+    connect(gamepad, &Joystick::ButtonUpdate, this, [&MainWindow::GamepadChangeText_Button]);
     connect(gamepad, &Joystick::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
     //////////
 }
@@ -76,6 +76,8 @@ void MainWindow::GamepadChangeText_Button(int n, int pressed){
                     QString::number(n),
                     pressed == 0 ? "up" : "down");
     ui->gamepad_lbl->setText(txt);
+
+    gamepad->writeAxis(n, pressed);
 }
 
 void MainWindow::GamepadChangeText_Axis(int n, int position){
@@ -87,6 +89,9 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
     //uint8_t bytes[2] = {0, 0};
     uint16_t data = (uint16_t) position + 32768;
 
+    gamepad->writeAxis(n, data);
+
+    /* DEPRECATED
     if (n == GAMEPAD_L3Y) // Left
     {
         client_wheel_FL->send16( data );
@@ -112,6 +117,7 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
     n=-1;
     position=0;
     data=32768;
+    */
 }
 //////////
 
