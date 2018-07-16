@@ -2,6 +2,7 @@
 #include "ui.h"
 #include "config.h"
 #include "inputmapping.h"
+#include "tcpharbinger.h"
 
 #include <QDebug>
 #include <QString>
@@ -42,7 +43,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     //Joystick is a thread so we have to start it:
     gamepad->start();
 
-    connect(gamepad, &Joystick::ButtonUpdate, this, [&MainWindow::GamepadChangeText_Button]);
+    //joystick_tcp = new TcpHarbinger();
+
+    gamepad_tcp = new TcpHarbinger(this, GAMEPAD_PATH, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, 4, 50110, 10);
+
+    connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
     connect(gamepad, &Joystick::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
     //////////
 }
