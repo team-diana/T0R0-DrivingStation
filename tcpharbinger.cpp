@@ -29,10 +29,10 @@ TcpHarbinger::~TcpHarbinger()
 
 void TcpHarbinger::tcpLoop () {
 
-  while (this->m_loop)  // Loop -> if  m_loop = true
+  while (m_loop)  // Loop -> if  m_loop = true
   {
     for (int i=0; i < nAxis; i++) {     // Read data array and send trough TCP
-        this->clientAxis[i]->send16(this->dataAxis[i]);
+        clientAxis[i]->send16(dataAxis[i]);
     }
     usleep(100000); // Microseconds
   }
@@ -40,14 +40,14 @@ void TcpHarbinger::tcpLoop () {
 
 void TcpHarbinger::Joystick::stop()
 {
-  this->m_loop = false;
+  m_loop = false;
 }
 
 int writeAxis (int axis, int16_t value)
 {
   int retStatus = 0;
   if (axis < nAxis && axis >= 0)
-    this->dataAxis[axis] = (uint16_t) value + 32768;
+    dataAxis[axis] = (uint16_t) value + 32768;
   else
     retStatus = -1;
 
@@ -58,7 +58,7 @@ int TcpHarbinger::writeButton (int button, bool pressed)
 {
   int retStatus = 0;
   if (button < nButton && nButton >= 0)
-    this->dataButton[button] = (bool) pressed;
+    dataButton[button] = (bool) pressed;
   else
     retStatus = -1;
 
@@ -67,10 +67,10 @@ int TcpHarbinger::writeButton (int button, bool pressed)
 
 int16_t TcpHarbinger::readLastAxisValue (int axis)
 {
-    return (int16_t) this->dataAxis[axis] - 32768;
+    return (int16_t) dataAxis[axis] - 32768;
 }
 
 bool TcpHarbinger::writeLastButtonState (int button)
 {
-    return (bool) this->dataButton[button];
+    return (bool) dataButton[button];
 }
