@@ -68,10 +68,6 @@ void MainWindow::ChangeText_Button(int n, int pressed){
                 pressed == 0 ? "up" : "down");
 
     ui->jstick_lbl->setText(txt);
-    QString txt = QString("Button %1 is %2").arg(
-                    QString::number(n),
-                    pressed == 0 ? "up" : "down");
-    ui->jstick_lbl->setText(txt);
 }
 
 void MainWindow::ChangeText_Axis(int n, int position){
@@ -79,10 +75,6 @@ void MainWindow::ChangeText_Axis(int n, int position){
                 QString::number(n),
                 QString::number(position));
 
-    ui->jstick_lbl->setText(txt);
-    QString txt = QString("Axis %1 is at position %2").arg(
-                    QString::number(n),
-                    QString::number(position));
     ui->jstick_lbl->setText(txt);
 }
 //////////
