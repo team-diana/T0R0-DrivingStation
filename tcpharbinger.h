@@ -30,15 +30,18 @@ public:
     int16_t readLastAxisValue (int axis);
     bool writeLastButtonState (int button);
 
-    uint16_t  dataAxis[10];
-    bool dataButton[20];
+
 
 private:
     int nAxis, startPortAxis, startPortButton, nButton;
 
     TcpClient *clientAxis[10], *clientButton[20];
 
+    uint16_t  dataAxis[10];
+    bool dataButton[20];
+
     bool m_loop;
+    bool m_wait;
 };
 
 #endif // TCPHARBINGER_H
