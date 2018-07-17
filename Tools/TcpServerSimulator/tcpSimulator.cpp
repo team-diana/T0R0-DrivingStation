@@ -18,7 +18,7 @@ int main()
     serverRearRight->start16();
 
     uint16_t dataFL = 0, dataFR = 0, dataRL = 0, dataRR = 0;
-    printf("Server is listening...\n\n\n\n\n\n\n\n\n\n\n");
+    printf("Server is listening...\n\n\n\n\n\n\n\n");
 
 
     while(true)
@@ -47,6 +47,7 @@ int main()
             //printf("%12s%hu\n", "REAR RIGHT", dataRR);
         }
         printf("|LF %5hu | LR %5hu | RL %5hu | RR %5hu | \r", dataFL, dataFR, dataRL, dataRR);
+        fflush(stdout);
     }
 
     return 0;
