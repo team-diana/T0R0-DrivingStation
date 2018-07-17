@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QThread>
 
 #include "TcpClient.h"
 #include "joystick.h"
@@ -10,7 +11,7 @@
 
 // nBytes = 1 or nBytes = 2 for the moment
 
-class TcpHarbinger : public QWidget
+class TcpHarbinger : public QThread
 {
     Q_OBJECT
 
@@ -18,8 +19,10 @@ public:
     explicit TcpHarbinger(QWidget *parent = 0, const char* address = "127.0.0.1", int startPortAxis = 8080, int nAxis = 1, int startPortButton = 8180, int nButton = 1);
     ~TcpHarbinger();
 
-    void run();
+    void startLoop();
     void stop();        // Stop tcpLoop()
+    void resume();
+    void suspend();
 
     int writeAxis(int axis, int16_t value);
     int writeButton(int button, bool pressed);

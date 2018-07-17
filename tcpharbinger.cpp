@@ -4,7 +4,7 @@
 
 
 
-TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QWidget(parent)
+TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QThread(parent)
 {
     nAxis = _nAxis;
     startPortAxis = _startPortAxis;
@@ -15,31 +15,37 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortA
 
     // Create TCP connection for each axis
     for (int i=0; i < nAxis; i++) {
-      clientAxis[i] = new TcpClient(address, startPortAxis + i);
+        qDebug() << "Axis["<< i <<"]: estabilshed TCP port: ["<< startPortAxis + i << "]";
+        clientAxis[i] = new TcpClient(address, startPortAxis + i);
     }
     // Initialize Axis to zero
     for (int i=0; i < nAxis; i++) {
         clientAxis[i]->send16(32767);   // Initialize to neutral value (= 32767)
+        dataAxis[i] = 32767;
     }
 
 }
 
 TcpHarbinger::~TcpHarbinger()
 {
-
+    this->stop();
+    usleep(200000);
 }
 
-void TcpHarbinger::run () {
+void TcpHarbinger::startLoop () {
 
     qDebug() << "TcoHarbinger: Starting tcpLoop";
 
   while (m_loop)  // Loop -> if  m_loop = true
   {
-    for (int i=0; i < nAxis; i++) {     // Read data array and send trough TCP
+    for (int i=0; i < nAxis; i++)      // Read data array and send trough TCP
+    {
         qDebug() << "dataAxis[" << i << "]: " << dataAxis[i];
-        clientAxis[i]->send16(dataAxis[i]);
+
+        if (!m_wait)
+            clientAxis[i]->send16((uint16_t) dataAxis[i]);
     }
-    usleep(100000); // Microseconds
+    usleep(1000000); // Microseconds
   }
   qDebug() << "TcoHarbinger: TcpLoop Terminated";
 }
@@ -47,6 +53,16 @@ void TcpHarbinger::run () {
 void TcpHarbinger::stop()
 {
   m_loop = false;
+}
+
+void TcpHarbinger::resume()
+{
+  m_wait = false;
+}
+
+void TcpHarbinger::suspend()
+{
+  m_wait = true;
 }
 
 int TcpHarbinger::writeAxis (int axis, int16_t value)
