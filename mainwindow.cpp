@@ -98,32 +98,6 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
     uint16_t data = (uint16_t) position + 32768;
 
     gamepad_tcp->writeAxis(n, data);
-
-    /* DEPRECATED
-    if (n == GAMEPAD_L3Y) // Left
-    {
-        client_wheel_FL->send16( data );
-        client_wheel_RL->send16( data );
-        qDebug() << "Sent to Mobility Driver LEFT:\t" << data;
-    }
-    else if (n == GAMEPAD_R3Y) // Right
-    {
-        client_wheel_FR->send16( data );
-        client_wheel_RR->send16( data );
-        qDebug() << "Sent to Mobility Driver RIGHT:\t" << data;
-    }
-    else {      // EXPERIMENTAL
-        data=32768;
-        client_wheel_FL->send16( data );
-        client_wheel_RL->send16( data );
-        client_wheel_FR->send16( data );
-        client_wheel_RR->send16( data );
-    }
-
-    n=-1;
-    position=0;
-    data=32768;
-    */
 }
 //////////
 
