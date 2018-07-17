@@ -46,8 +46,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //joystick_tcp = new TcpHarbinger();
 
-    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, 4, 50110, 10);
-    gamepad_tcp->run();
+    //gamepad_tcp->start();     // CRASHES IF UNCOMMENTED
+    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, GAMEPAD_N_AXISES, 50120, GAMEPAD_N_BUTTONS);
+    gamepad_tcp->startLoop();
 
     connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
     connect(gamepad, &Joystick::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
@@ -58,6 +59,10 @@ MainWindow::~MainWindow(){
     //Stop thread:
     jstick->stop();
     jstick->wait();
+
+    //gamepad_tcp->stop();
+    //gamepad_tcp->wait();
+
     delete ui;
 }
 
@@ -95,9 +100,12 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
                 QString::number(position));
     ui->gamepad_lbl->setText(txt);
 
-    uint16_t data = (uint16_t) position + 32768;
+    //uint16_t data = (uint16_t) position + 32768;
 
-    gamepad_tcp->writeAxis(n, data);
+    gamepad_tcp->wait();
+    qDebug() << "Gamepad TCP exit status: " << gamepad_tcp->writeAxis(n, position) << "\tAxis[" << n << ": " << position;
+    //gamepad_tcp->writeAxis(n, position);
+    gamepad_tcp->resume();
 }
 //////////
 
