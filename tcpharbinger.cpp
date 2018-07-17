@@ -1,5 +1,7 @@
 #include "tcpharbinger.h"
 
+#include <QDebug>
+
 
 
 TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QWidget(parent)
