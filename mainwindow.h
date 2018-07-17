@@ -3,6 +3,7 @@
 
 #include "joystick.h"
 #include "TcpClient.h"
+#include "tcpharbinger.h"
 
 //GAMEPAD//
 //#include "gamepad.h"
@@ -39,6 +40,8 @@ public:
     Joystick *jstick, *gamepad;
     //////////
 
+    TcpHarbinger *joystick_tcp, *gamepad_tcp;
+
 public Q_SLOTS:
     //
 
@@ -51,8 +54,7 @@ protected:
 private:
     WindowUi *ui;
 
-    TcpClient *left_client, *right_client;
-
+    TcpClient *client_wheel_FL, *client_wheel_FR, *client_wheel_RL, *client_wheel_RR;
     void ChangeText_Button(int n, int pressed);
     void ChangeText_Axis(int n, int position);
 

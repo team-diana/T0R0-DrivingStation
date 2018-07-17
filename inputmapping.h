@@ -3,6 +3,8 @@
 
 //* JOYSTICK MAP *//
 // Axis
+#define JOYSTICK_N_AXISES 6
+
 #define JOYSTICK_PITCH 0
 #define JOYSTICK_ROLL 1
 #define JOYSTICK_YAW 2
@@ -12,6 +14,8 @@
 #define JOYSTICK_ARROWUD 5  // D = -32767   U = 32767
 
 // Buttons
+#define JOYSTICK_N_BUTTONS 12
+
 #define JOYSTICK_PITCH 0
 #define JOYSTICK_ROLL 1
 #define JOYSTICK_YAW 2
@@ -36,6 +40,8 @@
 
 //* GAMEPAD MAP *//
 // Axis
+#define GAMEPAD_N_AXISES 6
+
 #define GAMEPAD_L3X 0
 #define GAMEPAD_L3Y 1
 #define GAMEPAD_R3X 3
@@ -48,6 +54,8 @@
 #define GAMEPAD_ARROWUD 7   // D = -32767   U = 32767
 
 // Buttons
+#define GAMEPAD_N_BUTTONS 11
+
 #define GAMEPAD_L2 4
 #define GAMEPAD_R2 5
 
