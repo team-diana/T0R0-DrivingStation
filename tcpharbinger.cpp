@@ -27,15 +27,19 @@ TcpHarbinger::~TcpHarbinger()
 
 }
 
-void TcpHarbinger::tcpLoop () {
+void TcpHarbinger::run () {
+
+    qDebug() << "TcoHarbinger: Starting tcpLoop";
 
   while (m_loop)  // Loop -> if  m_loop = true
   {
     for (int i=0; i < nAxis; i++) {     // Read data array and send trough TCP
+        qDebug() << "dataAxis[" << i << "]: " << dataAxis[i];
         clientAxis[i]->send16(dataAxis[i]);
     }
     usleep(100000); // Microseconds
   }
+  qDebug() << "TcoHarbinger: TcpLoop Terminated";
 }
 
 void TcpHarbinger::stop()

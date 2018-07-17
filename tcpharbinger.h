@@ -18,7 +18,7 @@ public:
     explicit TcpHarbinger(QWidget *parent = 0, const char* address = "127.0.0.1", int startPortAxis = 8080, int nAxis = 1, int startPortButton = 8180, int nButton = 1);
     ~TcpHarbinger();
 
-    void tcpLoop();
+    void run();
     void stop();        // Stop tcpLoop()
 
     int writeAxis(int axis, int16_t value);
@@ -27,11 +27,12 @@ public:
     int16_t readLastAxisValue (int axis);
     bool writeLastButtonState (int button);
 
+    uint16_t  dataAxis[10];
+    bool dataButton[20];
 
 private:
     int nAxis, startPortAxis, startPortButton, nButton;
-    uint16_t  dataAxis[10];
-    bool dataButton[20];
+
     TcpClient *clientAxis[10], *clientButton[20];
 
     bool m_loop;
