@@ -48,5 +48,4 @@
 #define JOYSTICK_PATH "/dev/input/js1"
 ///////////
 
-
 #endif // CONFIG_H
