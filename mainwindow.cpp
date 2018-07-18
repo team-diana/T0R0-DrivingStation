@@ -2,6 +2,7 @@
 #include "ui.h"
 #include "config.h"
 #include "inputmapping.h"
+#include "mathfunctions.h"
 
 #include <QDebug>
 #include <QString>
