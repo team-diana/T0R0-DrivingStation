@@ -43,7 +43,7 @@ int main()
         {
             dataRR = serverRearRight->readLast16();
         }
-        
+
         printf(" |LF %5hu | LR %5hu | RL %5hu | RR %5hu | \r", dataFL, dataFR, dataRL, dataRR);
         fflush(stdout);
         printf(" \n----------------------------------------\n");
