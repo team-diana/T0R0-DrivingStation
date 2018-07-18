@@ -134,7 +134,7 @@ public:
     * Initialises an instance for the joystick device specified and provide
     * the option of blocking I/O.
     */
-    Joystick(QObject *parent = 0, std::string devicePath="/dev/input/js0", bool blocking=false);
+    Joystick(QObject *parent = 0, std::string devicePath="null", bool blocking=false);
 
     /**
     * Returns true if the joystick was found and may be used, otherwise false.
