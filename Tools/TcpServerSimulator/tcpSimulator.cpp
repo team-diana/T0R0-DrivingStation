@@ -27,26 +27,23 @@ int main()
         if(serverFrontLeft->newDataAvailable())
         {
             dataFL = serverFrontLeft->readLast16();
-            //printf("%12s%hu\n", "FRONT LEFT", dataFL);
         }
 
         if(serverFrontRight->newDataAvailable())
         {
             dataFR = serverFrontRight->readLast16();
-            //printf("%12s%hu\n", "FRONT RIGHT", dataFR);
         }
 
         if(serverRearLeft->newDataAvailable())
         {
             dataRL = serverRearLeft->readLast16();
-            //printf("%12s%hu\n", "REAR LEFT", dataRL);
         }
 
         if(serverRearRight->newDataAvailable())
         {
             dataRR = serverRearRight->readLast16();
-            //printf("%12s%hu\n", "REAR RIGHT", dataRR);
         }
+        
         printf(" |LF %5hu | LR %5hu | RL %5hu | RR %5hu | \r", dataFL, dataFR, dataRL, dataRR);
         fflush(stdout);
         printf(" \n----------------------------------------\n");
