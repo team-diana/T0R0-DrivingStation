@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QWidget>
-#include <QThread>
 
 #include "TcpClient.h"
 #include "joystick.h"
@@ -11,7 +10,7 @@
 
 // nBytes = 1 or nBytes = 2 for the moment
 
-class TcpHarbinger : public QThread
+class TcpHarbinger : public QObject
 {
     Q_OBJECT
 

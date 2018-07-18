@@ -4,7 +4,7 @@
 
 
 
-TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QThread(parent)
+TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QObject(parent)
 {
     nAxis = _nAxis;
     startPortAxis = _startPortAxis;

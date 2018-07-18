@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //gamepad_tcp->start();     // CRASHES IF UNCOMMENTED
     gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, GAMEPAD_N_AXISES, 50120, GAMEPAD_N_BUTTONS);
-    gamepad_tcp->startLoop();
+    //gamepad_tcp->startLoop();
 
     connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
     connect(gamepad, &Joystick::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
