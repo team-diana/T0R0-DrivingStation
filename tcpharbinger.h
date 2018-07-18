@@ -29,8 +29,6 @@ public:
     int16_t readLastAxisValue (int axis);
     bool writeLastButtonState (int button);
 
-
-
 private:
     int nAxis, startPortAxis, startPortButton, nButton;
 

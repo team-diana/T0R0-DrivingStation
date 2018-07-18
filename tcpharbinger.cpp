@@ -34,7 +34,7 @@ TcpHarbinger::~TcpHarbinger()
 
 void TcpHarbinger::startLoop () {
 
-    qDebug() << "TcoHarbinger: Starting tcpLoop";
+    qDebug() << "TcoHarbinger: Starting Loop";
 
   while (m_loop)  // Loop -> if  m_loop = true
   {
@@ -47,7 +47,7 @@ void TcpHarbinger::startLoop () {
     }
     usleep(1000000); // Microseconds
   }
-  qDebug() << "TcoHarbinger: TcpLoop Terminated";
+  qDebug() << "TcoHarbinger: Loop Terminated";
 }
 
 void TcpHarbinger::stop()
