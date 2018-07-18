@@ -12,8 +12,8 @@
 //
 // Copyright Drew Noakes 2013-2016
 
-#ifndef __JOYSTICK_HH__
-#define __JOYSTICK_HH__
+#ifndef __GAMEPAD_HH__
+#define __GAMEPAD_HH__
 
 #include <QString>
 #include <QThread>
@@ -21,13 +21,13 @@
 #include <iostream>
 
 #define JS_EVENT_BUTTON 0x01 // button pressed/released
-#define JS_EVENT_AXIS   0x02 // joystick moved
+#define JS_EVENT_AXIS   0x02 // gamepad moved
 #define JS_EVENT_INIT   0x80 // initial state of device
 
 /**
- * Encapsulates all data relevant to a sampled joystick event.
+ * Encapsulates all data relevant to a sampled gamepad event.
  */
-class JoystickEvent
+class GamepadEvent
 {
 public:
     /** Minimum value of axes range */
@@ -42,7 +42,7 @@ public:
     unsigned int time;
 
     /**
-    * The value associated with this joystick event.
+    * The value associated with this gamepad event.
     * For buttons this will be either 1 (down) or 0 (up).
     * For axes, this will range between MIN_AXES_VALUE and MAX_AXES_VALUE.
     */
@@ -76,7 +76,7 @@ public:
 
     /**
     * Returns true if this event is part of the initial state obtained when
-    * the joystick is first connected to.
+    * the gamepad is first connected to.
     */
     bool isInitialState()
     {
@@ -88,12 +88,12 @@ public:
  * Stream insertion function so you can do this:
  *    cout << event << endl;
  */
-std::ostream& operator<<(std::ostream& os, const JoystickEvent& e);
+std::ostream& operator<<(std::ostream& os, const GamepadEvent& e);
 
 /**
- * Represents a joystick device. Allows data to be sampled from it.
+ * Represents a gamepad device. Allows data to be sampled from it.
  */
-class Joystick : public QThread
+class Gamepad : public QThread
 {
     Q_OBJECT
 
@@ -112,40 +112,40 @@ protected:
     ///////
 
 public:
-    ~Joystick();
+    ~Gamepad();
 
     /**
-    * Initialises an instance for the joystick with the specified,
+    * Initialises an instance for the gamepad with the specified,
     * zero-indexed number.
-    Joystick(QObject *parent = 0, int joystickNumber=0);
+    Gamepad(QObject *parent = 0, int gamepadNumber=0);
     */
 
     /**
-    * Joystick objects cannot be copied
-    * Joystick(QObject *parent = 0, Joystick const&) = delete;
+    * Gamepad objects cannot be copied
+    * Gamepad(QObject *parent = 0, Gamepad const&) = delete;
     */
 
     /**
-    * Joystick objects can be moved
-    * Joystick(QObject *parent = 0, Joystick &&) = default;
+    * Gamepad objects can be moved
+    * Gamepad(QObject *parent = 0, Gamepad &&) = default;
     */
 
     /**
-    * Initialises an instance for the joystick device specified and provide
+    * Initialises an instance for the gamepad device specified and provide
     * the option of blocking I/O.
     */
-    Joystick(QObject *parent = 0, std::string devicePath="/dev/input/js0", bool blocking=false);
+    Gamepad(QObject *parent = 0, std::string devicePath="null", bool blocking=false);
 
     /**
-    * Returns true if the joystick was found and may be used, otherwise false.
+    * Returns true if the gamepad was found and may be used, otherwise false.
     */
     bool isFound();
 
     /**
-    * Attempts to populate the provided JoystickEvent instance with data
-    * from the joystick. Returns true if data is available, otherwise false.
+    * Attempts to populate the provided GamepadEvent instance with data
+    * from the gamepad. Returns true if data is available, otherwise false.
     */
-    bool sample(JoystickEvent* event);
+    bool sample(GamepadEvent* event);
 
     //QT://
 

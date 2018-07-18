@@ -12,7 +12,7 @@
 //
 // Copyright Drew Noakes 2013-2016
 
-#include "joystick.h"
+#include "gamepad.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -28,29 +28,29 @@
 ///////
 
 /*
-Joystick::Joystick(QObject *parent, int joystickNumber)
+Gamepad::Gamepad(QObject *parent, int GamepadNumber)
   : QThread(parent)
 {
   std::stringstream sstm;
-  sstm << "/dev/input/js" << joystickNumber;
+  sstm << "/dev/input/js" << GamepadNumber;
   openPath(sstm.str());
 }
 */
 
-Joystick::Joystick(QObject *parent, std::string devicePath, bool blocking)
+Gamepad::Gamepad(QObject *parent, std::string devicePath, bool blocking)
     : QThread(parent)
     , m_stop(false)
 {
     openPath(devicePath, blocking);
 }
 
-void Joystick::openPath(std::string devicePath, bool blocking)
+void Gamepad::openPath(std::string devicePath, bool blocking)
 {
     // Open the device using either blocking or non-blocking
     _fd = open(devicePath.c_str(), blocking ? O_RDONLY : O_RDONLY | O_NONBLOCK);
 }
 
-bool Joystick::sample(JoystickEvent* event)
+bool Gamepad::sample(GamepadEvent* event)
 {
     int bytes = read(_fd, event, sizeof(*event));
 
@@ -58,38 +58,38 @@ bool Joystick::sample(JoystickEvent* event)
     return false;
 
     // NOTE if this condition is not met, we're probably out of sync and this
-    // Joystick instance is likely unusable
+    // Gamepad instance is likely unusable
     return bytes == sizeof(*event);
 }
 
-bool Joystick::isFound()
+bool Gamepad::isFound()
 {
     return _fd >= 0;
 }
 
 //QT://
-void Joystick::stop()
+void Gamepad::stop()
 {
     m_stop = true;
 }
 
-void Joystick::run()
+void Gamepad::run()
 {
     //uint16_t data = 42;
 
-    qDebug() << "\nJoystick: Started\n";
+    qDebug() << "\nGamepad: Started\n";
 
     // Ensure that it was found and that we can use it
     if (!this->isFound())
     {
-        qDebug() << "Joystick: open failed.\n";
+        qDebug() << "Gamepad: open failed.\n";
         exit(1);
     }
 
     while (true)
     {
-        // Attempt to sample an event from the joystick
-        JoystickEvent event;
+        // Attempt to sample an event from the Gamepad
+        GamepadEvent event;
         if (this->sample(&event) < 1)
         {
             if (event.isButton())
@@ -107,10 +107,6 @@ void Joystick::run()
                 //  printf("Axis %u is at position %d\n", event.number, event.value);
                 //data = (uint16_t) ~((unsigned int) event.value);
                 //  printf("Data = %hu\n", data);
-
-
-                //printf("Sending %hu\n", data);
-                //socket->send16(data);
                 //}
 
                 Q_EMIT AxisUpdate(event.number, event.value);
@@ -126,12 +122,12 @@ void Joystick::run()
 }
 ///////
 
-Joystick::~Joystick()
+Gamepad::~Gamepad()
 {
     close(_fd);
 }
 
-std::ostream& operator<<(std::ostream& os, const JoystickEvent& e)
+std::ostream& operator<<(std::ostream& os, const GamepadEvent& e)
 {
     os << "type=" << static_cast<int>(e.type)
        << " number=" << static_cast<int>(e.number)
