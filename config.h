@@ -11,7 +11,7 @@
 #define CONFIG_H
 
 //* WINDOW SIZE *//
-#define WINDOW_WIDTH 1920
+#define WINDOW_WIDTH  1920
 #define WINDOW_HEIGHT 1080
 ///////////
 
@@ -22,9 +22,9 @@
 
 //* PORTS TO ROVER *//
 #define PORT_MOBILITY_FRONTRIGHT 50100
-#define PORT_MOBILITY_FRONTLEFT 50101
-#define PORT_MOBILITY_REARLEFT 50102
-#define PORT_MOBILITY_REARRIGHT 50103
+#define PORT_MOBILITY_FRONTLEFT  50101
+#define PORT_MOBILITY_REARLEFT   50102
+#define PORT_MOBILITY_REARRIGHT  50103
 ///////////
 
 //* PORTS FROM MISSION CONTROL *//
@@ -32,7 +32,7 @@
 ///////////
 
 //* CAMERA *//
-#define CAMERA_WIDTH 960
+#define CAMERA_WIDTH  960
 #define CAMERA_HEIGHT 600
 ///////////
 
@@ -40,7 +40,7 @@
 #define GAMEPAD_PATH "/dev/input/js0"
 
 #define DEATHZONE_VAL 0.07      // -val < x < val interval will give 0 as output
-#define FULLZONE_VAL 1.1        // x < -val gives -1, x > val gives 1 as output
+#define FULLZONE_VAL  1.1        // x < -val gives -1, x > val gives 1 as output
 #define LINEARITY_EXP 2         // 1 for linear input, 2 for quadratic non-linear input, 3 ...
 ///////////
 

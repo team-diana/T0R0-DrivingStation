@@ -5,9 +5,9 @@
 // Axis
 #define JOYSTICK_N_AXISES 6
 
-#define JOYSTICK_PITCH 0
-#define JOYSTICK_ROLL 1
-#define JOYSTICK_YAW 2
+#define JOYSTICK_PITCH    0
+#define JOYSTICK_ROLL     1
+#define JOYSTICK_YAW      2
 #define JOYSTICK_THROTTLE 3
 
 #define JOYSTICK_ARROWLR 4  // L = -32767   R = 32767
@@ -16,9 +16,9 @@
 // Buttons
 #define JOYSTICK_N_BUTTONS 12
 
-#define JOYSTICK_PITCH 0
-#define JOYSTICK_ROLL 1
-#define JOYSTICK_YAW 2
+#define JOYSTICK_PITCH    0
+#define JOYSTICK_ROLL     1
+#define JOYSTICK_YAW      2
 #define JOYSTICK_THROTTLE 3
 
 #define JOYSTICK_0 0    // Fire button
@@ -30,10 +30,10 @@
 #define JOYSTICK_5 4
 #define JOYSTICK_6 5
 
-#define JOYSTICK_7 6    // Butons on base
-#define JOYSTICK_8 7
-#define JOYSTICK_9 8
-#define JOYSTICK_10 9
+#define JOYSTICK_7   6  // Butons on base
+#define JOYSTICK_8   7
+#define JOYSTICK_9   8
+#define JOYSTICK_10  9
 #define JOYSTICK_11 10
 #define JOYSTICK_12 11
 //////////
@@ -64,8 +64,8 @@
 #define GAMEPAD_X 1
 #define GAMEPAD_Y 3
 
-#define GAMEPAD_BACK 6
-#define GAMEPAD_START 7
+#define GAMEPAD_BACK    6
+#define GAMEPAD_START   7
 #define GAMEPAD_SPECIAL 8
 
 #define GAMEPAD_L3 9
