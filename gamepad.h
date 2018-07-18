@@ -158,4 +158,4 @@ public Q_SLOTS:
     ///////
 };
 
-#endif
+#endif  // __GAMEPAD_HH__
