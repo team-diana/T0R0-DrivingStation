@@ -68,7 +68,8 @@ SOURCES += \
     TcpClient.cpp \
     TcpServer.cpp \
     mathfunctions.cpp \
-    tcpharbinger.cpp
+    tcpharbinger.cpp \
+    gamepad.cpp
 
 
 HEADERS += \
@@ -81,7 +82,8 @@ HEADERS += \
     config.h \
     inputmapping.h \
     mathfunctions.h \
-    tcpharbinger.h
+    tcpharbinger.h \
+    gamepad.h
 
 FORMS += \
     mainwindow.ui

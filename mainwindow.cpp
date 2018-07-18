@@ -46,7 +46,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //joystick_tcp = new TcpHarbinger();
 
-    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, 4, 50110, 10);
+    //gamepad_tcp->start();     // CRASHES IF UNCOMMENTED
+    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, GAMEPAD_N_AXISES, 50120, GAMEPAD_N_BUTTONS);
+    //gamepad_tcp->startLoop();
 
     connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
     connect(gamepad, &Joystick::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
@@ -57,6 +59,10 @@ MainWindow::~MainWindow(){
     //Stop thread:
     jstick->stop();
     jstick->wait();
+
+    //gamepad_tcp->stop();
+    //gamepad_tcp->wait();
+
     delete ui;
 }
 
@@ -67,10 +73,6 @@ void MainWindow::ChangeText_Button(int n, int pressed){
                 pressed == 0 ? "up" : "down");
 
     ui->jstick_lbl->setText(txt);
-    QString txt = QString("Button %1 is %2").arg(
-                    QString::number(n),
-                    pressed == 0 ? "up" : "down");
-    ui->jstick_lbl->setText(txt);
 }
 
 void MainWindow::ChangeText_Axis(int n, int position){
@@ -78,10 +80,6 @@ void MainWindow::ChangeText_Axis(int n, int position){
                 QString::number(n),
                 QString::number(position));
 
-    ui->jstick_lbl->setText(txt);
-    QString txt = QString("Axis %1 is at position %2").arg(
-                    QString::number(n),
-                    QString::number(position));
     ui->jstick_lbl->setText(txt);
 }
 //////////
@@ -93,7 +91,7 @@ void MainWindow::GamepadChangeText_Button(int n, int pressed){
                     pressed == 0 ? "up" : "down");
     ui->gamepad_lbl->setText(txt);
 
-    gamepad_tcp->writeAxis(n, pressed);
+    gamepad_tcp->writeButton(n, pressed);
 }
 
 void MainWindow::GamepadChangeText_Axis(int n, int position){
@@ -102,35 +100,12 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
                 QString::number(position));
     ui->gamepad_lbl->setText(txt);
 
-    uint16_t data = (uint16_t) position + 32768;
+    //uint16_t data = (uint16_t) position + 32768;
 
-    gamepad_tcp->writeAxis(n, data);
-
-    /* DEPRECATED
-    if (n == GAMEPAD_L3Y) // Left
-    {
-        client_wheel_FL->send16( data );
-        client_wheel_RL->send16( data );
-        qDebug() << "Sent to Mobility Driver LEFT:\t" << data;
-    }
-    else if (n == GAMEPAD_R3Y) // Right
-    {
-        client_wheel_FR->send16( data );
-        client_wheel_RR->send16( data );
-        qDebug() << "Sent to Mobility Driver RIGHT:\t" << data;
-    }
-    else {      // EXPERIMENTAL
-        data=32768;
-        client_wheel_FL->send16( data );
-        client_wheel_RL->send16( data );
-        client_wheel_FR->send16( data );
-        client_wheel_RR->send16( data );
-    }
-
-    n=-1;
-    position=0;
-    data=32768;
-    */
+    gamepad_tcp->wait();
+    qDebug() << "Gamepad TCP exit status: " << gamepad_tcp->writeAxis(n, position) << "\tAxis[" << n << ": " << position;
+    //gamepad_tcp->writeAxis(n, position);
+    gamepad_tcp->resume();
 }
 //////////
 
