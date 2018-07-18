@@ -131,7 +131,6 @@ void MainWindow::keyPressEvent (QKeyEvent *keyevent) {
                 qDebug("Pressed Ctrl");
                 key[2] = 1;
                 break;
-
     }
 
     if (key[0] && key[1] && key[2])
@@ -158,3 +157,4 @@ void MainWindow::keyReleaseEvent (QKeyEvent *keyevent) {
 
       }
 }
+//////////
