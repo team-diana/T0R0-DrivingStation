@@ -21,7 +21,7 @@ double inputLinearityFunction (double x, float a, float b, int c)
     else if ( x > -maxFactor && x < -minFactor)
     {
         // -abs((b x + a)^c)
-        ans =  (double) pow ( (double)(-abs(b*x + a)) , c);
+        ans = (double) pow ( (double)(-abs(b*x + a)), (double)c);
     }
     else if ( x > -minFactor && x < minFactor)
     {
@@ -29,7 +29,7 @@ double inputLinearityFunction (double x, float a, float b, int c)
     }
     else if ( x > minFactor && x < maxFactor)
     {
-        ans = (double) pow( (double)(b x - a), c);
+        ans = (double) pow ( (double)(b*x - a), (double)c);
     }
     else
     {
