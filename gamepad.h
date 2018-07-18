@@ -12,8 +12,8 @@
 //
 // Copyright Drew Noakes 2013-2016
 
-#ifndef __JOYSTICK_HH__
-#define __JOYSTICK_HH__
+#ifndef __GAMEPAD_HH__
+#define __GAMEPAD_HH__
 
 #include <QString>
 #include <QThread>
@@ -158,4 +158,4 @@ public Q_SLOTS:
     ///////
 };
 
-#endif
+#endif  // __GAMEPAD_HH__
