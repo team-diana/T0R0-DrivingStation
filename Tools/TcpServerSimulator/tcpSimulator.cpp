@@ -21,6 +21,7 @@ int main()
     printf("Server is listening...\n\n");
     printf(" ----------------------------------------\n");
 
+
     while(true)
     {
         if(serverFrontLeft->newDataAvailable())

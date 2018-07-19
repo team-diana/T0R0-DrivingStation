@@ -10,7 +10,7 @@
 
 // nBytes = 1 or nBytes = 2 for the moment
 
-class TcpHarbinger : public QObject
+class TcpHarbinger : public QThread
 {
     Q_OBJECT
 
@@ -18,12 +18,12 @@ public:
     explicit TcpHarbinger(QWidget *parent = 0, const char* address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
     ~TcpHarbinger();
 
-    void startLoop();
+    void run();
     void stopLoop();        // Stop tcpLoop()
     void resume();
     void suspend();
 
-    int writeAxis(int connectionId, int16_t value);
+    int writeData16(int connectionId, int16_t value);
 
     int16_t readLastAxisValue (int axis);
 

@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //gamepad_tcp->start();     // CRASHES IF UNCOMMENTED  |  DEPRECATED
     gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
+    gamepad_tcp->start();
     //gamepad_tcp->startLoop();
 
     connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
@@ -48,7 +49,7 @@ MainWindow::~MainWindow(){
     jstick->stop();
     jstick->wait();
 
-    gamepad_tcp->stopLoop();
+    //gamepad_tcp->stop();
 
     delete ui;
 }
@@ -85,11 +86,24 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
                 QString::number(position));
     ui->gamepad_lbl->setText(txt);
 
-    //uint16_t data = (uint16_t) position + 32768;
-
+    // Collect data to be send to the motors
     gamepad_tcp->suspend();
-    qDebug() << "Gamepad TCP exit status: " << gamepad_tcp->writeAxis(n, position) << "\tAxis[" << n << "]: " << position;
-    //gamepad_tcp->writeAxis(n, position);
+    switch (n) {
+        case GAMEPAD_L3Y:   // LEFT MOTORS
+            qDebug() << "Write throttle value for LEFT motors: " << position;
+            gamepad_tcp->writeData16(MOTOR_FRONT_LEFT, position);
+            gamepad_tcp->writeData16(MOTOR_REAR_LEFT,  position);
+            break;
+
+        case GAMEPAD_R3Y:   // RIGHT MOTORS
+            qDebug() << "Write throttle value for RIGHT motors:" << position;
+            gamepad_tcp->writeData16(MOTOR_FRONT_RIGHT, position);
+            gamepad_tcp->writeData16(MOTOR_REAR_RIGHT,  position);
+            break;
+
+        default:
+            break;
+    }
     gamepad_tcp->resume();
 }
 //////////
