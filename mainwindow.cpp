@@ -18,19 +18,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
     ui = new WindowUi(this);
 
-    // TCP CLIENT //
-    /* DEPRECATED
-    client_wheel_FL = new TcpClient(IP_ROVER, PORT_MOBILITY_FRONTLEFT);
-    client_wheel_FR = new TcpClient(IP_ROVER, PORT_MOBILITY_FRONTRIGHT);
-    client_wheel_RL = new TcpClient(IP_ROVER, PORT_MOBILITY_REARLEFT);
-    client_wheel_RR = new TcpClient(IP_ROVER, PORT_MOBILITY_REARRIGHT);
-
-    client_wheel_FL->send16(0);
-    client_wheel_FR->send16(0);
-    client_wheel_RL->send16(0);
-    client_wheel_RR->send16(0);
-    */
-
     //JOYSTICK://
     jstick = new Joystick(this, JOYSTICK_PATH);
     //Joystick is a thread so we have to start it:
@@ -47,8 +34,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //joystick_tcp = new TcpHarbinger();
 
-    //gamepad_tcp->start();     // CRASHES IF UNCOMMENTED
-    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOBILITY_FRONTRIGHT, GAMEPAD_N_AXISES, 50120, GAMEPAD_N_BUTTONS);
+    //gamepad_tcp->start();     // CRASHES IF UNCOMMENTED  |  DEPRECATED
+    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
     //gamepad_tcp->startLoop();
 
     connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
@@ -61,8 +48,7 @@ MainWindow::~MainWindow(){
     jstick->stop();
     jstick->wait();
 
-    //gamepad_tcp->stop();
-    //gamepad_tcp->wait();
+    gamepad_tcp->stopLoop();
 
     delete ui;
 }
@@ -91,8 +77,6 @@ void MainWindow::GamepadChangeText_Button(int n, int pressed){
                     QString::number(n),
                     pressed == 0 ? "up" : "down");
     ui->gamepad_lbl->setText(txt);
-
-    gamepad_tcp->writeButton(n, pressed);
 }
 
 void MainWindow::GamepadChangeText_Axis(int n, int position){
@@ -104,7 +88,7 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
     //uint16_t data = (uint16_t) position + 32768;
 
     gamepad_tcp->suspend();
-    qDebug() << "Gamepad TCP exit status: " << gamepad_tcp->writeAxis(n, position) << "\tAxis[" << n << ": " << position;
+    qDebug() << "Gamepad TCP exit status: " << gamepad_tcp->writeAxis(n, position) << "\tAxis[" << n << "]: " << position;
     //gamepad_tcp->writeAxis(n, position);
     gamepad_tcp->resume();
 }
