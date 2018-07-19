@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //gamepad_tcp->start();     // CRASHES IF UNCOMMENTED  |  DEPRECATED
     gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
+    gamepad_tcp->start();
     //gamepad_tcp->startLoop();
 
     connect(gamepad, &Joystick::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
@@ -48,7 +49,7 @@ MainWindow::~MainWindow(){
     jstick->stop();
     jstick->wait();
 
-    gamepad_tcp->stopLoop();
+    //gamepad_tcp->stop();
 
     delete ui;
 }

@@ -4,7 +4,7 @@
 
 
 
-TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort, int _nConnections)  : QObject(parent)
+TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort, int _nConnections)  : QThread(parent)
 {
     nConnections = _nConnections;
     startPort = _startPort;
@@ -13,7 +13,7 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort,
 
     // Create TCP connection for each axis
     for (int i=0; i < nConnections; i++) {
-        qDebug() << "Axis["<< i <<"]: estabilshed TCP port: ["<< startPort + i << "]";
+        qDebug() << "Axis["<< i <<"]: estabilshing TCP port: ["<< startPort + i << "]";
         vecClients[i] = new TcpClient(address, startPort + i);
     }
     // Initialize Axis to zero
@@ -29,7 +29,7 @@ TcpHarbinger::~TcpHarbinger()
     usleep(200000);
 }
 
-void TcpHarbinger::startLoop () {
+void TcpHarbinger::run () {
 
     qDebug() << "TcoHarbinger: Starting Loop";
 
