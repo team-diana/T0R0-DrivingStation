@@ -49,7 +49,7 @@ MainWindow::~MainWindow(){
     jstick->stop();
     jstick->wait();
 
-    //gamepad_tcp->stop();
+    gamepad_tcp->stopLoop();
 
     delete ui;
 }

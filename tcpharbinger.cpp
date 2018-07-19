@@ -42,7 +42,7 @@ void TcpHarbinger::run () {
         if (!m_wait)
             vecClients[i]->send16((uint16_t) vecData16[i]);
     }
-    usleep(1000000); // Microseconds
+    usleep(100000); // Microseconds
   }
   qDebug() << "TcoHarbinger: Loop Terminated";
 }

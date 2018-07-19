@@ -18,7 +18,7 @@ public:
     explicit TcpHarbinger(QWidget *parent = 0, const char* address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
     ~TcpHarbinger();
 
-    void run();
+
     void stopLoop();        // Stop tcpLoop()
     void resume();
     void suspend();
@@ -26,6 +26,9 @@ public:
     int writeData16(int connectionId, int16_t value);
 
     int16_t readLastAxisValue (int axis);
+
+protected:
+    void run();
 
 private:
     int nConnections, startPort;
