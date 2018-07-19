@@ -4,31 +4,29 @@
 
 
 
-TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPortAxis, int _nAxis, int _startPortButton, int _nButton)  : QObject(parent)
+TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort, int _nConnections)  : QObject(parent)
 {
-    nAxis = _nAxis;
-    startPortAxis = _startPortAxis;
-    startPortButton = _startPortButton;
-    nButton = _nButton;
+    nConnections = _nConnections;
+    startPort = _startPort;
 
     m_loop = true;
 
     // Create TCP connection for each axis
-    for (int i=0; i < nAxis; i++) {
-        qDebug() << "Axis["<< i <<"]: estabilshed TCP port: ["<< startPortAxis + i << "]";
-        clientAxis[i] = new TcpClient(address, startPortAxis + i);
+    for (int i=0; i < nConnections; i++) {
+        qDebug() << "Axis["<< i <<"]: estabilshed TCP port: ["<< startPort + i << "]";
+        vecClients[i] = new TcpClient(address, startPort + i);
     }
     // Initialize Axis to zero
-    for (int i=0; i < nAxis; i++) {
-        clientAxis[i]->send16(32767);   // Initialize to neutral value (= 32767)
-        dataAxis[i] = 32767;
+    for (int i=0; i < nConnections; i++) {
+        vecClients[i]->send16(32767);   // Initialize to neutral value (= 32767)
+        vecData16[i] = 32767;
     }
 
 }
 
 TcpHarbinger::~TcpHarbinger()
 {
-    this->stop();
+    stopLoop();
     usleep(200000);
 }
 
@@ -38,19 +36,19 @@ void TcpHarbinger::startLoop () {
 
   while (m_loop)  // Loop -> if  m_loop = true
   {
-    for (int i=0; i < nAxis; i++)      // Read data array and send trough TCP
+    for (int i=0; i < nConnections; i++)      // Read data array and send trough TCP
     {
-        qDebug() << "dataAxis[" << i << "]: " << dataAxis[i];
+        qDebug() << "vecData16[" << i << "]: " << vecData16[i];
 
         if (!m_wait)
-            clientAxis[i]->send16((uint16_t) dataAxis[i]);
+            vecClients[i]->send16((uint16_t) vecData16[i]);
     }
     usleep(1000000); // Microseconds
   }
   qDebug() << "TcoHarbinger: Loop Terminated";
 }
 
-void TcpHarbinger::stop()
+void TcpHarbinger::stopLoop()
 {
   m_loop = false;
 }
@@ -68,19 +66,8 @@ void TcpHarbinger::suspend()
 int TcpHarbinger::writeAxis (int axis, int16_t value)
 {
   int retStatus = 0;
-  if (axis < nAxis && axis >= 0)
-    dataAxis[axis] = (uint16_t) value + 32768;
-  else
-    retStatus = -1;
-
-  return retStatus; // return 0 if OK, -1 if problem is encuntered
-}
-
-int TcpHarbinger::writeButton (int button, bool pressed)
-{
-  int retStatus = 0;
-  if (button < nButton && nButton >= 0)
-    dataButton[button] = (bool) pressed;
+  if (axis < nConnections && axis >= 0)
+    vecData16[axis] = (uint16_t) value + 32768;
   else
     retStatus = -1;
 
@@ -89,10 +76,5 @@ int TcpHarbinger::writeButton (int button, bool pressed)
 
 int16_t TcpHarbinger::readLastAxisValue (int axis)
 {
-    return (int16_t) dataAxis[axis] - 32768;
-}
-
-bool TcpHarbinger::writeLastButtonState (int button)
-{
-    return (bool) dataButton[button];
+    return (int16_t) vecData16[axis] - 32768;
 }

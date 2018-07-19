@@ -48,8 +48,7 @@ MainWindow::~MainWindow(){
     jstick->stop();
     jstick->wait();
 
-    //gamepad_tcp->stop();
-    //gamepad_tcp->wait();
+    gamepad_tcp->stopLoop();
 
     delete ui;
 }
@@ -78,8 +77,6 @@ void MainWindow::GamepadChangeText_Button(int n, int pressed){
                     QString::number(n),
                     pressed == 0 ? "up" : "down");
     ui->gamepad_lbl->setText(txt);
-
-    gamepad_tcp->writeButton(n, pressed);
 }
 
 void MainWindow::GamepadChangeText_Axis(int n, int position){

@@ -15,27 +15,24 @@ class TcpHarbinger : public QObject
     Q_OBJECT
 
 public:
-    explicit TcpHarbinger(QWidget *parent = 0, const char* address = "127.0.0.1", int startPortAxis = 8080, int nAxis = 1, int startPortButton = 8180, int nButton = 1);
+    explicit TcpHarbinger(QWidget *parent = 0, const char* address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
     ~TcpHarbinger();
 
     void startLoop();
-    void stop();        // Stop tcpLoop()
+    void stopLoop();        // Stop tcpLoop()
     void resume();
     void suspend();
 
     int writeAxis(int axis, int16_t value);
-    int writeButton(int button, bool pressed);
 
     int16_t readLastAxisValue (int axis);
-    bool writeLastButtonState (int button);
 
 private:
-    int nAxis, startPortAxis, startPortButton, nButton;
+    int nConnections, startPort;
 
-    TcpClient *clientAxis[10], *clientButton[20];
+    TcpClient *vecClients[10];
 
-    uint16_t  dataAxis[10];
-    bool dataButton[20];
+    uint16_t  vecData16[10];
 
     bool m_loop;
     bool m_wait;
