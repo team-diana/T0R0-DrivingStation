@@ -88,7 +88,7 @@ void MainWindow::GamepadChangeText_Axis(int n, int position){
     //uint16_t data = (uint16_t) position + 32768;
 
     gamepad_tcp->suspend();
-    qDebug() << "Gamepad TCP exit status: " << gamepad_tcp->writeAxis(n, position) << "\tAxis[" << n << ": " << position;
+    qDebug() << "Gamepad TCP exit status: " << gamepad_tcp->writeAxis(n, position) << "\tAxis[" << n << "]: " << position;
     //gamepad_tcp->writeAxis(n, position);
     gamepad_tcp->resume();
 }
