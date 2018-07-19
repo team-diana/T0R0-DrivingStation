@@ -21,7 +21,6 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort,
         vecClients[i]->send16(32767);   // Initialize to neutral value (= 32767)
         vecData16[i] = 32767;
     }
-
 }
 
 TcpHarbinger::~TcpHarbinger()
