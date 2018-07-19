@@ -63,11 +63,11 @@ void TcpHarbinger::suspend()
   m_wait = true;
 }
 
-int TcpHarbinger::writeAxis (int axis, int16_t value)
+int TcpHarbinger::writeAxis (int connectionId, int16_t value)
 {
   int retStatus = 0;
-  if (axis < nConnections && axis >= 0)
-    vecData16[axis] = (uint16_t) value + 32768;
+  if (connectionId < nConnections && connectionId >= 0)
+    vecData16[connectionId] = (uint16_t) value + 32768;
   else
     retStatus = -1;
 

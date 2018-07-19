@@ -23,7 +23,7 @@ public:
     void resume();
     void suspend();
 
-    int writeAxis(int axis, int16_t value);
+    int writeAxis(int connectionId, int16_t value);
 
     int16_t readLastAxisValue (int axis);
 
