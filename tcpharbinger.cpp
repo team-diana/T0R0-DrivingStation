@@ -62,7 +62,7 @@ void TcpHarbinger::suspend()
   m_wait = true;
 }
 
-int TcpHarbinger::writeAxis (int connectionId, int16_t value)
+int TcpHarbinger::writeData16 (int connectionId, int16_t value)
 {
   int retStatus = 0;
   if (connectionId < nConnections && connectionId >= 0)
