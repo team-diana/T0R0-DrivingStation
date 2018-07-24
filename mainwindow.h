@@ -40,7 +40,7 @@ public:
     Joystick *jstick, *gamepad;
     //////////
 
-    TcpHarbinger *joystick_tcp, *gamepad_tcp;
+    TcpHarbinger *arm_tcp, *gamepad_tcp;
 
 public Q_SLOTS:
     //

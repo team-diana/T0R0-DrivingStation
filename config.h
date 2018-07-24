@@ -35,6 +35,19 @@
 #define PORT_MOBILITY_REARRIGHT  50103
 ///////////
 
+//* ARM *//
+#define PORT_ARM_START   50150
+#define ARM_N_ACTUATORS  7
+
+#define ARM_SLEAWINGGEAR 0
+#define ARM_SHOULDER     1
+#define ARM_ELBOW        2
+#define ARM_WRIST_ROT1   3
+#define ARM_WRIST_BEND   4
+#define ARM_WRIST_ROT2   5
+#define ARM_PINCH        6
+///////////
+
 //* PORTS FROM MISSION CONTROL *//
 #define PORT_MOBILITYCONTROLS_ACK 50050
 ///////////
