@@ -22,6 +22,8 @@
 #include <sstream>
 #include "unistd.h"
 
+#include "inputmapping.h"
+
 //QT://
 #include <QDebug>
 #include <QThread>
@@ -113,11 +115,11 @@ void Gamepad::run()
 
                 switch (event.number) {
                     case GAMEPAD_L3Y:
-                        Q_EMIT AxisUpdate(event.value);
+                        Q_EMIT L3YUpdate(event.value);
                         break;
 
                     case GAMEPAD_R3Y:
-                        Q_EMIT AxisUpdate(event.value);
+                        Q_EMIT R3YUpdate(event.value);
                         break;
                 }
             }

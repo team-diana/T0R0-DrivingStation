@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "joystick.h"
+#include "gamepad.h"
 #include "TcpClient.h"
 #include "tcpharbinger.h"
 
@@ -37,7 +38,8 @@ public:
     ~MainWindow();
 
     //* INPUT *//
-    Joystick *jstick, *gamepad;
+    Joystick *jstick;
+    Gamepad *gamepad;
     //////////
 
     TcpHarbinger *arm_tcp, *gamepad_tcp;

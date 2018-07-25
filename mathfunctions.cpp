@@ -1,5 +1,5 @@
 #include "mathfunctions.h"
-#include <math.h>
+#include <cmath>
 
 
 /*
@@ -21,7 +21,7 @@ double inputLinearityFunction (double x, float a, float b, int c)
     else if ( x > -maxFactor && x < -minFactor)
     {
         // -abs((b x + a)^c)
-        ans = (double) pow ( (double)(-abs(b*x + a)), (double)c);
+        ans = (double) pow ( (double)(-std::abs(b*x + a)), (double)c);
     }
     else if ( x > -minFactor && x < minFactor)
     {
