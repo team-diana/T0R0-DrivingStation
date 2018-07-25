@@ -226,14 +226,14 @@ void MainWindow::rot2ClockWiseUpdate(int pressed)
 /* MOBILITY */
 void MainWindow::mobilityLeftUpdate(double position)
 {
-    int16_t data = (int16_t) position * 32768.0;
+    int16_t data = (int16_t) (position * 32767.4);
     qDebug() << "Write throttle value for LEFT motors: " << data;
     gamepad_tcp->writeData16(MOTOR_FRONT_LEFT, data);
     gamepad_tcp->writeData16(MOTOR_REAR_LEFT,  data);
 }
 void MainWindow::mobilityRightUpdate(double position)
 {
-    int16_t data = (int16_t) position * 32768.0;
+    int16_t data = (int16_t) (position * 32767.4);
     qDebug() << "Write throttle value for RIGHT motors:" << data;
     gamepad_tcp->writeData16(MOTOR_FRONT_RIGHT, data);
     gamepad_tcp->writeData16(MOTOR_REAR_RIGHT,  data);
