@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //GamepadMonitor* monitor = new GamepadMonitor();
 
-    m_gamepad = new QGamepad(0);
+    m_gamepad(0);
     auto gamepads = QGamepadManager::instance()->connectedGamepads();
     if (gamepads.isEmpty()) {
         return;
@@ -44,9 +44,15 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     connect(m_gamepad, &QGamepad::axisLeftYChanged, this, [](double value){
         qDebug() << "Left Y" << value;
+        int16_t position = (int16_t) value * 32768;
+        gamepad_tcp->writeData16(MOTOR_FRONT_LEFT, position);
+        gamepad_tcp->writeData16(MOTOR_REAR_LEFT,  position);
     });
     connect(m_gamepad, &QGamepad::axisRightYChanged, this, [](double value){
         qDebug() << "Right Y" << value;
+        int16_t position = (int16_t) value * 32768;
+        gamepad_tcp->writeData16(MOTOR_FRONT_RIGHT, position);
+        gamepad_tcp->writeData16(MOTOR_REAR_RIGHT,  position);
     });
 
 
