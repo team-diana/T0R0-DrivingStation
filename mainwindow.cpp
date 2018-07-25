@@ -14,6 +14,8 @@
 #include "gamepad.h"
 #include <QTcpServer>
 
+#include "dgamepadmonitor.h"
+
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
@@ -28,18 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
 
 
-    gamepad = new QGamepad();
-    if(gamepad == nullptr)
-            qDebug() << "GAMEPAD: failed to open:";
-    else
-    {
-        qDebug()<< "GAMEPAD: open succesfully: " << gamepad << " > " << gamepad->name();
-    }
-
-    connect(gamepad, &QGamepad::axisLeftXChanged, this, [](double value){
-        qDebug() << "Left X" << gamepad->axisLeftX();
-    });
-
+    GamepadMonitor monitor;
 
 
 
