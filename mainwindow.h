@@ -75,8 +75,8 @@ private:
     void rot2CounterClockWiseUpdate(int pressed);
     void rot2ClockWiseUpdate(int pressed);
 
-    void mobilityLeftUpdate(int position);
-    void mobilityRightUpdate(int position);
+    void mobilityLeftUpdate(double position);
+    void mobilityRightUpdate(double position);
 };
 
 #endif // MAINWINDOW_H
