@@ -60,6 +60,19 @@ private:
 
     void GamepadChangeText_Button(int n, int pressed);
     void GamepadChangeText_Axis(int n, int position);
+
+    void MainWindow::shoulderUpdate(int position);
+    void MainWindow::elbowUpdate(int position);
+    void MainWindow::slewinGearUpdate(int position);
+    void MainWindow::pinchUpdate(int position);
+    void MainWindow::wristBendUpdate(int position);
+    void MainWindow::rot1CounterClockWiseUpdate(int pressed);
+    void MainWindow::rot1ClockWiseUpdate(int pressed);
+    void MainWindow::rot2CounterClockWiseUpdate(int pressed);
+    void MainWindow::rot2ClockWiseUpdate(int pressed);
+
+    void MainWindow::mobilityLeftUpdate(int position);
+    void MainWindow::mobilityRightUpdate(int position);
 };
 
 #endif // MAINWINDOW_H

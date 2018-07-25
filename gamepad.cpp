@@ -110,6 +110,16 @@ void Gamepad::run()
                 //}
 
                 Q_EMIT AxisUpdate(event.number, event.value);
+
+                switch (event.number) {
+                    case GAMEPAD_L3Y:
+                        Q_EMIT AxisUpdate(event.value);
+                        break;
+
+                    case GAMEPAD_R3Y:
+                        Q_EMIT AxisUpdate(event.value);
+                        break;
+                }
             }
 
             //Stop thread:

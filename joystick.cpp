@@ -197,7 +197,7 @@ void Joystick::run()
                     break;
                 }
 
-                //Q_EMIT AxisUpdate(event.number, event.value);   // DEPRECATED
+                Q_EMIT AxisUpdate(event.number, event.value);   // DEPRECATED
             }
 
             //Stop thread:

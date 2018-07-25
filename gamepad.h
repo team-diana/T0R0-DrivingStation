@@ -155,6 +155,9 @@ public Q_SLOTS:
     Q_SIGNALS:
     void ButtonUpdate(int n, int pressed);
     void AxisUpdate(int n, int position);
+
+    void L3YUpdate(int position);
+    void R3YUpdate(int position);
     ///////
 };
 

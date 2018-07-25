@@ -174,8 +174,8 @@ public Q_SLOTS:
     void ButtonUpdate11(int pressed);
     void ButtonUpdate12(int pressed);
 
-    //void ButtonUpdate(int n, int pressed);   // DEPRECATED
-    //void AxisUpdate(int n, int position);    // DEPRECATED
+    void ButtonUpdate(int n, int pressed);
+    void AxisUpdate(int n, int position);
     ///////
 };
 
