@@ -22,6 +22,8 @@
 #include <sstream>
 #include "unistd.h"
 
+#include "inputmapping.h"
+
 //QT://
 #include <QDebug>
 #include <QThread>
@@ -98,7 +100,60 @@ void Joystick::run()
                 event.number,
                 event.value == 0 ? "up" : "down");
 
-                Q_EMIT ButtonUpdate(event.number, event.value);
+                switch (event.number) {
+                case JOYSTICK_FIRE:
+                    Q_EMIT fireButtonUpdate(event.value);
+                    break;
+
+                case JOYSTICK_THUMB:
+                    Q_EMIT thumbButtonUpdate(event.value);
+                    break;
+
+                case JOYSTICK_3:
+                    Q_EMIT ButtonUpdate3(event.value);
+                    break;
+
+                case JOYSTICK_4:
+                    Q_EMIT ButtonUpdate4(event.value);
+                    break;
+
+                case JOYSTICK_5:
+                    Q_EMIT ButtonUpdate5(event.value);
+                    break;
+
+                case JOYSTICK_6:
+                    Q_EMIT ButtonUpdate6(event.value);
+                    break;
+
+                case JOYSTICK_7:
+                    Q_EMIT ButtonUpdate7(event.value);
+                    break;
+
+                case JOYSTICK_8:
+                    Q_EMIT ButtonUpdate8(event.value);
+                    break;
+
+                case JOYSTICK_9:
+                    Q_EMIT ButtonUpdate9(event.value);
+                    break;
+
+                case JOYSTICK_10:
+                    Q_EMIT ButtonUpdate10(event.value);
+                    break;
+
+                case JOYSTICK_11:
+                    Q_EMIT ButtonUpdate11(event.value);
+                    break;
+
+                case JOYSTICK_12:
+                    Q_EMIT ButtonUpdate12(event.value);
+                    break;
+
+                default:
+                    break;
+                }
+
+                //Q_EMIT ButtonUpdate(event.number, event.value);   // DEPRECATED
             }
 
             if (event.isAxis())
@@ -113,7 +168,36 @@ void Joystick::run()
                 //socket->send16(data);
                 //}
 
-                Q_EMIT AxisUpdate(event.number, event.value);
+                switch (event.number) {
+                case JOYSTICK_PITCH:
+                    Q_EMIT pitchAxisUpdate(event.value);
+                    break;
+
+                case JOYSTICK_YAW:
+                    Q_EMIT yawAxisUpdate(event.value);
+                    break;
+
+                case JOYSTICK_ROLL:
+                    Q_EMIT rollAxisUpdate(event.value);
+                    break;
+
+                case JOYSTICK_THROTTLE:
+                    Q_EMIT throttleAxisUpdate(event.value);
+                    break;
+
+                case JOYSTICK_ARROWLR:
+                    Q_EMIT dpadLRAxisUpdate(event.value);
+                    break;
+
+                case JOYSTICK_ARROWUD:
+                    Q_EMIT dpadUDAxisUpdate(event.value);
+                    break;
+
+                default:
+                    break;
+                }
+
+                //Q_EMIT AxisUpdate(event.number, event.value);   // DEPRECATED
             }
 
             //Stop thread:

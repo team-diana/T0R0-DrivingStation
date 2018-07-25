@@ -153,8 +153,29 @@ public Q_SLOTS:
     void stop();
 
     Q_SIGNALS:
-    void ButtonUpdate(int n, int pressed);
-    void AxisUpdate(int n, int position);
+    void pitchAxisUpdate(int position);
+    void yawAxisUpdate(int position);
+    void rollAxisUpdate(int position);
+    void throttleAxisUpdate(int position);
+
+    void dpadLRAxisUpdate(int position);
+    void dpadUDAxisUpdate(int position);
+
+    void fireButtonUpdate(int pressed);
+    void thumbButtonUpdate(int pressed);
+    void ButtonUpdate3(int pressed);
+    void ButtonUpdate4(int pressed);
+    void ButtonUpdate5(int pressed);
+    void ButtonUpdate6(int pressed);
+    void ButtonUpdate7(int pressed);
+    void ButtonUpdate8(int pressed);
+    void ButtonUpdate9(int pressed);
+    void ButtonUpdate10(int pressed);
+    void ButtonUpdate11(int pressed);
+    void ButtonUpdate12(int pressed);
+
+    //void ButtonUpdate(int n, int pressed);   // DEPRECATED
+    //void AxisUpdate(int n, int position);    // DEPRECATED
     ///////
 };
 
