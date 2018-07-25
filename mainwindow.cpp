@@ -28,8 +28,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
 
 
+    gamepad = new QGamepad(0, this);
 
-
+    connect(m_gamepad, &QGamepad::axisLeftXChanged, this, [](double value){
+        qDebug() << "Left X" << value;
+    });
 
 
 

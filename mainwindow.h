@@ -38,8 +38,8 @@ public:
     ~MainWindow();
 
     //* INPUT *//
-    Joystick *jstick;
-    Gamepad *gamepad;
+    QGamepad *jstick;
+    QGamepad *gamepad;
     //////////
 
     TcpHarbinger *arm_tcp, *gamepad_tcp;
