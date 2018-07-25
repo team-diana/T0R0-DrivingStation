@@ -19,62 +19,68 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
     ui = new WindowUi(this);
 
-    //JOYSTICK://
-    jstick = new Joystick(this, JOYSTICK_PATH);
-    //Joystick is a thread so we have to start it:
-    jstick->start();
-
-
-    //////////
-
-    //GAMEPAD://
-    gamepad = new Gamepad(this, GAMEPAD_PATH);
-    //Joystick is a thread so we have to start it:
-    gamepad->start();
-
-    //joystick_tcp = new TcpHarbinger();
-    // Generic Signal from Gamepad
-    connect(gamepad, &Gamepad::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
-    connect(gamepad, &Gamepad::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
-
-    // MOBILITY Signal from Gamepad
-    connect(gamepad, &Gamepad::L3YUpdate, this, &MainWindow::mobilityLeftUpdate);
-    connect(gamepad, &Gamepad::R3YUpdate, this, &MainWindow::mobilityRightUpdate);
-
-
-    // Generic Signal from Joystick
-    connect(jstick, &Joystick::ButtonUpdate, this, &MainWindow::ChangeText_Button);
-    connect(jstick, &Joystick::AxisUpdate, this, &MainWindow::ChangeText_Axis);
-
-    // ARM Signal from Joystick
-    connect(jstick, &Joystick::pitchAxisUpdate, this, &MainWindow::shoulderUpdate);
-    connect(jstick, &Joystick::yawAxisUpdate, this, &MainWindow::slewinGearUpdate);
-    connect(jstick, &Joystick::rollAxisUpdate, this, &MainWindow::elbowUpdate);
-    connect(jstick, &Joystick::throttleAxisUpdate, this, &MainWindow::pinchUpdate);
-
-    connect(jstick, &Joystick::dpadLRAxisUpdate, this, &MainWindow::wristBendUpdate);
-    connect(jstick, &Joystick::dpadUDAxisUpdate, this, &MainWindow::wristBendUpdate);
-
-    //connect(jstick, &Joystick::fireButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
-    //connect(jstick, &Joystick::thumbButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
-    connect(jstick, &Joystick::ButtonUpdate3, this, &MainWindow::rot1CounterClockWiseUpdate);
-    connect(jstick, &Joystick::ButtonUpdate4, this, &MainWindow::rot1ClockWiseUpdate);
-    connect(jstick, &Joystick::ButtonUpdate5, this, &MainWindow::rot2CounterClockWiseUpdate);
-    connect(jstick, &Joystick::ButtonUpdate6, this, &MainWindow::rot2ClockWiseUpdate);
-    //connect(jstick, &Joystick::ButtonUpdate7, this, &MainWindow::GamepadChangeText_Button);
-    //connect(jstick, &Joystick::ButtonUpdate8, this, &MainWindow::GamepadChangeText_Button);
-    //connect(jstick, &Joystick::ButtonUpdate9, this, &MainWindow::GamepadChangeText_Button);
-    //connect(jstick, &Joystick::ButtonUpdate10, this, &MainWindow::GamepadChangeText_Button);
-    //connect(jstick, &Joystick::ButtonUpdate11, this, &MainWindow::GamepadChangeText_Button);
-    //connect(jstick, &Joystick::ButtonUpdate12, this, &MainWindow::GamepadChangeText_Button);
-    //////////
-
     //** TCP HARBINGERS **/
     gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
     gamepad_tcp->start();   // Start thread
 
     arm_tcp = new TcpHarbinger(this, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
     arm_tcp->start();
+
+
+
+
+
+
+
+
+
+    // DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
+    //JOYSTICK://
+    //jstick = new Joystick(this, JOYSTICK_PATH);
+    //Joystick is a thread so we have to start it:
+    //jstick->start();
+    //////////
+
+    //GAMEPAD://
+    //gamepad = new Gamepad(this, GAMEPAD_PATH);
+    //Joystick is a thread so we have to start it:
+    //////////
+
+    // Generic Signal from Gamepad
+    //connect(gamepad, &Gamepad::ButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
+    //connect(gamepad, &Gamepad::AxisUpdate, this, &MainWindow::GamepadChangeText_Axis);
+
+    // MOBILITY Signal from Gamepad
+    //connect(gamepad, &Gamepad::L3YUpdate, this, &MainWindow::mobilityLeftUpdate);
+    //connect(gamepad, &Gamepad::R3YUpdate, this, &MainWindow::mobilityRightUpdate);
+
+
+    // Generic Signal from Joystick
+    //connect(jstick, &Joystick::ButtonUpdate, this, &MainWindow::ChangeText_Button);
+    //connect(jstick, &Joystick::AxisUpdate, this, &MainWindow::ChangeText_Axis);
+
+    // ARM Signal from Joystick
+    //connect(jstick, &Joystick::pitchAxisUpdate, this, &MainWindow::shoulderUpdate);
+    //connect(jstick, &Joystick::yawAxisUpdate, this, &MainWindow::slewinGearUpdate);
+    //connect(jstick, &Joystick::rollAxisUpdate, this, &MainWindow::elbowUpdate);
+    //connect(jstick, &Joystick::throttleAxisUpdate, this, &MainWindow::pinchUpdate);
+
+    //connect(jstick, &Joystick::dpadLRAxisUpdate, this, &MainWindow::wristBendUpdate);
+    //connect(jstick, &Joystick::dpadUDAxisUpdate, this, &MainWindow::wristBendUpdate);
+
+    //connect(jstick, &Joystick::fireButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
+    //connect(jstick, &Joystick::thumbButtonUpdate, this, &MainWindow::GamepadChangeText_Button);
+    //connect(jstick, &Joystick::ButtonUpdate3, this, &MainWindow::rot1CounterClockWiseUpdate);
+    //connect(jstick, &Joystick::ButtonUpdate4, this, &MainWindow::rot1ClockWiseUpdate);
+    //connect(jstick, &Joystick::ButtonUpdate5, this, &MainWindow::rot2CounterClockWiseUpdate);
+    //connect(jstick, &Joystick::ButtonUpdate6, this, &MainWindow::rot2ClockWiseUpdate);
+    //connect(jstick, &Joystick::ButtonUpdate7, this, &MainWindow::GamepadChangeText_Button);
+    //connect(jstick, &Joystick::ButtonUpdate8, this, &MainWindow::GamepadChangeText_Button);
+    //connect(jstick, &Joystick::ButtonUpdate9, this, &MainWindow::GamepadChangeText_Button);
+    //connect(jstick, &Joystick::ButtonUpdate10, this, &MainWindow::GamepadChangeText_Button);
+    //connect(jstick, &Joystick::ButtonUpdate11, this, &MainWindow::GamepadChangeText_Button);
+    //connect(jstick, &Joystick::ButtonUpdate12, this, &MainWindow::GamepadChangeText_Button);
+    ////////// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED
 }
 
 MainWindow::~MainWindow(){
