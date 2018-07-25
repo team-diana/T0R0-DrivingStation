@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //GamepadMonitor* monitor = new GamepadMonitor();
 
-    m_gamepad(0);
+    m_gamepad = new QGamepad(0);
     auto gamepads = QGamepadManager::instance()->connectedGamepads();
     if (gamepads.isEmpty()) {
         return;
