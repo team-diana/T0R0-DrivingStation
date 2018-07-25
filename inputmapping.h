@@ -21,9 +21,8 @@
 #define JOYSTICK_YAW      2
 #define JOYSTICK_THROTTLE 3
 
-#define JOYSTICK_0 0    // Fire button
-
-#define JOYSTICK_1 1    // Thumb button
+#define JOYSTICK_FIRE 0     // Fire button
+#define JOYSTICK_THUMB 1    // Thumb button
 
 #define JOYSTICK_3 2    // Butons on top
 #define JOYSTICK_4 3
