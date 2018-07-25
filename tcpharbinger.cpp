@@ -37,7 +37,7 @@ void TcpHarbinger::run () {
   {
     for (int i=0; i < nConnections; i++)      // Read data array and send trough TCP
     {
-        qDebug() << "vecData16[" << i << "]: " << vecData16[i];
+        //qDebug() << "vecData16[" << i << "]: " << vecData16[i];
 
         if (!m_wait)
             vecClients[i]->send16((uint16_t) vecData16[i]);
