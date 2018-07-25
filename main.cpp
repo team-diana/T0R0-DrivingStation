@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QGst/Init>
+#include "dgamepadmonitor.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,8 @@ int main(int argc, char *argv[])
 
     //show message on console.
     qDebug() << "\nWindow opened successfully\n";
+
+    GamepadMonitor monitor;
 
     return app.exec();
 }

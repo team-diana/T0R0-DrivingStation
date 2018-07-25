@@ -61,6 +61,8 @@ GamepadMonitor::GamepadMonitor(QObject *parent)
     if (gamepads.isEmpty()) {
         return;
     }
+    else
+        qDebug() << "Gamepad connected";
 
     m_gamepad = new QGamepad(*gamepads.begin(), this);
     connect(m_gamepad, &QGamepad::axisLeftXChanged, this, [](double value){

@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
 
 
-    GamepadMonitor monitor;
+
 
 
 
