@@ -42,18 +42,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     m_gamepad = new QGamepad(*gamepads.begin(), this);
 
-    connect(m_gamepad, &QGamepad::axisLeftYChanged, this, [](double value){
-        qDebug() << "Left Y" << value;
-        int16_t position = (int16_t) value * 32768;
-        gamepad_tcp->writeData16(MOTOR_FRONT_LEFT, position);
-        gamepad_tcp->writeData16(MOTOR_REAR_LEFT,  position);
-    });
-    connect(m_gamepad, &QGamepad::axisRightYChanged, this, [](double value){
-        qDebug() << "Right Y" << value;
-        int16_t position = (int16_t) value * 32768;
-        gamepad_tcp->writeData16(MOTOR_FRONT_RIGHT, position);
-        gamepad_tcp->writeData16(MOTOR_REAR_RIGHT,  position);
-    });
+    connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
+    connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
 
 
     ///// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
@@ -234,17 +224,19 @@ void MainWindow::rot2ClockWiseUpdate(int pressed)
 //////////
 
 /* MOBILITY */
-void MainWindow::mobilityLeftUpdate(int position)
+void MainWindow::mobilityLeftUpdate(double position)
 {
     qDebug() << "Write throttle value for LEFT motors: " << position;
-    gamepad_tcp->writeData16(MOTOR_FRONT_LEFT, position);
-    gamepad_tcp->writeData16(MOTOR_REAR_LEFT,  position);
+    int16_t data = (int16_t) position * 32768;
+    gamepad_tcp->writeData16(MOTOR_FRONT_LEFT, data);
+    gamepad_tcp->writeData16(MOTOR_REAR_LEFT,  data);
 }
-void MainWindow::mobilityRightUpdate(int position)
+void MainWindow::mobilityRightUpdate(double position)
 {
     qDebug() << "Write throttle value for RIGHT motors:" << position;
-    gamepad_tcp->writeData16(MOTOR_FRONT_RIGHT, position);
-    gamepad_tcp->writeData16(MOTOR_REAR_RIGHT,  position);
+    int16_t data = (int16_t) position * 32768;
+    gamepad_tcp->writeData16(MOTOR_FRONT_RIGHT, data);
+    gamepad_tcp->writeData16(MOTOR_REAR_RIGHT,  data);
 }
 
 //////////
