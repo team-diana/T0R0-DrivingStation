@@ -3,9 +3,9 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QThread>
 
 #include "TcpClient.h"
-#include "joystick.h"
 #include "config.h"
 
 // nBytes = 1 or nBytes = 2 for the moment

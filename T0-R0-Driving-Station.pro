@@ -64,20 +64,20 @@ SOURCES += \
     mainwindow.cpp \
     ui.cpp \
     voipvideowidget.cpp \
-    joystick.cpp \
     TcpClient.cpp \
     TcpServer.cpp \
     mathfunctions.cpp \
     tcpharbinger.cpp \
     gamepad.cpp \
-    dgamepadmonitor.cpp
+    dgamepadmonitor.cpp \
+    joystick.cc \
+    joystickhandler.cpp
 
 
 HEADERS += \
     mainwindow.h \
     ui.h \
     voipvideowidget.h \
-    joystick.h \
     TcpClient.h \
     TcpServer.h \
     config.h \
@@ -85,7 +85,9 @@ HEADERS += \
     mathfunctions.h \
     tcpharbinger.h \
     gamepad.h \
-    dgamepadmonitor.h
+    dgamepadmonitor.h \
+    joystick.hh \
+    joystickhandler.h
 
 FORMS += \
     mainwindow.ui

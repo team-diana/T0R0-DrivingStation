@@ -10,7 +10,6 @@
 #include <QKeyEvent>
 
 //JOYSTICK//
-#include "joystick.h"
 #include "gamepad.h"
 #include <QTcpServer>
 
@@ -25,12 +24,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
     gamepad_tcp->start();   // Start thread
 
-    arm_tcp = new TcpHarbinger(this, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
-    arm_tcp->start();
-
-
-
-    //GamepadMonitor* monitor = new GamepadMonitor();
+    //arm_tcp = new TcpHarbinger(this, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
+    //arm_tcp->start();
 
     /* MOBILITY */
     m_gamepad = new QGamepad(0);
@@ -46,22 +41,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
     connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
 
-
-
     /* ARM */
-    m_gamepad = new QGamepad(0);
-    auto gamepads = QGamepadManager::instance()->connectedGamepads();
-    if (gamepads.isEmpty()) {
-        return;
-    }
-    else
-        qDebug() << "Gamepad connected";
-
-    m_gamepad = new QGamepad(*gamepads.begin(), this);
-
-    connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
-    connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
-
+    joystickhandler = new JoystickHandler(this);
+    joystickhandler->start();
+    ///////
 
     ///// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
     //JOYSTICK://
@@ -116,6 +99,8 @@ MainWindow::~MainWindow(){
     //Stop thread:
     //jstick->stop();
     //jstick->wait();
+
+    //joystickhandler->wait();
 
     gamepad_tcp->stopLoop();
     arm_tcp->stopLoop();
@@ -198,6 +183,7 @@ void MainWindow::ChangeText_Axis(int n, int position) {
 //////////
 
 //* ARM *//
+/*
 void MainWindow::shoulderUpdate(int position)
 {
     arm_tcp->writeData16(ARM_SHOULDER, position);
@@ -238,6 +224,7 @@ void MainWindow::rot2ClockWiseUpdate(int pressed)
     if (pressed) arm_tcp->writeData16(ARM_WRIST_ROT2, 32767);
     else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
 }
+*/
 //////////
 
 /* MOBILITY */

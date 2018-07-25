@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "joystick.h"
 #include "gamepad.h"
 #include "TcpClient.h"
 #include "tcpharbinger.h"
+#include "joystickhandler.h"
 
 //GAMEPAD//
 //#include "gamepad.h"
@@ -57,6 +57,7 @@ private:
     WindowUi *ui;
 
     QGamepad *m_gamepad;
+    JoystickHandler *joystickhandler;
 
     TcpClient *client_wheel_FL, *client_wheel_FR, *client_wheel_RL, *client_wheel_RR;
     void ChangeText_Button(int n, int pressed);
