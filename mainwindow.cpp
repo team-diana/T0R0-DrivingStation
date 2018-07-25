@@ -28,16 +28,22 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
 
 
-    gamepad = new QGamepad(0, this);
+    gamepad = new QGamepad();
+    if(gamepad == nullptr)
+            qDebug() << "GAMEPAD: failed to open:";
+    else
+    {
+        qDebug()<< "GAMEPAD: open succesfully: " << gamepad << " > " << gamepad->name();
+    }
 
     connect(gamepad, &QGamepad::axisLeftXChanged, this, [](double value){
-        qDebug() << "Left X" << value;
+        qDebug() << "Left X" << gamepad->axisLeftX();
     });
 
 
 
 
-    // DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
+    ///// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
     //JOYSTICK://
     //jstick = new Joystick(this, JOYSTICK_PATH);
     //Joystick is a thread so we have to start it:
@@ -88,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
 MainWindow::~MainWindow(){
     //Stop thread:
-    jstick->stop();
-    jstick->wait();
+    //jstick->stop();
+    //jstick->wait();
 
     gamepad_tcp->stopLoop();
     arm_tcp->stopLoop();
