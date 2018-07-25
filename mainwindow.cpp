@@ -30,8 +30,24 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
 
 
-    GamepadMonitor* monitor = new GamepadMonitor();
+    //GamepadMonitor* monitor = new GamepadMonitor();
 
+    m_gamepad(0);
+    auto gamepads = QGamepadManager::instance()->connectedGamepads();
+    if (gamepads.isEmpty()) {
+        return;
+    }
+    else
+        qDebug() << "Gamepad connected";
+
+    m_gamepad = new QGamepad(*gamepads.begin(), this);
+
+    connect(m_gamepad, &QGamepad::axisLeftYChanged, this, [](double value){
+        qDebug() << "Left Y" << value;
+    });
+    connect(m_gamepad, &QGamepad::axisRightYChanged, this, [](double value){
+        qDebug() << "Right Y" << value;
+    });
 
 
     ///// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
