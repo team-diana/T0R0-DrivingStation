@@ -32,6 +32,23 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //GamepadMonitor* monitor = new GamepadMonitor();
 
+    /* MOBILITY */
+    m_gamepad = new QGamepad(0);
+    auto gamepads = QGamepadManager::instance()->connectedGamepads();
+    if (gamepads.isEmpty()) {
+        return;
+    }
+    else
+        qDebug() << "Gamepad connected";
+
+    m_gamepad = new QGamepad(*gamepads.begin(), this);
+
+    connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
+    connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
+
+
+
+    /* ARM */
     m_gamepad = new QGamepad(0);
     auto gamepads = QGamepadManager::instance()->connectedGamepads();
     if (gamepads.isEmpty()) {
