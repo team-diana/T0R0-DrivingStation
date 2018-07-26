@@ -61,8 +61,7 @@ void VoipVideoWidget::startPipeline(){
   try {
       //Connect to video from udp using port
         videosrc = QGst::Bin::fromDescription(
-                    "udpsrc port=" + s_port +
-                    " ! application/x-rtp, encoding-name=JPEG, payload=26 ! rtpjpegdepay ! jpegdec ! xvimagesink"
+                    "udpsrc port=50200 ! application/x-rtp, media=video, clock-rate=90000, encoding-name=JPEG, payload=30 ! rtpjpegdepay ! jpegdec ! xvimagesink sync=0"
                     );
     }
     catch (const QGlib::Error & error) {
