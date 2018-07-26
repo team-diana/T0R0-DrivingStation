@@ -22,7 +22,7 @@
 JoystickHandler::JoystickHandler(QWidget *parent) : QThread()
 {
     // Create an instance of Joystick
-    joystick = new Joystick("/dev/input/js0");
+    joystick = new Joystick(JOYSTICK_PATH);
 
     // Ensure that it was found and that we can use it
     if (!joystick->isFound())
@@ -85,7 +85,7 @@ void JoystickHandler::run()
                 switch (event.number) {
                     case JOYSTICK_PITCH:
                         arm_tcp->writeData16(ARM_SHOULDER, event.value);
-                        bar1->setPerc(event.value);
+                        //bar1->setPerc(event.value);
                         break;
 
                     case JOYSTICK_ROLL:

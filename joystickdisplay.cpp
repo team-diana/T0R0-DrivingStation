@@ -21,11 +21,10 @@ void JoystickDisplay::paintEvent(QPaintEvent *)
     painter.setBrush(QColor(4,4,4,255));
     painter.drawRect(0, 0, this->width()-1, this->height()-1);
     painter.drawText(QPoint(10,16), QString("TEST 1"));
-    qDebug() << "LOOK AT ME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 
-    bar1 = new Bar (this, 50, 10, 100);
-    bar1->setGeometry(20, 20, 100, 100);
-    //bar1->show();
+    bar1 = new Bar (this);
+    bar1->setGeometry(20, 20, this->width()-21, this->height()-21);
+    bar1->show();
 }
 
 

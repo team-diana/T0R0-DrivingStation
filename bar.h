@@ -11,7 +11,7 @@ class Bar : public QWidget
 
 public:
     //explicit Bar(QWidget *parent = nullptr, int _width = 10, int _height = 100);
-    explicit Bar(QWidget *parent = nullptr, int _width = 10, int _height = 100,  int _startPerc = 50);
+    explicit Bar(QWidget *parent = nullptr);
     ~Bar();
 
     void setPerc(int _perc);

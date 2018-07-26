@@ -14,12 +14,13 @@ class JoystickDisplay : public QWidget
 public:
     explicit JoystickDisplay(QWidget *parent = nullptr);
     ~JoystickDisplay();
+    Bar *bar1;
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
+
 private:
-    Bar *bar1;
     JoystickHandler *joystickhandler;
 };
 
