@@ -68,7 +68,6 @@ SOURCES += \
     TcpServer.cpp \
     mathfunctions.cpp \
     tcpharbinger.cpp \
-    dgamepadmonitor.cpp \
     joystick.cc \
     joystickhandler.cpp \
     bar.cpp \
@@ -85,7 +84,6 @@ HEADERS += \
     inputmapping.h \
     mathfunctions.h \
     tcpharbinger.h \
-    dgamepadmonitor.h \
     joystick.hh \
     joystickhandler.h \
     bar.h \

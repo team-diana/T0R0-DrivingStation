@@ -9,7 +9,6 @@
 #include "config.h"
 #include "inputmapping.h"
 #include "mathfunctions.h"
-#include "dgamepadmonitor.h"
 
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
