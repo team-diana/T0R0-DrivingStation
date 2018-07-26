@@ -15,6 +15,7 @@
 
 #include "dgamepadmonitor.h"
 
+
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
@@ -40,11 +41,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
     connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
-
-    /* ARM */
-    joystickhandler = new JoystickHandler(this);
-    joystickhandler->start();
-    ///////
 
     ///// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
     //JOYSTICK://

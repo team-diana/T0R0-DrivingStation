@@ -6,6 +6,7 @@
 #include "tcpharbinger.h"
 #include "joystickhandler.h"
 
+
 //GAMEPAD//
 //#include "gamepad.h"
 #include <QtGamepad/QGamepad>
@@ -57,7 +58,6 @@ private:
     WindowUi *ui;
 
     QGamepad *m_gamepad;
-    JoystickHandler *joystickhandler;
 
     TcpClient *client_wheel_FL, *client_wheel_FR, *client_wheel_RL, *client_wheel_RR;
     void ChangeText_Button(int n, int pressed);
