@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QString>
 #include <QLabel>
+#include <QPainter>
 
 WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
 {
@@ -26,10 +27,10 @@ WindowUi::~WindowUi(){
 }
 
 //UI://
-void WindowUi::CreateUI(){
+void WindowUi::CreateUI()
+{
     this->setGeometry(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     qDebug() << "MainWindow set to " << this->width() << "x" << this->height();
-
 
     // set black background
     QPalette pal = palette();

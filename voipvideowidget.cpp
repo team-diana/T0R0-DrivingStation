@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QString>
+#include <QPainter>
 
 #include <QVBoxLayout>
 
@@ -35,6 +36,16 @@ VoipVideoWidget::VoipVideoWidget(QWidget *parent) : QWidget(parent)
     /////////////
 
     this->setLayout(layout);
+}
+
+void VoipVideoWidget::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+
+    painter.setPen(QColor(255, 10, 10, 255));
+    painter.setBrush(QColor(10, 10, 10, 255));
+    painter.drawRect(0, 0, this->width(), this->height());
+    painter.fillRect(QRect(0, 0, this->width(), this->height()), QColor(11, 250, 150, 255));
 }
 
 VoipVideoWidget::~VoipVideoWidget(){
