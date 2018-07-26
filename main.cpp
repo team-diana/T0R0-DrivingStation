@@ -2,7 +2,6 @@
 #include <QApplication>
 #include <QDebug>
 #include <QGst/Init>
-#include "dgamepadmonitor.h"
 
 int main(int argc, char *argv[])
 {

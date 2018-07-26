@@ -33,18 +33,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    //* INPUT *//
-    QGamepad *jstick;
-    QGamepad *gamepad;
-    //////////
-
     TcpHarbinger *arm_tcp, *gamepad_tcp;
 
-public Q_SLOTS:
-    //
-
 protected:
-
     void keyPressEvent(QKeyEvent *keyevent);
     void keyReleaseEvent (QKeyEvent *keyevent);
     int key[3]={0,0,0};
