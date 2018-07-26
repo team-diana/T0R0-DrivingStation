@@ -1,20 +1,15 @@
+#include <QDebug>
+#include <QString>
+#include <QCoreApplication>
+#include <QKeyEvent>
+#include <QTcpServer>
+
 #include "mainwindow.h"
 #include "ui.h"
 #include "config.h"
 #include "inputmapping.h"
 #include "mathfunctions.h"
-
-#include <QDebug>
-#include <QString>
-#include <QCoreApplication>
-#include <QKeyEvent>
-
-//JOYSTICK//
-#include "gamepad.h"
-#include <QTcpServer>
-
 #include "dgamepadmonitor.h"
-
 
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)

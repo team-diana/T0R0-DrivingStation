@@ -1,21 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "gamepad.h"
-#include "TcpClient.h"
-#include "tcpharbinger.h"
-#include "joystickhandler.h"
-
-
-//GAMEPAD//
-//#include "gamepad.h"
-#include <QtGamepad/QGamepad>
-
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QWidget>
 #include <QTcpSocket>
 #include <QByteArray>
+#include <QtGamepad/QGamepad>
+
+#include "TcpClient.h"
+#include "tcpharbinger.h"
+#include "joystickhandler.h"
 
 #define XPOS_BATTGROUP 0
 #define YPOS_BATTGROUP 0
