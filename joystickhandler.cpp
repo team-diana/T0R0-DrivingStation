@@ -12,22 +12,22 @@
 //
 // Copyright Drew Noakes 2013-2016
 
-#include "joystickhandler.h"
 #include <QDebug>
-#include "tcpharbinger.h"
+#include <QPainter>
+
+#include "joystickhandler.h"
 #include "config.h"
 #include "inputmapping.h"
 
 JoystickHandler::JoystickHandler(QWidget *parent) : QThread()
 {
     // Create an instance of Joystick
-    joystick = new Joystick("/dev/input/js0");
+    joystick = new Joystick(JOYSTICK_PATH);
 
     // Ensure that it was found and that we can use it
     if (!joystick->isFound())
     {
-        printf("open failed.\n");
-        exit(1);
+        qDebug() << "Joystick: open failed";
     }
 
     arm_tcp = new TcpHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
@@ -85,6 +85,7 @@ void JoystickHandler::run()
                 switch (event.number) {
                     case JOYSTICK_PITCH:
                         arm_tcp->writeData16(ARM_SHOULDER, event.value);
+                        //bar1->setPerc(event.value);
                         break;
 
                     case JOYSTICK_ROLL:

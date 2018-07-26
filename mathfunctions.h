@@ -1,7 +1,6 @@
 #ifndef MATHFUNCTIONS_H
 #define MATHFUNCTIONS_H
 
-
 class math
 {
 public:

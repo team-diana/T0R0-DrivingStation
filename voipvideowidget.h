@@ -29,7 +29,7 @@ public Q_SLOTS:
     //
 
 protected:
-    //
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
     int port;

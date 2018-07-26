@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QString>
 #include <QLabel>
+#include <QPainter>
 
 WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
 {
@@ -16,20 +17,20 @@ WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
 
     //START VIDEO
     camera1_videoWidget->startPipeline();
-
     qDebug() << "\nVideo started successfully\n";
-
     /////////////
+
+
 }
 
 WindowUi::~WindowUi(){
 }
 
 //UI://
-void WindowUi::CreateUI(){
+void WindowUi::CreateUI()
+{
     this->setGeometry(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     qDebug() << "MainWindow set to " << this->width() << "x" << this->height();
-
 
     // set black background
     QPalette pal = palette();
@@ -58,14 +59,20 @@ void WindowUi::CreateUI(){
     //JOYSTICK://
     jstick_lbl = new QLabel(this);
     jstick_lbl->setGeometry(5, 5, 500, 50);
-    jstick_lbl->setText("JOYSTICK NO INPUT");
+    jstick_lbl->setText("TX2 is on Fire");
     jstick_lbl->setStyleSheet( "color : white;" );
     //////////
 
     //JOYSTICK://
     gamepad_lbl = new QLabel(this);
     gamepad_lbl->setGeometry(5, 55, 500, 50);
-    gamepad_lbl->setText("GAMEPAD NO INPUT");
+    gamepad_lbl->setText("Don't Panic");
     gamepad_lbl->setStyleSheet( "color : white;" );
     //////////
+
+    /* ARM */
+    joystickdisplay = new JoystickDisplay(this);
+    joystickdisplay->setGeometry(5, 155, 350, 350);
+    //joystickdisplay->show();
+    ///////
 }

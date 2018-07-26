@@ -4,6 +4,9 @@
 #include <QKeyEvent>
 #include <QLabel>
 
+#include "bar.h"
+#include "joystickdisplay.h"
+
 class VoipVideoWidget;
 
 class WindowUi : public QWidget
@@ -24,6 +27,7 @@ protected:
 
 private:
     void CreateUI();
+    JoystickDisplay *joystickdisplay;
 
     //Gstreamer://
     VoipVideoWidget *camera1_videoWidget;

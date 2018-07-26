@@ -15,6 +15,7 @@
 
 #include "dgamepadmonitor.h"
 
+
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
@@ -29,22 +30,17 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     /* MOBILITY */
     m_gamepad = new QGamepad(0);
-    auto gamepads = QGamepadManager::instance()->connectedGamepads();
-    if (gamepads.isEmpty()) {
-        return;
-    }
-    else
-        qDebug() << "Gamepad connected";
+    //auto gamepads = QGamepadManager::instance()->connectedGamepads();
+    //if (gamepads.isEmpty()) {
+    //    return;
+    //}
+    //else
+    //    qDebug() << "Gamepad connected";
 
-    m_gamepad = new QGamepad(*gamepads.begin(), this);
+    //m_gamepad = new QGamepad(*gamepads.begin(), this);
 
     connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
     connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
-
-    /* ARM */
-    joystickhandler = new JoystickHandler(this);
-    joystickhandler->start();
-    ///////
 
     ///// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
     //JOYSTICK://

@@ -2,9 +2,12 @@
 #define JOYSTICKHANDLER_H
 
 #include <QThread>
-#include "joystick.hh"
 #include <unistd.h>
+#include <QPaintEvent>
+
+#include "joystick.hh"
 #include "tcpharbinger.h"
+#include "bar.h"
 
 class JoystickHandler : public QThread
 {
@@ -18,6 +21,7 @@ protected:
     void run();
 
 private:
+    Bar *bar1;
     Joystick *joystick;
     TcpHarbinger *arm_tcp;
 };
