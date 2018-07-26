@@ -57,6 +57,11 @@
 #define CAMERA_HEIGHT 600
 ///////////
 
+//** HID **//
+#define THISIS_GAMEPAD  0
+#define THISIS_JOYSTICK 1
+///////////
+
 //* GAMEPAD *//
 #define GAMEPAD_PATH "/dev/input/js0"
 

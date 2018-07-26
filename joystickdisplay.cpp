@@ -3,7 +3,7 @@
 
 JoystickDisplay::JoystickDisplay(QWidget *parent) : QWidget(parent)
 {
-    joystickhandler = new JoystickHandler(this);
+    joystickhandler = new JoystickHandler(this, THISIS_JOYSTICK);
     joystickhandler->start();
 }
 

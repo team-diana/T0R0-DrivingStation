@@ -19,19 +19,42 @@
 #include "config.h"
 #include "inputmapping.h"
 
-JoystickHandler::JoystickHandler(QWidget *parent) : QThread()
+JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
 {
-    // Create an instance of Joystick
-    joystick = new Joystick(JOYSTICK_PATH);
+    hidType = _hidType;
 
-    // Ensure that it was found and that we can use it
-    if (!joystick->isFound())
+    if (hidType == THISIS_GAMEPAD)
     {
-        qDebug() << "Joystick: open failed";
+        // Create an instance of Joystick
+        joystick = new Joystick(GAMEPAD_PATH);
+
+        // Ensure that it was found and that we can use it
+        if (!joystick->isFound())
+        {
+            qDebug() << "Gamepad: open failed";
+        }
+        else qDebug() << "Gamepad: opened successfully";
+
+        mobility_tcp = new TcpHarbinger(nullptr, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
+        mobility_tcp->start();
+
     }
 
-    arm_tcp = new TcpHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
-    arm_tcp->start();
+    else if (hidType == THISIS_JOYSTICK)
+    {
+        // Create an instance of Joystick
+        joystick = new Joystick(JOYSTICK_PATH);
+
+        // Ensure that it was found and that we can use it
+        if (!joystick->isFound())
+        {
+            qDebug() << "Joystick: open failed";
+        }
+        else qDebug() << "Joystick: opened successfully";
+
+        arm_tcp = new TcpHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
+        arm_tcp->start();
+    }
 }
 
 JoystickHandler::~JoystickHandler()
@@ -48,68 +71,108 @@ void JoystickHandler::run()
 
         // Attempt to sample an event from the joystick
         JoystickEvent event;
-        if (joystick->sample(&event))
+
+        if(hidType == THISIS_GAMEPAD)       ///// >>> GAMEPAD
         {
-            if (event.isButton())
+            if (joystick->sample(&event))
             {
-                qDebug() << "Button " << event.number << " is " << (event.value == 0 ? "up" : "down");
+                if (event.isButton())
+                {
+                    qDebug() << "Gamepad > Button " << event.number << " is " << (event.value == 0 ? "up" : "down");
 
-                switch (event.number) {
-                    // First wrist rotary gear
-                    case JOYSTICK_3:
-                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, -32768);
-                        else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
-                        break;
-
-                    case JOYSTICK_4:
-                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, 32767);
-                        else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
-                        break;
-
-                    // Second wrist rotary gear
-                    case JOYSTICK_5:
-                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, -32768);
-                        else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
-                        break;
-
-                    case JOYSTICK_6:
-                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, 32767);
-                        else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
-                        break;
-                }
-            }
-            else if (event.isAxis())
-            {
-                qDebug() << "Axis " << event.number << " is at position " << event.value;
-
-                switch (event.number) {
-                    case JOYSTICK_PITCH:
-                        arm_tcp->writeData16(ARM_SHOULDER, event.value);
-                        //bar1->setPerc(event.value);
-                        break;
-
-                    case JOYSTICK_ROLL:
-                        arm_tcp->writeData16(ARM_ELBOW, event.value);
-                        break;
-
-                    case JOYSTICK_YAW:
-                        arm_tcp->writeData16(ARM_SLEAWINGGEAR, event.value);
-                        break;
-
-                    case JOYSTICK_THROTTLE:
-                        if      (event.value < -30000) arm_tcp->writeData16(ARM_PINCH, -32768);
-                        else if (event.value >  30000) arm_tcp->writeData16(ARM_PINCH,  32767);
-                        else                        arm_tcp->writeData16(ARM_PINCH,      0);
-                        break;
-
-                    case JOYSTICK_ARROWLR:
-                        arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
-                        break;
-
-                    case JOYSTICK_ARROWUD:
-                        arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                    switch (event.number)
+                    {
+                        default:
                         break;
                     }
+                }
+                else if (event.isAxis())
+                {
+                    qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
+
+                    switch (event.number) {
+                        case GAMEPAD_L3Y:
+                            mobility_tcp->writeData16(MOTOR_FRONT_LEFT, event.value);
+                            mobility_tcp->writeData16(MOTOR_REAR_LEFT, event.value);
+                        break;
+
+                        case GAMEPAD_R3Y:
+                            mobility_tcp->writeData16(MOTOR_FRONT_RIGHT, event.value);
+                            mobility_tcp->writeData16(MOTOR_REAR_RIGHT, event.value);
+                        break;
+
+                        default:
+                        break;
+                    }
+                }
+            }
+
+        }
+        else if (hidType == THISIS_JOYSTICK)       ///// >>> JOYSTICK
+        {
+            if (joystick->sample(&event))
+            {
+                if (event.isButton())
+                {
+                    qDebug() << "Joystick > Button " << event.number << " is " << (event.value == 0 ? "up" : "down");
+
+                    switch (event.number) {
+                        // First wrist rotary gear
+                        case JOYSTICK_3:
+                            if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, -32768);
+                            else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
+                            break;
+
+                        case JOYSTICK_4:
+                            if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, 32767);
+                            else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
+                            break;
+
+                        // Second wrist rotary gear
+                        case JOYSTICK_5:
+                            if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, -32768);
+                            else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
+                            break;
+
+                        case JOYSTICK_6:
+                            if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, 32767);
+                            else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
+                            break;
+                    }
+                }
+                else if (event.isAxis())
+                {
+                    qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
+
+                    switch (event.number) {
+                        case JOYSTICK_PITCH:
+                            arm_tcp->writeData16(ARM_SHOULDER, event.value);
+                            //bar1->setPerc(event.value);
+                            break;
+
+                        case JOYSTICK_ROLL:
+                            arm_tcp->writeData16(ARM_ELBOW, event.value);
+                            break;
+
+                        case JOYSTICK_YAW:
+                            arm_tcp->writeData16(ARM_SLEAWINGGEAR, event.value);
+                            break;
+
+                        case JOYSTICK_THROTTLE:
+                            if      (event.value < -30000) arm_tcp->writeData16(ARM_PINCH, -32768);
+                            else if (event.value >  30000) arm_tcp->writeData16(ARM_PINCH,  32767);
+                            else                        arm_tcp->writeData16(ARM_PINCH,      0);
+                            break;
+
+                        case JOYSTICK_ARROWLR:
+                            arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                            break;
+
+                        case JOYSTICK_ARROWUD:
+                            arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                            break;
+                    }
+                }
             }
         }
     }

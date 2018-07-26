@@ -15,15 +15,18 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
     ui = new WindowUi(this);
 
+    gamepadhandler = new JoystickHandler(this, THISIS_GAMEPAD);
+    gamepadhandler->start();
+
     //** TCP HARBINGERS **/
-    gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
-    gamepad_tcp->start();   // Start thread
+    //gamepad_tcp = new TcpHarbinger(this, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
+    //gamepad_tcp->start();   // Start thread
 
     //arm_tcp = new TcpHarbinger(this, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
     //arm_tcp->start();
 
     /* MOBILITY */
-    m_gamepad = new QGamepad(0);
+    //m_gamepad = new QGamepad(0);
     //auto gamepads = QGamepadManager::instance()->connectedGamepads();
     //if (gamepads.isEmpty()) {
     //    return;
@@ -33,8 +36,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     //m_gamepad = new QGamepad(*gamepads.begin(), this);
 
-    connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
-    connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
+    //connect(m_gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::mobilityLeftUpdate);
+    //connect(m_gamepad, &QGamepad::axisRightYChanged, this, &MainWindow::mobilityRightUpdate);
 
     ///// DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED   DEPRECATED  DEPRECATED
     //JOYSTICK://

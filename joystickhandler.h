@@ -14,16 +14,17 @@ class JoystickHandler : public QThread
     Q_OBJECT
 
 public:
-    explicit JoystickHandler(QWidget *parent = nullptr);
+    explicit JoystickHandler(QWidget *parent = nullptr, int _hidType = -1);
     ~JoystickHandler();
 
 protected:
     void run();
 
 private:
+    int hidType;
     Bar *bar1;
     Joystick *joystick;
-    TcpHarbinger *arm_tcp;
+    TcpHarbinger *arm_tcp, *mobility_tcp;
 };
 
 #endif // JOYSTICKHANDLER_H

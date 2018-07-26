@@ -43,7 +43,7 @@ protected:
 private:
     WindowUi *ui;
 
-    QGamepad *m_gamepad;
+    JoystickHandler *gamepadhandler;
 
     TcpClient *client_wheel_FL, *client_wheel_FR, *client_wheel_RL, *client_wheel_RR;
     void ChangeText_Button(int n, int pressed);
