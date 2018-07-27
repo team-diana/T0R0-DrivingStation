@@ -2,6 +2,10 @@
 
 A GUI to display cameras from T0-R0 rover
 
+
+## Compatibility
+- Ubuntu 16.04 LTS or older
+
 ## Dependencies installation
 
 ### QT5
@@ -42,9 +46,6 @@ Go to Tools/LibraryUpdater and launch:
 ```bash
 make
 ```
-
-## Compatibility
-- Ubuntu 16.04 LTS or older
 
 ## Note - Known Issues
 - Connect Gamepad before Joystick otherwise they can be misinterpreted.
