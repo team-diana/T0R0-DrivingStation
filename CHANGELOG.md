@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2018-07-26
+### Changed
+- Gamepad and Joystick now share the same library
+
+### Fixes
+- Gamepad and Joystick may be exchanged
+
+## [0.5.1] - 2018-07-25
+### Added
+- New graphical elements (still in development)
+
+### Changed
+- GStreamer pipeline: to handle PointGray cameras
+- Reimplemented joystick library
+
+### Fixes
+- Unreliable handling of HID peripherals
+
 ## [0.4] - 2018-07-10
 ### Added
 - Input Map for Joystick and Gamepad --> "inputmapping.h"
