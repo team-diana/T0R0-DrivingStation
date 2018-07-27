@@ -67,6 +67,8 @@ void JoystickHandler::run()
 {
     while (true)
     {
+        //qDebug() << " VALORE: >>>>>> " << this->getAxisValue(JOYSTICK_PITCH);
+
         // Restrict rate
         usleep(1000);
 
@@ -89,6 +91,7 @@ void JoystickHandler::run()
                 }
                 else if (event.isAxis())
                 {
+                    axisesValues[event.number] = event.value;
                     qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
 
                     switch (event.number) {
@@ -143,7 +146,8 @@ void JoystickHandler::run()
                 }
                 else if (event.isAxis())
                 {
-                    qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
+                    axisesValues[event.number] = event.value;
+                    //qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
 
                     switch (event.number) {
                         case JOYSTICK_PITCH:
@@ -192,11 +196,11 @@ bool JoystickHandler::getButtonState(int button)
 void JoystickHandler::putAxisValue(int axis, int16_t value)
 {
     axisesValues[axis] = value;
-    par->update();
+    //par->update();
 }
 
 void JoystickHandler::putButtonState(int button, bool state)
 {
-    axisesValues[button] = state;
-    par->update();
+    buttonsState[button] = state;
+    //par->update();
 }

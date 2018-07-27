@@ -24,6 +24,8 @@ private:
     Bar *barThrottle, *barYaw;
     CrossGraph *cGraph;
     JoystickHandler *joystickhandler;
+
+    int int16ToPerc(int16_t value);
 };
 
 #endif // JOYSTICKDISPLAY_H
