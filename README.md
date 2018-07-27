@@ -43,5 +43,8 @@ Go to Tools/LibraryUpdater and launch:
 make
 ```
 
+## Compatibility
+- Ubuntu 16.04 LTS or older
+
 ## Note - Known Issues
 - Connect Gamepad before Joystick otherwise they can be misinterpreted.
