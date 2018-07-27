@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixes
 - Gamepad and Joystick may be exchanged
 
-## [0.5.1] - 2018-07-25
+## [0.5.1] - 2018-07-26
 ### Added
 - New graphical elements (still in development)
 
@@ -23,6 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixes
 - Unreliable handling of HID peripherals
+
+## [0.5.0] - 2018-07-26
+# Added
+- New TCP Handler library
+- TCP Handler is now a QThread
 
 ## [0.4] - 2018-07-10
 ### Added
