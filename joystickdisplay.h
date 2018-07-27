@@ -21,7 +21,7 @@ protected:
 
 
 private:
-    Bar *bar1;
+    Bar *barThrottle, *barYaw;
     CrossGraph *cGraph;
     JoystickHandler *joystickhandler;
 };

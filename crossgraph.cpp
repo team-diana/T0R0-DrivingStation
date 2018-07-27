@@ -22,7 +22,7 @@ void CrossGraph::paintEvent(QPaintEvent *)
     painter.drawRect(QRect(0, 0, this->width(), this->height()));
 
     // Background
-    painter.setBrush(QColor(255, 255, 255, 255));
+    painter.setBrush(QColor(210, 210, 210, 255));
     painter.drawRect(QRect(0, 0, size, size));
 
     //painter.setPen(QColor(255, 0, 0, 255));

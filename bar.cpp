@@ -10,10 +10,23 @@ Bar::Bar(QWidget *parent, int _width, int _height)
     percentage = 0;
 }*/
 
-Bar::Bar(QWidget *parent) : QWidget(parent)
+Bar::Bar(QWidget *parent, int _direction) : QWidget(parent)
 {
-    w = 12;
-    h = 220;
+    direction = _direction;
+
+    switch (direction)
+    {
+        case 0:
+            w = 12;
+            h = 220;
+        break;
+
+        case 1:
+            h = 12;
+            w = 220;
+        break;
+    }
+
     percentage = 50;
 }
 
@@ -32,7 +45,7 @@ void Bar::paintEvent(QPaintEvent *)
     painter.drawRect(QRect(0, 0, this->width(), this->height()));
 
     // Background bar
-    painter.setBrush(QColor(255, 255, 255, 255));
+    painter.setBrush(QColor(210, 210, 210, 255));
     painter.drawRect(QRect(0, 0, w, h));
 
     //painter.setPen(QColor(255, 0, 0, 255));
@@ -40,12 +53,21 @@ void Bar::paintEvent(QPaintEvent *)
 
     // Percentage bar
     painter.setBrush(QColor(255, 9, 9, 255));
-    //double percPixels = ((double) (h) * ((double) ( (double)(percentage) / 100.0) ));
-    int percPixels = (int) ((double) h * ((double) ((double)(percentage) / 100.0) ));
 
+    int percPixels;
+    switch (direction)
+    {
+        case 0:
+            percPixels = (int) ((double) h * ((double) ((double)(percentage) / 100.0) ));
+            painter.drawRect(QRect(0, h-percPixels, w, percPixels));
+        break;
 
-    //qDebug() << ">>>>>>>>>>>>>>>>> PERC " << percPixels;
-    painter.drawRect(QRect(0, h-percPixels, w, percPixels));
+        case 1:
+            percPixels = (int) ((double) w * ((double) ((double)(percentage) / 100.0) ));
+            painter.drawRect(QRect(0, 0, percPixels, h));
+        break;
+    }
+
 }
 
 void Bar::setPerc(int _perc)

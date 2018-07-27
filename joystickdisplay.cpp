@@ -18,19 +18,26 @@ void JoystickDisplay::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.setPen(QColor(255,0,0,255));
+    painter.setPen(QColor(100,190,250,255));
     painter.setBrush(QColor(4,4,4,255));
     painter.drawRect(0, 0, this->width()-1, this->height()-1);
-    painter.drawText(QPoint(10,16), QString("JOYSTICK"));
+    painter.drawText(QPoint(7,17), QString("ARM"));
 
-    bar1 = new Bar (this);
-    bar1->setGeometry(228, 25, 13, 221);
-    bar1->show();
+    barThrottle = new Bar (this, 0);
+    barThrottle->setGeometry(234, 25, 13, 221);
+    barThrottle->show();
 
-    bar1->setPerc(joystickhandler->getAxisValue(JOYSTICK_THROTTLE));
+    barThrottle->setPerc(joystickhandler->getAxisValue(JOYSTICK_THROTTLE));
+
+
+    barYaw = new Bar (this, 1);
+    barYaw->setGeometry(5, 253, 221, 13);
+    barYaw->show();
+
+    barYaw->setPerc(joystickhandler->getAxisValue(JOYSTICK_YAW));
 
     cGraph = new CrossGraph (this);
-    cGraph->setGeometry(0, 25, 221, 221);
+    cGraph->setGeometry(5, 25, 221, 221);
     cGraph->show();
     cGraph->setX(joystickhandler->getAxisValue(JOYSTICK_ROLL));
     cGraph->setY(joystickhandler->getAxisValue(JOYSTICK_PITCH));

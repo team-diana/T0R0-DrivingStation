@@ -66,7 +66,7 @@ void WindowUi::CreateUI()
 
     /* ARM */
     joystickdisplay = new JoystickDisplay(this);
-    joystickdisplay->setGeometry(5, 155, 350, 350);
+    joystickdisplay->setGeometry(45, this->height()-350, 254, 273);
     //joystickdisplay->show();
     ///////
 }
