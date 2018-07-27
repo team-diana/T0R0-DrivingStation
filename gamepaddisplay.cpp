@@ -27,13 +27,27 @@ void GamepadDisplay::paintEvent(QPaintEvent *)
     leftThrottle->setGeometry(28, 25, 13, 221);
     leftThrottle->show();
 
-    leftThrottle->setPerc(gamepadhandler->getAxisValue(GAMEPAD_L3Y));
+    leftThrottle->setPerc(int16ToPerc(gamepadhandler->getAxisValue(GAMEPAD_L3Y)));
 
     rightThrottle = new Bar (this, 0);
     rightThrottle->setGeometry(70, 25, 13, 221);
     rightThrottle->show();
 
-    rightThrottle->setPerc(gamepadhandler->getAxisValue(GAMEPAD_R3Y));
+    rightThrottle->setPerc(int16ToPerc(gamepadhandler->getAxisValue(GAMEPAD_R3Y)));
 }
 
+
+int GamepadDisplay::int16ToPerc(int16_t value)
+{
+    int res = 0;
+
+    value *= -1;
+
+    uint16_t uval = value + 32768;
+    res = (uval / 65535.0) * 100.0;
+
+    //qDebug() << " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " << res;
+
+    return res;
+}
 

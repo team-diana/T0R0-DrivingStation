@@ -92,7 +92,7 @@ void JoystickHandler::run()
                 else if (event.isAxis())
                 {
                     axisesValues[event.number] = event.value;
-                    qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
+                    //qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
 
                     switch (event.number) {
                         case GAMEPAD_L3Y:

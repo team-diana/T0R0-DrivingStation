@@ -24,6 +24,8 @@ private:
     Bar *leftThrottle, *rightThrottle;
     //CrossGraph *cGraph;
     JoystickHandler *gamepadhandler;
+
+    int int16ToPerc(int16_t value);
 };
 
 #endif // GAMEPADDISPLAY_H

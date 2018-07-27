@@ -13,7 +13,7 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort,
 
     // Create TCP connection for each axis
     for (int i=0; i < nConnections; i++) {
-        qDebug() << "Axis["<< i <<"]: estabilshing TCP port: ["<< startPort + i << "]";
+        qDebug() << "Axis["<< i <<"]: estabilshing TCP port: [" << startPort + i << "]";
         vecClients[i] = new TcpClient(address, startPort + i);
     }
     // Initialize Axis to zero
@@ -21,10 +21,6 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort,
         vecClients[i]->send16(32767);   // Initialize to neutral value (= 32767)
         vecData16[i] = 32767;
         vecDataOld[i] = 32767;
-    }
-
-    for (int i=0; i < nConnections; i++) {
-        vecData16[i] = 32767;
     }
 }
 
@@ -48,6 +44,7 @@ void TcpHarbinger::run () {
                 {
                     vecClients[i]->send16((uint16_t) vecData16[i]);
                     vecDataOld[i] = vecData16[i];
+                    qDebug() << "Send data " << i << " : " <<  (int) vecData16[i];
                 }
             }
 

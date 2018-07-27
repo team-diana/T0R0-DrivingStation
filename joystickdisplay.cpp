@@ -34,30 +34,24 @@ void JoystickDisplay::paintEvent(QPaintEvent *)
     barYaw->setGeometry(5, 253, 221, 13);
     barYaw->show();
 
-    barYaw->setPerc(int16ToPerc(joystickhandler->getAxisValue(JOYSTICK_YAW)));
+    barYaw->setPerc( int16ToPerc( joystickhandler->getAxisValue(JOYSTICK_YAW) )  );
 
     cGraph = new CrossGraph (this);
     cGraph->setGeometry(5, 25, 221, 221);
     cGraph->show();
-    cGraph->setX(int16ToPerc(joystickhandler->getAxisValue(JOYSTICK_ROLL)));
-    cGraph->setY(int16ToPerc(joystickhandler->getAxisValue(JOYSTICK_PITCH)));
+    cGraph->setX( int16ToPerc( joystickhandler->getAxisValue(JOYSTICK_PITCH)  )  );
+    cGraph->setY( int16ToPerc( joystickhandler->getAxisValue(JOYSTICK_ROLL) )  );
 }
 
 
 int JoystickDisplay::int16ToPerc(int16_t value)
 {
-    int res = -1;
+    int res = 0;
 
-    if (value > 0)
-    {
-        res = (value / 32767.0) * 100.0;
-    }
-    else if (value < 0)
-    {
-        res = (value / 32768.0) * 100.0;
-    }
+    uint16_t uval = value + 32768;
+    res = (uval / 65535.0) * 100.0;
 
-    qDebug() << " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " << res;
+    //qDebug() << " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " << res;
 
     return res;
 }
