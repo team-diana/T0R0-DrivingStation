@@ -9,15 +9,15 @@ A GUI to display cameras from T0-R0 rover
 ## Dependencies installation
 
 ### QT5
-  Download and install components from <a href="https://download.qt.io/official_releases/qt/5.10/5.10.1/">here</a>
+  Download and install components from here: [Qt Creator 5.11.1](https://download.qt.io/official_releases/qt/5.11/5.11.1/)
 
 ```bash
 cd Download
-chmod +x qt-opensource-linux-x64-5.10.1.run
-./qt-opensource-linux-x64-5.10.1.run
+chmod +x qt-opensource-linux-x64-5.11.1.run
+./qt-opensource-linux-x64-5.11.1.run
 ```
 
-<h> Follow the instruction, and PIN the checkbox "QT 5.10.1" </h>
+<h> Follow the instruction, and PIN the checkbox "QT 5.11.1" </h>
  - [x] QT 5.10.1
 
 ### GStreamer
