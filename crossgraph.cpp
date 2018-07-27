@@ -3,8 +3,8 @@
 CrossGraph::CrossGraph(QWidget *parent) : QWidget(parent)
 {
     size = 220;
-    x = 45;
-    y= 35;
+    x = 50;
+    y= 50;
 }
 
 CrossGraph::~CrossGraph()
@@ -34,7 +34,14 @@ void CrossGraph::paintEvent(QPaintEvent *)
     int yPixels = (int) ((double) size * ((double) ((double)(y) / 100.0) ));
 
     //qDebug() << ">>>>>>>>>>>>>>>>> PERC " << percPixels;
-    painter.drawRect(QRect(0, size-xPixels, size, yPixels));
+    int radiusCross = 6;
+    QPen pen(QColor(255, 0, 0, 255));
+    pen.setWidth(3);
+    painter.setPen(pen);
+    painter.drawLine(size-xPixels, size-yPixels-radiusCross, size-xPixels, size-yPixels+radiusCross);
+    painter.drawLine(size-xPixels-radiusCross, size-yPixels, size-xPixels+radiusCross, size-yPixels);
+
+    //painter.drawRect(QRect(size-xPixels, size-yPixels, xPixels, yPixels));
 }
 
 void CrossGraph::setX(int _perc)
