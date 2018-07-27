@@ -26,58 +26,6 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
-//JOYSTICK://
-void MainWindow::ChangeText_Button(int n, int pressed) {
-    QString txt = QString("Button %1 is %2").arg(
-                QString::number(n),
-                pressed == 0 ? "up" : "down");
-
-    ui->jstick_lbl->setText(txt);
-}
-
-void MainWindow::ChangeText_Axis(int n, int position) {
-    QString txt = QString("Axis %1 is at position %2").arg(
-                QString::number(n),
-                QString::number(position));
-
-    ui->jstick_lbl->setText(txt);
-}
-//////////
-
-/* MOBILITY */
-void MainWindow::mobilityLeftUpdate(double position)
-{
-    int16_t data = (int16_t) (position * 32767.4);
-    qDebug() << "Write throttle value for LEFT motors: " << data;
-    gamepad_tcp->writeData16(MOTOR_FRONT_LEFT, data);
-    gamepad_tcp->writeData16(MOTOR_REAR_LEFT,  data);
-}
-void MainWindow::mobilityRightUpdate(double position)
-{
-    int16_t data = (int16_t) (position * 32767.4);
-    qDebug() << "Write throttle value for RIGHT motors:" << data;
-    gamepad_tcp->writeData16(MOTOR_FRONT_RIGHT, data);
-    gamepad_tcp->writeData16(MOTOR_REAR_RIGHT,  data);
-}
-
-//////////
-
-//* GAMEPAD *//
-void MainWindow::GamepadChangeText_Button(int n, int pressed){
-    QString txt = QString("Button %1 is %2").arg(
-                    QString::number(n),
-                    pressed == 0 ? "up" : "down");
-    ui->gamepad_lbl->setText(txt);
-}
-
-void MainWindow::GamepadChangeText_Axis(int n, int position){
-    QString txt = QString("Axis %1 is at position %2").arg(
-                QString::number(n),
-                QString::number(position));
-    ui->gamepad_lbl->setText(txt);
-}
-//////////
-
 //* KEYBOARD *//
 void MainWindow::keyPressEvent (QKeyEvent *keyevent) {
 

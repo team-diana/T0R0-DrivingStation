@@ -13,7 +13,7 @@ class JoystickDisplay : public QWidget
 
 public:
     explicit JoystickDisplay(QWidget *parent = nullptr);
-    ~JoystickDisplay();
+    ~JoystickDisplay() override;
     Bar *bar1;
 
 protected:

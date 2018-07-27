@@ -17,14 +17,23 @@ public:
     explicit JoystickHandler(QWidget *parent = nullptr, int _hidType = -1);
     ~JoystickHandler();
 
+    int16_t getAxisValue(int axis);
+    bool getButtonState(int button);
+
 protected:
     void run();
 
 private:
+    QWidget *par;
     int hidType;
-    Bar *bar1;
     Joystick *joystick;
     TcpHarbinger *arm_tcp, *mobility_tcp;
+
+    void putAxisValue(int axis, int16_t value);
+    void putButtonState(int button, bool state);
+
+    int16_t axisesValues[10];
+    bool buttonsState[20];
 };
 
 #endif // JOYSTICKHANDLER_H

@@ -21,6 +21,7 @@
 
 JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
 {
+    par = parent;
     hidType = _hidType;
 
     if (hidType == THISIS_GAMEPAD)
@@ -176,4 +177,26 @@ void JoystickHandler::run()
             }
         }
     }
+}
+
+int16_t JoystickHandler::getAxisValue(int axis)
+{
+    return axisesValues[axis];
+}
+
+bool JoystickHandler::getButtonState(int button)
+{
+    return buttonsState[button];
+}
+
+void JoystickHandler::putAxisValue(int axis, int16_t value)
+{
+    axisesValues[axis] = value;
+    par->update();
+}
+
+void JoystickHandler::putButtonState(int button, bool state)
+{
+    axisesValues[button] = state;
+    par->update();
 }

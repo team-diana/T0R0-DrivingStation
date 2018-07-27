@@ -25,6 +25,8 @@ void JoystickDisplay::paintEvent(QPaintEvent *)
     bar1 = new Bar (this);
     bar1->setGeometry(20, 20, this->width()-21, this->height()-21);
     bar1->show();
+
+    bar1->setPerc(joystickhandler->getAxisValue(0));
 }
 
 
