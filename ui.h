@@ -5,6 +5,7 @@
 #include <QLabel>
 
 #include "joystickdisplay.h"
+#include "gamepaddisplay.h"
 
 class VoipVideoWidget;
 
@@ -27,6 +28,7 @@ protected:
 private:
     void CreateUI();
     JoystickDisplay *joystickdisplay;
+    GamepadDisplay *gamepaddisplay;
 
     //Gstreamer://
     VoipVideoWidget *camera1_videoWidget;

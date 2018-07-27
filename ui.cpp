@@ -69,4 +69,10 @@ void WindowUi::CreateUI()
     joystickdisplay->setGeometry(45, this->height()-350, 254, 273);
     //joystickdisplay->show();
     ///////
+
+    /* ARM */
+    gamepaddisplay = new GamepadDisplay(this);
+    gamepaddisplay->setGeometry(45, this->height()-620, 110, 253);
+    //gamepaddisplay->show();
+    ///////
 }
