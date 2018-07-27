@@ -27,6 +27,10 @@ void JoystickDisplay::paintEvent(QPaintEvent *)
     bar1->show();
 
     bar1->setPerc(joystickhandler->getAxisValue(0));
+
+    cGraph = new CrossGraph(this);
+    cGraph->setGeometry(45, 45, 250, 250);
+    cGraph->show();
 }
 
 

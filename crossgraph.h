@@ -14,13 +14,13 @@ public:
     ~CrossGraph() override;
 
     void setX(int _perc);
-    void sety(int _perc);
+    void setY(int _perc);
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    int w, h;
+    int size;
     int x, y;
 };
 

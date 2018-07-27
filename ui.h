@@ -4,7 +4,6 @@
 #include <QKeyEvent>
 #include <QLabel>
 
-#include "bar.h"
 #include "joystickdisplay.h"
 
 class VoipVideoWidget;
