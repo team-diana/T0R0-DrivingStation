@@ -38,10 +38,10 @@ void CrossGraph::paintEvent(QPaintEvent *)
     QPen pen(QColor(255, 0, 0, 255));
     pen.setWidth(3);
     painter.setPen(pen);
-    painter.drawLine(size-xPixels, size-yPixels-radiusCross, size-xPixels, size-yPixels+radiusCross);
-    painter.drawLine(size-xPixels-radiusCross, size-yPixels, size-xPixels+radiusCross, size-yPixels);
+    painter.drawLine(xPixels, yPixels-radiusCross, xPixels, yPixels+radiusCross);
+    painter.drawLine(xPixels-radiusCross, yPixels, xPixels+radiusCross, yPixels);
 
-    //painter.drawRect(QRect(size-xPixels, size-yPixels, xPixels, yPixels));
+    //painter.drawRect(QRect(xPixels, yPixels, xPixels, yPixels));
 }
 
 void CrossGraph::setX(int _perc)

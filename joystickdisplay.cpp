@@ -1,5 +1,6 @@
 #include "joystickdisplay.h"
 #include <QDebug>
+#include "inputmapping.h"
 
 JoystickDisplay::JoystickDisplay(QWidget *parent) : QWidget(parent)
 {
@@ -20,17 +21,19 @@ void JoystickDisplay::paintEvent(QPaintEvent *)
     painter.setPen(QColor(255,0,0,255));
     painter.setBrush(QColor(4,4,4,255));
     painter.drawRect(0, 0, this->width()-1, this->height()-1);
-    painter.drawText(QPoint(10,16), QString("TEST 1"));
+    painter.drawText(QPoint(10,16), QString("JOYSTICK"));
 
     bar1 = new Bar (this);
-    bar1->setGeometry(20, 20, this->width()-21, this->height()-21);
+    bar1->setGeometry(228, 25, 13, 221);
     bar1->show();
 
-    bar1->setPerc(joystickhandler->getAxisValue(0));
+    bar1->setPerc(joystickhandler->getAxisValue(JOYSTICK_THROTTLE));
 
-    cGraph = new CrossGraph(this);
-    cGraph->setGeometry(45, 45, 250, 250);
+    cGraph = new CrossGraph (this);
+    cGraph->setGeometry(0, 25, 221, 221);
     cGraph->show();
+    cGraph->setX(joystickhandler->getAxisValue(JOYSTICK_ROLL));
+    cGraph->setY(joystickhandler->getAxisValue(JOYSTICK_PITCH));
 }
 
 
