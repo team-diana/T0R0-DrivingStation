@@ -18,7 +18,7 @@ chmod +x qt-opensource-linux-x64-5.11.1.run
 ```
 
 <h> Follow the instruction, and PIN the checkbox "QT 5.11.1" </h>
- - [x] QT 5.10.1
+ - [x] QT 5.11.1
 
 ### GStreamer
 Run the following commands
