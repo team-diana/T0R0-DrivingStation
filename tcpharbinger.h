@@ -35,7 +35,7 @@ private:
 
     TcpClient *vecClients[10];
 
-    uint16_t  vecData16[10];
+    uint16_t  vecData16[10], vecDataOld[10];
 
     bool m_loop;
     bool m_wait;

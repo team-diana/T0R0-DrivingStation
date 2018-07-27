@@ -20,6 +20,11 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort,
     for (int i=0; i < nConnections; i++) {
         vecClients[i]->send16(32767);   // Initialize to neutral value (= 32767)
         vecData16[i] = 32767;
+        vecDataOld[i] = 32767;
+    }
+
+    for (int i=0; i < nConnections; i++) {
+        vecData16[i] = 32767;
     }
 }
 
@@ -33,18 +38,23 @@ void TcpHarbinger::run () {
 
     qDebug() << "TcoHarbinger: Starting Loop";
 
-  while (m_loop)  // Loop -> if  m_loop = true
-  {
-    for (int i=0; i < nConnections; i++)      // Read data array and send trough TCP
+    while (m_loop)  // Loop -> if  m_loop = true
     {
-        //qDebug() << "vecData16[" << i << "]: " << vecData16[i];
+        for (int i=0; i < nConnections; i++)      // Read data array and send trough TCP
+        {
+            if(vecData16[i] != vecDataOld[i])
+            {
+                if (!m_wait)
+                {
+                    vecClients[i]->send16((uint16_t) vecData16[i]);
+                    vecDataOld[i] = vecData16[i];
+                }
+            }
 
-        if (!m_wait)
-            vecClients[i]->send16((uint16_t) vecData16[i]);
+        }
+        usleep(100000); // Microseconds
     }
-    usleep(100000); // Microseconds
-  }
-  qDebug() << "TcoHarbinger: Loop Terminated";
+    qDebug() << "TcoHarbinger: Loop Terminated";
 }
 
 void TcpHarbinger::stopLoop()

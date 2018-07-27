@@ -16,7 +16,7 @@
 ///////////
 
 //* IPs *//
-#define IP_ROVER "127.0.0.1"
+#define IP_ROVER "10.0.0.124"
 //#define IP_MISSIONCONTROL "127.0.0.1"
 ///////////
 
