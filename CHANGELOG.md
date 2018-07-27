@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Gamepad and Joystick now share the same library
 
-### Fixes
+### Fixes
 - Gamepad and Joystick may be exchanged
 
 ## [0.5.1] - 2018-07-26
