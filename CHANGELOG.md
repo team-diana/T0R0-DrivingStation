@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unreliable handling of HID peripherals
 
 ## [0.5.0] - 2018-07-26
-# Added
+### Added
 - New TCP Handler library
 - TCP Handler is now a QThread
 
