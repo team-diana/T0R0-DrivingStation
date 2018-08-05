@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.3] - 2018-08-05
+### Added
+- Graphical output elements for gamepad and joystick
+
 ## [0.5.2] - 2018-07-26
 ### Changed
 - Gamepad and Joystick now share the same library

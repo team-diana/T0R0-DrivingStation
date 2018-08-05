@@ -36,6 +36,7 @@ Directly inside of QtCreator
 ## Tools
 ### TcpServerSimulator
 This tool is used to test TcpClient connections.
+*Launch this tool always before the Driving Station GUI.*
 Go to Tools/TcpServerSimulator and launch:
 ```bash
 make
