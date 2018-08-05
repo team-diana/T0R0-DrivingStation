@@ -71,7 +71,9 @@ SOURCES += \
     joystick.cc \
     joystickhandler.cpp \
     bar.cpp \
-    joystickdisplay.cpp
+    joystickdisplay.cpp \
+    crossgraph.cpp \
+    gamepaddisplay.cpp
 
 
 HEADERS += \
@@ -87,7 +89,9 @@ HEADERS += \
     joystick.hh \
     joystickhandler.h \
     bar.h \
-    joystickdisplay.h
+    joystickdisplay.h \
+    crossgraph.h \
+    gamepaddisplay.h
 
 FORMS += \
     mainwindow.ui

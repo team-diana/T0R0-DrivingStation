@@ -5,6 +5,7 @@
 #include <QPainter>
 
 #include "bar.h"
+#include "crossgraph.h"
 #include "joystickhandler.h"
 
 class JoystickDisplay : public QWidget
@@ -13,15 +14,18 @@ class JoystickDisplay : public QWidget
 
 public:
     explicit JoystickDisplay(QWidget *parent = nullptr);
-    ~JoystickDisplay();
-    Bar *bar1;
+    ~JoystickDisplay() override;
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 
 private:
+    Bar *barThrottle, *barYaw;
+    CrossGraph *cGraph;
     JoystickHandler *joystickhandler;
+
+    int int16ToPerc(int16_t value);
 };
 
 #endif // JOYSTICKDISPLAY_H

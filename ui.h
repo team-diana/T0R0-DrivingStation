@@ -4,8 +4,8 @@
 #include <QKeyEvent>
 #include <QLabel>
 
-#include "bar.h"
 #include "joystickdisplay.h"
+#include "gamepaddisplay.h"
 
 class VoipVideoWidget;
 
@@ -17,7 +17,7 @@ public:
     explicit WindowUi(QWidget *parent = 0);
     ~WindowUi();
 
-    QLabel *jstick_lbl, *gamepad_lbl;
+    QLabel *dpanic_lnl;
 
 public Q_SLOTS:
     //
@@ -28,6 +28,7 @@ protected:
 private:
     void CreateUI();
     JoystickDisplay *joystickdisplay;
+    GamepadDisplay *gamepaddisplay;
 
     //Gstreamer://
     VoipVideoWidget *camera1_videoWidget;

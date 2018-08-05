@@ -21,6 +21,7 @@
 
 JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
 {
+    par = parent;
     hidType = _hidType;
 
     if (hidType == THISIS_GAMEPAD)
@@ -66,6 +67,8 @@ void JoystickHandler::run()
 {
     while (true)
     {
+        //qDebug() << " VALORE: >>>>>> " << this->getAxisValue(JOYSTICK_PITCH);
+
         // Restrict rate
         usleep(1000);
 
@@ -88,7 +91,8 @@ void JoystickHandler::run()
                 }
                 else if (event.isAxis())
                 {
-                    qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
+                    axisesValues[event.number] = event.value;
+                    //qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
 
                     switch (event.number) {
                         case GAMEPAD_L3Y:
@@ -142,7 +146,8 @@ void JoystickHandler::run()
                 }
                 else if (event.isAxis())
                 {
-                    qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
+                    axisesValues[event.number] = event.value;
+                    //qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
 
                     switch (event.number) {
                         case JOYSTICK_PITCH:
@@ -176,4 +181,26 @@ void JoystickHandler::run()
             }
         }
     }
+}
+
+int16_t JoystickHandler::getAxisValue(int axis)
+{
+    return axisesValues[axis];
+}
+
+bool JoystickHandler::getButtonState(int button)
+{
+    return buttonsState[button];
+}
+
+void JoystickHandler::putAxisValue(int axis, int16_t value)
+{
+    axisesValues[axis] = value;
+    //par->update();
+}
+
+void JoystickHandler::putButtonState(int button, bool state)
+{
+    buttonsState[button] = state;
+    //par->update();
 }

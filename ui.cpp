@@ -57,22 +57,22 @@ void WindowUi::CreateUI()
     /////////////
 
     //JOYSTICK://
-    jstick_lbl = new QLabel(this);
-    jstick_lbl->setGeometry(5, 5, 500, 50);
-    jstick_lbl->setText("TX2 is on Fire");
-    jstick_lbl->setStyleSheet( "color : white;" );
-    //////////
-
-    //JOYSTICK://
-    gamepad_lbl = new QLabel(this);
-    gamepad_lbl->setGeometry(5, 55, 500, 50);
-    gamepad_lbl->setText("Don't Panic");
-    gamepad_lbl->setStyleSheet( "color : white;" );
+    dpanic_lnl = new QLabel(this);
+    dpanic_lnl->setGeometry(0, 12, this->width(), 25);
+    dpanic_lnl->setAlignment(Qt::AlignCenter);
+    dpanic_lnl->setText("DON'T PANIC");
+    dpanic_lnl->setStyleSheet( "color : white;" );
     //////////
 
     /* ARM */
     joystickdisplay = new JoystickDisplay(this);
-    joystickdisplay->setGeometry(5, 155, 350, 350);
+    joystickdisplay->setGeometry(45, this->height()-350, 254, 273);
     //joystickdisplay->show();
+    ///////
+
+    /* ARM */
+    gamepaddisplay = new GamepadDisplay(this);
+    gamepaddisplay->setGeometry(45, this->height()-620, 110, 253);
+    //gamepaddisplay->show();
     ///////
 }
