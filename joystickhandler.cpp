@@ -92,21 +92,22 @@ void JoystickHandler::run()
                 else if (event.isAxis())
                 {
                     axisesValues[event.number] = event.value;
-                    //qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
+                    qDebug() << "Gamepad > Axis " << event.number << " is at position " << event.value;
+
 
                     switch (event.number) {
                         case GAMEPAD_L3Y:
-                            mobility_tcp->writeData16(MOTOR_FRONT_LEFT, event.value);
-                            mobility_tcp->writeData16(MOTOR_REAR_LEFT, event.value);
-                        break;
+                            mobility_tcp->writeData16(MOTOR_FRONT_LEFT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            mobility_tcp->writeData16(MOTOR_REAR_LEFT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            break;
 
                         case GAMEPAD_R3Y:
-                            mobility_tcp->writeData16(MOTOR_FRONT_RIGHT, event.value);
-                            mobility_tcp->writeData16(MOTOR_REAR_RIGHT, event.value);
-                        break;
+                            mobility_tcp->writeData16(MOTOR_FRONT_RIGHT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            mobility_tcp->writeData16(MOTOR_REAR_RIGHT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            break;
 
                         default:
-                        break;
+                            break;
                     }
                 }
             }
@@ -203,4 +204,47 @@ void JoystickHandler::putButtonState(int button, bool state)
 {
     buttonsState[button] = state;
     //par->update();
+}
+
+uint16_t JoystickHandler::inputRemap (uint16_t x, float a, float b, int c)
+{
+
+    /*
+     * To see the function
+     * Copy this on Geogebra after creating three sliders (a, b, c)
+     * Se(x < (-(1 + a)) / b, -1, (-(1 + a)) / b < x < (-a) / b, -abs((b x + a)^c), (-a) / b < x < a / b, 0, a / b < x < (1 + a) / b, (b x - a)^c, x > (1 + a) / b, 1)
+     */
+
+
+    float minFactor = a / b;
+    float maxFactor = (1+a) / b;
+
+    double ans = 0;
+    double rel = x / 32765;
+
+    if (rel < -maxFactor)
+    {
+        ans = -1;
+    }
+    else if ( rel > -maxFactor && rel < -minFactor)
+    {
+        // -abs((b x + a)^c)
+        ans = (double) pow ( (double)(-std::abs(b*rel+ a)), (double)c);
+    }
+    else if ( rel > -minFactor && rel< minFactor)
+    {
+        ans = 0;
+    }
+    else if ( rel > minFactor && rel< maxFactor)
+    {
+        ans = (double) pow ( (double)(b*rel- a), (double)c);
+    }
+    else
+    {
+        ans = 1;
+    }
+
+    // ans [-1,1]
+
+    return ans*32765;
 }
