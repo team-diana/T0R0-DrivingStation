@@ -4,16 +4,17 @@
 
 
 
-TcpHarbinger::TcpHarbinger(QWidget *parent, const char* address, int _startPort, int _nConnections)  : QThread(parent)
+TcpHarbinger::TcpHarbinger(QWidget *parent, const char* _address, int _startPort, int _nConnections)  : QThread(parent)
 {
     nConnections = _nConnections;
     startPort = _startPort;
+    address = _address;
 
     m_loop = true;
 
     // Create TCP connection for each axis
     for (int i=0; i < nConnections; i++) {
-        qDebug() << "Axis["<< i <<"]: estabilshing TCP port: [" << startPort + i << "]";
+        qDebug() << "TCP["<< i <<"]: estabilshing TCP port: [" << startPort + i << "]";
         vecClients[i] = new TcpClient(address, startPort + i);
     }
     // Initialize Axis to zero
@@ -35,16 +36,29 @@ void TcpHarbinger::run () {
     qDebug() << "TcoHarbinger: Starting Loop";
 
     while (m_loop)  // Loop -> if  m_loop = true
-    {
+    {    
         for (int i=0; i < nConnections; i++)      // Read data array and send trough TCP
         {
-            if(vecData16[i] != vecDataOld[i])
-            {
-                if (!m_wait)
+            if(!vecClients[i]->isConnected())   // If connection closed, reconnect
+                    {
+                        //delete vecClients[i];
+
+                        qDebug() << "TCP["<< i <<"]: Reconnecting TCP port: ADD: " << address << "[" << startPort + i << "]";
+                        vecClients[i] = new TcpClient(address, startPort + i);
+
+                        vecClients[i]->isConnected();
+
+
+                    }
+            else if(vecClients[i] != NULL) {      // Send data
+                if(vecData16[i] != vecDataOld[i])   // Don't resend same data
                 {
-                    vecClients[i]->send16((uint16_t) vecData16[i]);
-                    vecDataOld[i] = vecData16[i];
-                    qDebug() << "Send data " << i << " : " <<  (int) vecData16[i];
+                    if (!m_wait)
+                    {
+                        vecClients[i]->send16((uint16_t) vecData16[i]);
+                        vecDataOld[i] = vecData16[i];
+                        qDebug() << "Send data " << i << " : " <<  (int) vecData16[i];
+                    }
                 }
             }
 

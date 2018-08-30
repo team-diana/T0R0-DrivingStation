@@ -15,7 +15,7 @@ class TcpHarbinger : public QThread
     Q_OBJECT
 
 public:
-    explicit TcpHarbinger(QWidget *parent = 0, const char* address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
+    explicit TcpHarbinger(QWidget *parent = 0, const char* _address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
     ~TcpHarbinger();
 
 
@@ -39,6 +39,7 @@ private:
 
     bool m_loop;
     bool m_wait;
+    const char* address;
 };
 
 #endif // TCPHARBINGER_H
