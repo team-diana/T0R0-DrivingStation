@@ -97,13 +97,13 @@ void JoystickHandler::run()
 
                     switch (event.number) {
                         case GAMEPAD_L3Y:
-                            mobility_tcp->writeData16(MOTOR_FRONT_LEFT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
-                            mobility_tcp->writeData16(MOTOR_REAR_LEFT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            mobility_tcp->writeData16(MOTOR_FRONT_LEFT, JoystickHandler::inputRemap(event.value*0.62, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            mobility_tcp->writeData16(MOTOR_REAR_LEFT, JoystickHandler::inputRemap(event.value*0.62, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
                             break;
 
                         case GAMEPAD_R3Y:
-                            mobility_tcp->writeData16(MOTOR_FRONT_RIGHT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
-                            mobility_tcp->writeData16(MOTOR_REAR_RIGHT, JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            mobility_tcp->writeData16(MOTOR_FRONT_RIGHT, JoystickHandler::inputRemap(event.value*0.62, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
+                            mobility_tcp->writeData16(MOTOR_REAR_RIGHT, JoystickHandler::inputRemap(event.value*0.62, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
                             break;
 
                         default:
