@@ -13,10 +13,10 @@ Motor::~Motor ()
 
 int16_t readThrottle ()
 {
-    return throttle;
+    //return throttle;
 }
 
 void writeThrottle (int16_t _thrtl)
 {
-    throttle = _thrtl;
+    //throttle = _thrtl;
 }

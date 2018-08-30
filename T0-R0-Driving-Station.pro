@@ -60,38 +60,13 @@ QT += gamepad
 RESOURCES     += resources.qrc
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp \
-    ui.cpp \
-    voipvideowidget.cpp \
-    TcpClient.cpp \
-    TcpServer.cpp \
-    mathfunctions.cpp \
-    tcpharbinger.cpp \
-    joystick.cc \
-    joystickhandler.cpp \
-    bar.cpp \
-    joystickdisplay.cpp \
-    crossgraph.cpp \
-    gamepaddisplay.cpp
+    *.cpp \
+    *.cc
 
 
 HEADERS += \
-    mainwindow.h \
-    ui.h \
-    voipvideowidget.h \
-    TcpClient.h \
-    TcpServer.h \
-    config.h \
-    inputmapping.h \
-    mathfunctions.h \
-    tcpharbinger.h \
-    joystick.hh \
-    joystickhandler.h \
-    bar.h \
-    joystickdisplay.h \
-    crossgraph.h \
-    gamepaddisplay.h
+    *.h \
+    *.hh
 
 FORMS += \
     mainwindow.ui

@@ -8,7 +8,6 @@
 #include "ui.h"
 #include "config.h"
 #include "inputmapping.h"
-#include "mathfunctions.h"
 
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
