@@ -35,7 +35,7 @@ private:
     int16_t axisesValues[10];
     bool buttonsState[20];
 
-    static uint16_t inputRemap(uint16_t x, float a, float b, int c);
+    static int16_t inputRemap(int16_t x, float a, float b, int c);
 };
 
 #endif // JOYSTICKHANDLER_H

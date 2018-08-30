@@ -206,7 +206,7 @@ void JoystickHandler::putButtonState(int button, bool state)
     //par->update();
 }
 
-uint16_t JoystickHandler::inputRemap (uint16_t x, float a, float b, int c)
+int16_t JoystickHandler::inputRemap (int16_t x, float a, float b, int c)
 {
 
     /*
