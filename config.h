@@ -65,8 +65,8 @@
 //* GAMEPAD *//
 #define GAMEPAD_PATH "/dev/input/js0"
 
-#define DEATHZONE_VAL 0.07      // -val < x < val interval will give 0 as output
-#define FULLZONE_VAL  1.1        // x < -val gives -1, x > val gives 1 as output
+#define DEATHZONE_VAL 0.02      // -val < x < val interval will give 0 as output
+#define FULLZONE_VAL  1.05        // x < -val gives -1, x > val gives 1 as output
 #define LINEARITY_EXP 2         // 1 for linear input, 2 for quadratic non-linear input, 3 ...
 ///////////
 

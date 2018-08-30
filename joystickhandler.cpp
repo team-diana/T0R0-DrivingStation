@@ -220,7 +220,7 @@ int16_t JoystickHandler::inputRemap (int16_t x, float a, float b, int c)
     float maxFactor = (1+a) / b;
 
     double ans = 0;
-    double rel = x / 32765;
+    double rel = (double) ((double) x / 32768);
 
     if (rel < -maxFactor)
     {
@@ -229,7 +229,7 @@ int16_t JoystickHandler::inputRemap (int16_t x, float a, float b, int c)
     else if ( rel > -maxFactor && rel < -minFactor)
     {
         // -abs((b x + a)^c)
-        ans = (double) pow ( (double)(-std::abs(b*rel+ a)), (double)c);
+        ans = -(double) pow ( (double)(-std::abs(b*rel+ a)), (double)c);
     }
     else if ( rel > -minFactor && rel< minFactor)
     {
@@ -246,5 +246,7 @@ int16_t JoystickHandler::inputRemap (int16_t x, float a, float b, int c)
 
     // ans [-1,1]
 
-    return ans*32765;
+    qDebug() << "REMAP\t\t\t\t\t\t" << ans  << "\t\t" << rel;
+
+    return ans*32767;
 }
