@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2018-08-31
+###Fixes
+- Program could hang while waiting for TCP connection.
+
+## [0.6.0] - 2018-08-30
+### Added
+- Graphical widgets for input peripherals.
+- Input peripherals for mobility (gamepad) are remapped to improve precision and control.
+
+### Changed
+- Update TCP library
+
 ## [0.5.3] - 2018-08-05
 ### Added
 - Graphical output elements for gamepad and joystick
