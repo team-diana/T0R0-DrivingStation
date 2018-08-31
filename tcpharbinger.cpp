@@ -12,6 +12,18 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* _address, int _startPort
 
     m_loop = true;
 
+
+}
+
+TcpHarbinger::~TcpHarbinger()
+{
+    stopLoop();
+    usleep(200000);
+}
+
+void TcpHarbinger::run () {
+
+
     // Create TCP connection for each axis
     for (int i=0; i < nConnections; i++) {
         qDebug() << "TCP["<< i <<"]: estabilshing TCP port: [" << startPort + i << "]";
@@ -23,15 +35,6 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* _address, int _startPort
         vecData16[i] = 32767;
         vecDataOld[i] = 32767;
     }
-}
-
-TcpHarbinger::~TcpHarbinger()
-{
-    stopLoop();
-    usleep(200000);
-}
-
-void TcpHarbinger::run () {
 
     qDebug() << "TcoHarbinger: Starting Loop";
 
