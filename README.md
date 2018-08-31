@@ -47,6 +47,3 @@ Go to Tools/LibraryUpdater and launch:
 ```bash
 make
 ```
-
-## Note - Known Issues
-- Connect Gamepad before Joystick otherwise they can be misinterpreted.

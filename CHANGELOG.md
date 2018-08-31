@@ -5,9 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixes
+- Gamepad adn Joystick should be connected in a specific order.
 
 ## [0.6.1] - 2018-08-31
-###Fixes
+### Fixes
 - Program could hang while waiting for TCP connection.
 
 ## [0.6.0] - 2018-08-30

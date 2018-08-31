@@ -63,7 +63,8 @@
 ///////////
 
 //* GAMEPAD *//
-#define GAMEPAD_PATH "/dev/input/js0"
+#define GAMEPAD_PATH "/dev/input/by-id/usb-Logitech_Gamepad_F310_FCB8CCF-joystick"
+//#define GAMEPAD_PATH "/dev/input/js0"
 
 #define DEATHZONE_VAL 0.02      // -val < x < val interval will give 0 as output
 #define FULLZONE_VAL  1.05        // x < -val gives -1, x > val gives 1 as output
@@ -71,7 +72,8 @@
 ///////////
 
 //* JOYSTICK *//
-#define JOYSTICK_PATH "/dev/input/js1"
+#define JOYSTICK_PATH "/dev/input/by-id/usb-Logitech_Logitech_Extreme_3D-joystick"
+//#define JOYSTICK_PATH "/dev/input/js1"
 ///////////
 
 #endif // CONFIG_H
