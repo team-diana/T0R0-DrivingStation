@@ -8,8 +8,9 @@
 #include "TcpClient.h"
 #include "config.h"
 
-// nBytes = 1 or nBytes = 2 for the moment
-
+/*
+* nBytes = 1 or nBytes = 2 for the moment
+*/
 class TcpHarbinger : public QThread
 {
     Q_OBJECT
@@ -17,7 +18,6 @@ class TcpHarbinger : public QThread
 public:
     explicit TcpHarbinger(QWidget *parent = 0, const char* _address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
     ~TcpHarbinger();
-
 
     void stopLoop();        // Stop tcpLoop()
     void resume();

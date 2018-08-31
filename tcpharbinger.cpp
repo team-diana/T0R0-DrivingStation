@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-
+#define DEBUG_TCP 1
 
 TcpHarbinger::TcpHarbinger(QWidget *parent, const char* _address, int _startPort, int _nConnections)  : QThread(parent)
 {
@@ -11,8 +11,6 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* _address, int _startPort
     address = _address;
 
     m_loop = true;
-
-
 }
 
 TcpHarbinger::~TcpHarbinger()
@@ -23,10 +21,9 @@ TcpHarbinger::~TcpHarbinger()
 
 void TcpHarbinger::run () {
 
-
     // Create TCP connection for each axis
     for (int i=0; i < nConnections; i++) {
-        qDebug() << "TCP["<< i <<"]: estabilshing TCP port: [" << startPort + i << "]";
+        if (DEBUG_TCP) qDebug() << "TCP["<< i <<"]: estabilshing TCP port: [" << startPort + i << "]";
         vecClients[i] = new TcpClient(address, startPort + i);
     }
     // Initialize Axis to zero
@@ -36,22 +33,20 @@ void TcpHarbinger::run () {
         vecDataOld[i] = 32767;
     }
 
-    qDebug() << "TcoHarbinger: Starting Loop";
 
+    //* TCP LOOP *//
+    if (DEBUG_TCP) qDebug() << "TcoHarbinger: Starting Loop";
     while (m_loop)  // Loop -> if  m_loop = true
-    {    
+    {
         for (int i=0; i < nConnections; i++)      // Read data array and send trough TCP
         {
-            if(!vecClients[i]->isConnected())   // If connection closed, reconnect
+            if(!vecClients[i]->isConnected())   // If connection closed, RECONECT
                     {
-                        //delete vecClients[i];
-
-                        qDebug() << "TCP["<< i <<"]: Reconnecting TCP port: ADD: " << address << "[" << startPort + i << "]";
+                        delete vecClients[i];
+                        if (DEBUG_TCP) qDebug() << "TCP["<< i <<"]: Reconnecting TCP port: ADD: " << address << "[" << startPort + i << "]";
                         vecClients[i] = new TcpClient(address, startPort + i);
 
                         vecClients[i]->isConnected();
-
-
                     }
             else if(vecClients[i] != NULL) {      // Send data
                 if(vecData16[i] != vecDataOld[i])   // Don't resend same data
@@ -60,15 +55,14 @@ void TcpHarbinger::run () {
                     {
                         vecClients[i]->send16((uint16_t) vecData16[i]);
                         vecDataOld[i] = vecData16[i];
-                        qDebug() << "Send data " << i << " : " <<  (int) vecData16[i];
+                        if (DEBUG_TCP) qDebug() << "Send data " << i << " : " <<  (int) vecData16[i];
                     }
                 }
             }
-
         }
         usleep(100000); // Microseconds
     }
-    qDebug() << "TcoHarbinger: Loop Terminated";
+    if (DEBUG_TCP) qDebug() << "TcoHarbinger: Loop Terminated";
 }
 
 void TcpHarbinger::stopLoop()
