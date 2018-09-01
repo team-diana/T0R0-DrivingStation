@@ -6,6 +6,7 @@
 
 #include "joystickdisplay.h"
 #include "gamepaddisplay.h"
+#include "videocontrolsdisplay.h"
 
 class VoipVideoWidget;
 
@@ -33,6 +34,11 @@ private:
     //Gstreamer://
     VoipVideoWidget *camera1_videoWidget;
     //////////////
+
+    QComboBox *menuVideo;
+    QPushButton *videoSwitchButton;
+
+    VideoControlsDisplay *videoControlsDisplay;
 };
 
 #endif // UI_H

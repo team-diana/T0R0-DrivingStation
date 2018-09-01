@@ -20,7 +20,6 @@ WindowUi::WindowUi(QWidget *parent) : QWidget(parent)
     qDebug() << "\nVideo started successfully\n";
     /////////////
 
-
 }
 
 WindowUi::~WindowUi(){
@@ -75,4 +74,8 @@ void WindowUi::CreateUI()
     gamepaddisplay->setGeometry(45, this->height()-620, 110, 253);
     //gamepaddisplay->show();
     ///////
+
+    // Video Controls Display
+    videoControlsDisplay = new VideoControlsDisplay(this);
+    videoControlsDisplay->setGeometry(VIDEO_CONTROLS_DISPLAY_POSX, VIDEO_CONTROLS_DISPLAY_POSY, VIDEO_CONTROLS_DISPLAY_WIDTH+2, VIDEO_CONTROLS_DISPLAY_HEIGHT+2);
 }

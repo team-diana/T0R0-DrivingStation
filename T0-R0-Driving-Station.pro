@@ -44,7 +44,7 @@ contains(QT_VERSION, ^5\\..*) {
 
 # Recommended, to avoid possible issues with the "emit" keyword
 # You can otherwise also define QT_NO_EMIT, but notice that this is not a documented Qt macro.
-DEFINES += QT_NO_KEYWORDS
+#DEFINES += QT_NO_KEYWORDS
 
 # link against QtDeclarative and QtOpenGL
 #QT += declarative opengl
@@ -62,7 +62,6 @@ RESOURCES     += resources.qrc
 SOURCES += \
     *.cpp \
     *.cc
-
 
 HEADERS += \
     *.h \
