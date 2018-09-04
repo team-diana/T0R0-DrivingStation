@@ -5,9 +5,10 @@
 #include <QPainter>
 #include <QComboBox>
 #include <QPushButton>
+#include <QMqttClient>
 
 #define VIDEO_CONTROLS_DISPLAY_POSX  1500
-#define VIDEO_CONTROLS_DISPLAY_POSY   700
+#define VIDEO_CONTROLS_DISPLAY_POSY   240
 #define VIDEO_CONTROLS_DISPLAY_WIDTH  220
 #define VIDEO_CONTROLS_DISPLAY_HEIGHT 285
 
@@ -32,9 +33,13 @@ public Q_SLOTS:
     void cvisionPanelActivation();
 
 private:
+    QMqttClient *camera_MQTTClient;
+
     QComboBox *menuVideo;
     QPushButton *zedRSwitchRequestButton, *zedLSwitchRequestButton, *turretCameraSwitchRequestButton, *armCameraSwitchRequestButton;
     QPushButton *cvisionCacheRecognitionButton, *cvisionPanelRecognitionButton;
+
+    void  checkOrReconnect();
 };
 
 #endif // VIDEOCONTROLSDISPLAY_H

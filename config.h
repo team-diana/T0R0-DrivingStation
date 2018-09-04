@@ -20,6 +20,11 @@
 //#define IP_MISSIONCONTROL "127.0.0.1"
 ///////////
 
+//* Broker MQTT *//
+#define MQTT_BROKER_IP      "10.0.0.83"
+#define MQTT_BROKER_PORT    1883
+///////////
+
 //* MOTORS *//
 #define PORT_MOTORS_START 50100
 #define N_MOTORS 4
