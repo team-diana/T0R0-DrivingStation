@@ -68,7 +68,7 @@
 ///////////
 
 //* GAMEPAD *//
-#define GAMEPAD_PATH "/dev/input/by-id/usb-Logitech_Gamepad_F310_FCB8CCF-joystick"
+#define GAMEPAD_PATH "/dev/input/by-id/usb-Logitech_Gamepad_F310_FCB8CC3F-joystick"
 //#define GAMEPAD_PATH "/dev/input/js0"
 
 #define DEATHZONE_VAL 0.02      // -val < x < val interval will give 0 as output

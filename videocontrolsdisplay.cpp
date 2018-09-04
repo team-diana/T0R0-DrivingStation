@@ -1,6 +1,8 @@
 #include "videocontrolsdisplay.h"
+#include "config.h"
 
 #include <QDebug>
+#include <QtCore/QDateTime>
 
 VideoControlsDisplay::VideoControlsDisplay(QWidget *parent) : QWidget(parent)
 {
@@ -8,6 +10,8 @@ VideoControlsDisplay::VideoControlsDisplay(QWidget *parent) : QWidget(parent)
     camera_MQTTClient->setHostname(MQTT_BROKER_IP);
     camera_MQTTClient->setPort(MQTT_BROKER_PORT);
     camera_MQTTClient->connectToHost();
+
+    connect(camera_MQTTClient, SIGNAL (stateChanged()), this, SLOT (checkOrReconnect();));
 }
 
 void VideoControlsDisplay::paintEvent(QPaintEvent *)
@@ -69,36 +73,32 @@ void VideoControlsDisplay::zedLeftSwitchRequest()
 {
     qDebug() << "zedLeftSwitchRequest";
     checkOrReconnect();
-    camera_MQTTClient->publish();
 
-    camera_MQTTClient->publish(QString("cam/zedL"), QString("1").toUtf8();
+    camera_MQTTClient->publish(QString("cam/zedL"), QString("1").toUtf8());
 }
 
 void VideoControlsDisplay::zedRightSwitchRequest()
 {
     qDebug() << "zedRightSwitchRequest";
     checkOrReconnect();
-    camera_MQTTClient->publish();
 
-    camera_MQTTClient->publish(QString("cam/zedR"), QString("1").toUtf8();
+    camera_MQTTClient->publish(QString("cam/zedR"), QString("1").toUtf8());
 }
 
 void VideoControlsDisplay::turretCameraSwitchRequest()
 {
     qDebug() << "turretCameraSwitchRequest";
     checkOrReconnect();
-    camera_MQTTClient->publish();
 
-    camera_MQTTClient->publish(QString("cam/turret"), QString("1").toUtf8();
+    camera_MQTTClient->publish(QString("cam/turret"), QString("1").toUtf8());
 }
 
 void VideoControlsDisplay::armCameraSwitchRequest()
 {
     qDebug() << "armCameraSwitchRequest";
     checkOrReconnect();
-    camera_MQTTClient->publish();
 
-    camera_MQTTClient->publish(QString("cam/arm"), QString("1").toUtf8();
+    camera_MQTTClient->publish(QString("cam/arm"), QString("1").toUtf8());
 }
 
 
@@ -106,23 +106,21 @@ void VideoControlsDisplay::cvisionCacheActivation()
 {
     qDebug() << "cvisionCacheActivation";
     checkOrReconnect();
-    camera_MQTTClient->publish();
 
-    camera_MQTTClient->publish(QString("cv/cache"), QString("1").toUtf8();
+    camera_MQTTClient->publish(QString("cv/cache"), QString("1").toUtf8());
 }
 
 void VideoControlsDisplay::cvisionPanelActivation()
 {
     qDebug() << "cvisionPanelActivation";
     checkOrReconnect();
-    camera_MQTTClient->publish();
 
-    camera_MQTTClient->publish(QString("cv/panel"), QString("1").toUtf8();
+    camera_MQTTClient->publish(QString("cv/panel"), QString("1").toUtf8());
 }
 
 void VideoControlsDisplay::checkOrReconnect()
 {
-    if (!camera_MQTTClient->isConnected())
+    if (camera_MQTTClient->state() == 0)
     {
         qDebug() << "MQTT cameras: Reconnecting";
         camera_MQTTClient->connectToHost();
