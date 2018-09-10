@@ -9,7 +9,7 @@
 #include <QtGamepad/QGamepad>
 
 #include "TcpClient.h"
-#include "tcpharbinger.h"
+#include "tcpclientharbinger.h"
 #include "joystickhandler.h"
 
 #define XPOS_BATTGROUP 0

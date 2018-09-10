@@ -6,7 +6,7 @@
 #include <QPaintEvent>
 
 #include "joystick.hh"
-#include "tcpharbinger.h"
+#include "tcpclientharbinger.h"
 #include "bar.h"
 
 class JoystickHandler : public QThread
@@ -27,7 +27,7 @@ private:
     QWidget *par;
     int hidType;
     Joystick *joystick;
-    TcpHarbinger *arm_tcp, *mobility_tcp;
+    TcpClientHarbinger *arm_tcp, *mobility_tcp;
 
     void putAxisValue(int axis, int16_t value);
     void putButtonState(int button, bool state);

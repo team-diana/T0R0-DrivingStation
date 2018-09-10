@@ -40,7 +40,7 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
         }
         else qDebug() << "Gamepad: opened successfully";
 
-        mobility_tcp = new TcpHarbinger(nullptr, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
+        mobility_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
         mobility_tcp->start();
     }
 
@@ -56,7 +56,7 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
         }
         else qDebug() << "Joystick: opened successfully";
 
-        arm_tcp = new TcpHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
+        arm_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
         arm_tcp->start();
     }
 }

@@ -1,10 +1,10 @@
-#include "tcpharbinger.h"
+#include "tcpclientharbinger.h"
 
 #include <QDebug>
 
 #define DEBUG_TCP 1
 
-TcpHarbinger::TcpHarbinger(QWidget *parent, const char* _address, int _startPort, int _nConnections)  : QThread(parent)
+TcpClientHarbinger::TcpClientHarbinger(QWidget *parent, const char* _address, int _startPort, int _nConnections)  : QThread(parent)
 {
     nConnections = _nConnections;
     startPort = _startPort;
@@ -13,13 +13,13 @@ TcpHarbinger::TcpHarbinger(QWidget *parent, const char* _address, int _startPort
     m_loop = true;
 }
 
-TcpHarbinger::~TcpHarbinger()
+TcpClientHarbinger::~TcpClientHarbinger()
 {
     stopLoop();
     usleep(200000);
 }
 
-void TcpHarbinger::run () {
+void TcpClientHarbinger::run () {
 
     // Create TCP connection for each axis
     for (int i=0; i < nConnections; i++) {
@@ -65,22 +65,22 @@ void TcpHarbinger::run () {
     if (DEBUG_TCP) qDebug() << "TcoHarbinger: Loop Terminated";
 }
 
-void TcpHarbinger::stopLoop()
+void TcpClientHarbinger::stopLoop()
 {
   m_loop = false;
 }
 
-void TcpHarbinger::resume()
+void TcpClientHarbinger::resume()
 {
   m_wait = false;
 }
 
-void TcpHarbinger::suspend()
+void TcpClientHarbinger::suspend()
 {
   m_wait = true;
 }
 
-int TcpHarbinger::writeData16 (int connectionId, int16_t value)
+int TcpClientHarbinger::writeData16 (int connectionId, int16_t value)
 {
   int retStatus = 0;
   if (connectionId < nConnections && connectionId >= 0)
@@ -91,7 +91,7 @@ int TcpHarbinger::writeData16 (int connectionId, int16_t value)
   return retStatus; // return 0 if OK, -1 if problem is encuntered
 }
 
-int16_t TcpHarbinger::readLastAxisValue (int axis)
+int16_t TcpClientHarbinger::readLastAxisValue (int axis)
 {
     return (int16_t) vecData16[axis] - 32768;
 }
