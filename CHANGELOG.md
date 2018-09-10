@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2018-08-31
+### Fixed
+- TCP client could make the program hang while reconnecting.
+
+## [0.6.0] - 2018-08-30
+### Added
+- TCP reconnection in case of disconnection.
+
+### Changed
+- Update TCP library.
+- Joystick controls precision improved for mobility.
+- Range for mobility has been limited.
+
+### Fixed
+- Input remaping for input peripherals.
+
 ## [0.5.3] - 2018-08-05
 ### Added
 - Graphical output elements for gamepad and joystick
