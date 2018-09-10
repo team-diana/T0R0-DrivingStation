@@ -1,5 +1,5 @@
-#ifndef TCPHARBINGER_H
-#define TCPHARBINGER_H
+#ifndef TCPCLIENTHARBINGER_H
+#define TCPCLIENTHARBINGER_H
 
 #include <QObject>
 #include <QWidget>
@@ -11,13 +11,13 @@
 /*
 * nBytes = 1 or nBytes = 2 for the moment
 */
-class TcpHarbinger : public QThread
+class TcpClientHarbinger : public QThread
 {
     Q_OBJECT
 
 public:
-    explicit TcpHarbinger(QWidget *parent = 0, const char* _address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
-    ~TcpHarbinger();
+    explicit TcpClientHarbinger(QWidget *parent = 0, const char* _address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
+    ~TcpClientHarbinger();
 
     void stopLoop();        // Stop tcpLoop()
     void resume();
@@ -42,4 +42,4 @@ private:
     const char* address;
 };
 
-#endif // TCPHARBINGER_H
+#endif // TCPCLIENTHARBINGER_H
