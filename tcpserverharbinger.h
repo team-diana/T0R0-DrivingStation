@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QThread>
 
-#include "TcpClient.h"
+#include "TcpServer.h"
 #include "config.h"
 
 /*
@@ -16,7 +16,7 @@ class TcpServerHarbinger : public QThread
     Q_OBJECT
 
 public:
-    explicit TcpServerHarbinger(QWidget *parent = 0, const char* _address = "127.0.0.1", int startPort = 8080, int _nConnections = 1);
+    explicit TcpServerHarbinger(QWidget *parent = 0, int startPort = 8080, int _nConnections = 1);
     ~TcpServerHarbinger();
 
     void stopLoop();        // Stop tcpLoop()
@@ -33,7 +33,7 @@ protected:
 private:
     int nConnections, startPort;
 
-    TcpClient *vecServer[10];
+    TcpServer *vecServer[10];
 
     uint16_t  vecData16[10];
 
