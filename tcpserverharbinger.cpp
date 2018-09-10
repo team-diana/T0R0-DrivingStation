@@ -37,7 +37,7 @@ void TcpServerHarbinger::run () {
         {
             if(vecServer[i]->newDataAvailable())   // If connection closed, RECONECT
             {
-                if (DEBUG_TCP) qDebug() << "TCP Server["<< i <<"]: Reading data on TCP port: ADD: " << address << "[" << startPort + i << "]";
+                if (DEBUG_TCP) qDebug() << "TCP Server["<< i <<"]: Reading data on TCP port: [" << startPort + i << "]";
                 vecData16[i] = vecServer[i]->readLast16();
             }
         }
