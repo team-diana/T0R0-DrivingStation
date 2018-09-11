@@ -4,6 +4,7 @@
 #include <QThread>
 #include <unistd.h>
 #include <QPaintEvent>
+#include <QQuaternion>
 
 #include "joystick.hh"
 #include "tcpclientharbinger.h"
@@ -28,6 +29,10 @@ private:
     int hidType;
     Joystick *joystick;
     TcpClientHarbinger *arm_tcp, *mobility_tcp;
+
+    int inverseKinematicMode;
+    int verticalPlaneMode;
+    int16_t dJPitch, dJRoll, dJYaw, dJZ;
 
     void putAxisValue(int axis, int16_t value);
     void putButtonState(int button, bool state);
