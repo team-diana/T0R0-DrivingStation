@@ -28,7 +28,7 @@ private:
     QWidget *par;
     int hidType;
     Joystick *joystick;
-    TcpClientHarbinger *arm_tcp, *mobility_tcp;
+    TcpClientHarbinger *arm_tcp, *mobility_tcp, *turretCam_tcp, *armCam_tcp;
 
     int inverseKinematicMode;
     int verticalPlaneMode;

@@ -16,12 +16,12 @@
 ///////////
 
 //* IPs *//
-#define IP_ROVER "10.0.0.105"
+#define IP_ROVER "10.0.0.10"
 //#define IP_MISSIONCONTROL "127.0.0.1"
 ///////////
 
 //* Broker MQTT *//
-#define MQTT_BROKER_IP      "10.0.0.83"
+#define MQTT_BROKER_IP      "10.0.0.13"
 #define MQTT_BROKER_PORT    1883
 ///////////
 
@@ -51,6 +51,14 @@
 #define ARM_WRIST_BEND   4
 #define ARM_WRIST_ROT2   5
 #define ARM_PINCH        6
+///////////
+
+//* PORTS FOR TURRET CAMERA *//
+#define PORT_TURRET_CAM_START   50180
+#define TURRET_CAM_N_AXIS  2
+
+#define TURRET_CAM_PAN  0
+#define TURRET_CAM_TILT 1
 ///////////
 
 //* PORTS FROM MISSION CONTROL *//

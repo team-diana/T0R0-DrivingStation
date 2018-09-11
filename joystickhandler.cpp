@@ -19,7 +19,7 @@
 #include "config.h"
 #include "inputmapping.h"
 
-#define DEBUG_GAMEPAD 0
+#define DEBUG_GAMEPAD 1
 #define DEBUG_JOYSTICK 0
 #define DEBUG_REMAP 0
 
@@ -45,6 +45,9 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
 
         mobility_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_MOTORS_START, N_MOTORS);
         mobility_tcp->start();
+
+        turretCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_TURRET_CAM_START, TURRET_CAM_N_AXIS);
+        turretCam_tcp->start();
     }
 
     else if (hidType == THISIS_JOYSTICK)
@@ -61,6 +64,11 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
 
         arm_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
         arm_tcp->start();
+
+        /* ARM CAMERA init
+        armCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
+        armCam_tcp->start();
+        /**/
     }
 }
 
@@ -91,17 +99,12 @@ void JoystickHandler::run()
 
                     switch (event.number)
                     {
-                        case JOYSTICK_FIRE:
-                        if (event.value == 0) verticalPlaneMode = 0;
-                        else verticalPlaneMode = 1;
+                        case GAMEPAD_L2:
+                        if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -1);
                         break;
 
-                        case JOYSTICK_3:
-                        inverseKinematicMode = 0;
-                        break;
-
-                        case JOYSTICK_4:
-                        inverseKinematicMode = 1;
+                        case GAMEPAD_R2:
+                        if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -1);
                         break;
 
                         default:
@@ -126,6 +129,18 @@ void JoystickHandler::run()
                         mobility_tcp->writeData16(MOTOR_REAR_RIGHT, 0.62*JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
                         break;
 
+                        // PAN L1-R!
+                        // TILT L2-R2
+                        //*TURRET CAMERA
+                        case GAMEPAD_L1:
+                        turretCam_tcp->writeData16(TURRET_CAM_PAN, 1);
+                        break;
+
+                        case GAMEPAD_R1:
+                        turretCam_tcp->writeData16(TURRET_CAM_PAN, 1);
+                        break;
+                        /**/
+
                         default:
                         break;
                     }
@@ -134,97 +149,111 @@ void JoystickHandler::run()
                 }
             }
         }
-    }
-    else if (hidType == THISIS_JOYSTICK)       ///// >>> JOYSTICK
-    {
-        if (joystick->sample(&event))
+
+        else if (hidType == THISIS_JOYSTICK)       ///// >>> JOYSTICK
         {
-            if (event.isButton())
+            if (joystick->sample(&event))
             {
-                if (DEBUG_JOYSTICK) qDebug() << "Joystick > Button " << event.number << " is " << (event.value == 0 ? "up" : "down");
-
-
-                switch (event.number) {
-                    // First wrist rotary gear
-                    case JOYSTICK_3:
-                    if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, -32768);
-                    else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
-                    break;
-
-                    case JOYSTICK_4:
-                    if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, 32767);
-                    else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
-                    break;
-
-                    // Second wrist rotary gear
-                    case JOYSTICK_5:
-                    if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, -32768);
-                    else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
-                    break;
-
-                    case JOYSTICK_6:
-                    if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, 32767);
-                    else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
-                    break;
-                }
-
-            }
-            else if (event.isAxis())
-            {
-                axisesValues[event.number] = event.value;
-                if (DEBUG_JOYSTICK) qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
-                if (inverseKinematicMode == 0)         // DIRECT KINEMATICS MODE ON
+                if (event.isButton())
                 {
+                    if (DEBUG_JOYSTICK) qDebug() << "Joystick > Button " << event.number << " is " << (event.value == 0 ? "up" : "down");
+
+
                     switch (event.number) {
-                        case JOYSTICK_PITCH:
-                        arm_tcp->writeData16(ARM_SHOULDER, event.value);
-                        //bar1->setPerc(event.value);
+                        // First wrist rotary gear
+                        case JOYSTICK_3:
+                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, -32768);
+                        else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
                         break;
 
-                        case JOYSTICK_ROLL:
-                        arm_tcp->writeData16(ARM_ELBOW, event.value);
+                        case JOYSTICK_4:
+                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, 32767);
+                        else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
                         break;
 
-                        case JOYSTICK_YAW:
-                        arm_tcp->writeData16(ARM_SLEAWINGGEAR, event.value);
+                        // Second wrist rotary gear
+                        case JOYSTICK_5:
+                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, -32768);
+                        else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
                         break;
 
-                        case JOYSTICK_THROTTLE:
-                        if      (event.value < -30000) arm_tcp->writeData16(ARM_PINCH, -32768);
-                        else if (event.value >  30000) arm_tcp->writeData16(ARM_PINCH,  32767);
-                        else                           arm_tcp->writeData16(ARM_PINCH,      0);
+                        case JOYSTICK_6:
+                        if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, 32767);
+                        else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
                         break;
 
-                        case JOYSTICK_ARROWLR:
-                        arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                        case JOYSTICK_FIRE:
+                        if (event.value == 0) verticalPlaneMode = 0;
+                        else verticalPlaneMode = 1;
                         break;
 
-                        case JOYSTICK_ARROWUD:
-                        arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
-                        break;
-                    }
-                }
-
-                else                                   // INVERSE KINEMATICS MODE ON
-                {
-                    // Get value from axis and update instance
-                    switch (event.number) {
-                        case JOYSTICL_PITCH:
-                        if (verticalPlaneMode == 1) dJZ=event.value;
-                        else dJPitch = event.value;
+                        case JOYSTICK_11:
+                        inverseKinematicMode = 0;
                         break;
 
-                        case JOYSTICL_ROLL:
-                        dJRoll = event.value;
-                        break;
-
-                        case JOYSTICL_YAW:
-                        dJYaw = event.value;
+                        case JOYSTICK_12:
+                        inverseKinematicMode = 1;
                         break;
                     }
 
-                    // Compute and send
-                    
+                }
+                else if (event.isAxis())
+                {
+                    axisesValues[event.number] = event.value;
+                    if (DEBUG_JOYSTICK) qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
+                    if (inverseKinematicMode == 0)         // DIRECT KINEMATICS MODE ON
+                    {
+                        switch (event.number) {
+                            case JOYSTICK_PITCH:
+                            arm_tcp->writeData16(ARM_SHOULDER, event.value);
+                            //bar1->setPerc(event.value);
+                            break;
+
+                            case JOYSTICK_ROLL:
+                            arm_tcp->writeData16(ARM_ELBOW, event.value);
+                            break;
+
+                            case JOYSTICK_YAW:
+                            arm_tcp->writeData16(ARM_SLEAWINGGEAR, event.value);
+                            break;
+
+                            case JOYSTICK_THROTTLE:
+                            if      (event.value < -30000) arm_tcp->writeData16(ARM_PINCH, -32768);
+                            else if (event.value >  30000) arm_tcp->writeData16(ARM_PINCH,  32767);
+                            else                           arm_tcp->writeData16(ARM_PINCH,      0);
+                            break;
+
+                            case JOYSTICK_ARROWLR:
+                            arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                            break;
+
+                            case JOYSTICK_ARROWUD:
+                            arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                            break;
+                        }
+                    }
+
+                    else                                   // INVERSE KINEMATICS MODE ON
+                    {
+                        // Get value from axis and update instance
+                        switch (event.number) {
+                            case JOYSTICK_PITCH:
+                            if (verticalPlaneMode == 1) dJZ=event.value;
+                            else dJPitch = event.value;
+                            break;
+
+                            case JOYSTICK_ROLL:
+                            dJRoll = event.value;
+                            break;
+
+                            case JOYSTICK_YAW:
+                            dJYaw = event.value;
+                            break;
+                        }
+
+                        // Compute and send
+
+                    }
                 }
             }
         }
