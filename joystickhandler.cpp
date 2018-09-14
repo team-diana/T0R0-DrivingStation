@@ -48,6 +48,9 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
 
         turretCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_TURRET_CAM_START, TURRET_CAM_N_AXIS);
         turretCam_tcp->start();
+
+        armCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_CAM_START, ARM_CAM_N_AXIS);
+        armCam_tcp->start();
     }
 
     else if (hidType == THISIS_JOYSTICK)
@@ -187,12 +190,20 @@ void JoystickHandler::run()
                         else verticalPlaneMode = 1;
                         break;
 
+                        case JOYSTICK_9:
+                        armCam_tcp->writeData16(ARM_CAM_TOP, 32767);
+                        break;
+
+                        case JOYSTICK_10:
+                        armCam_tcp->writeData16(ARM_CAM_TOP, -32768);
+                        break;
+
                         case JOYSTICK_11:
-                        inverseKinematicMode = 0;
+                        armCam_tcp->writeData16(ARM_CAM_BOTTOM, 32767);
                         break;
 
                         case JOYSTICK_12:
-                        //inverseKinematicMode = 1;
+                        armCam_tcp->writeData16(ARM_CAM_BOTTOM, -32768);
                         break;
                     }
 

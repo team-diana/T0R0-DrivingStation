@@ -61,6 +61,14 @@
 #define TURRET_CAM_TILT 1
 ///////////
 
+//* PORTS FOR ARM CAMERA *//
+#define PORT_ARM_CAM_START   50190
+#define ARM_CAM_N_AXIS  2
+
+#define ARM_CAM_BOTTOM  0
+#define ARM_CAM_TOP     1
+///////////
+
 //* PORTS FROM MISSION CONTROL *//
 #define PORT_MOBILITYCONTROLS_ACK 50050
 ///////////
