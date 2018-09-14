@@ -11,7 +11,7 @@ VideoControlsDisplay::VideoControlsDisplay(QWidget *parent) : QWidget(parent)
     camera_MQTTClient->setPort(MQTT_BROKER_PORT);
     camera_MQTTClient->connectToHost();
 
-    connect(camera_MQTTClient, SIGNAL (stateChanged()), this, SLOT (checkOrReconnect();));
+    connect(camera_MQTTClient, SIGNAL (stateChanged()), this, SLOT (checkOrReconnect()));
 }
 
 void VideoControlsDisplay::paintEvent(QPaintEvent *)
