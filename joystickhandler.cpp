@@ -48,9 +48,6 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
 
         turretCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_TURRET_CAM_START, TURRET_CAM_N_AXIS);
         turretCam_tcp->start();
-
-        armCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_CAM_START, ARM_CAM_N_AXIS);
-        armCam_tcp->start();
     }
 
     else if (hidType == THISIS_JOYSTICK)
@@ -68,7 +65,7 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
         arm_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
         arm_tcp->start();
 
-        /* ARM CAMERA init
+        //* ARM CAMERA init
         armCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
         armCam_tcp->start();
         /**/
