@@ -192,7 +192,7 @@ void JoystickHandler::run()
                         break;
 
                         case JOYSTICK_12:
-                        inverseKinematicMode = 1;
+                        //inverseKinematicMode = 1;
                         break;
                     }
 
@@ -201,6 +201,7 @@ void JoystickHandler::run()
                 {
                     axisesValues[event.number] = event.value;
                     if (DEBUG_JOYSTICK) qDebug() << "Joystick > Axis " << event.number << " is at position " << event.value;
+                    inverseKinematicMode=0; // TEST
                     if (inverseKinematicMode == 0)         // DIRECT KINEMATICS MODE ON
                     {
                         switch (event.number) {
