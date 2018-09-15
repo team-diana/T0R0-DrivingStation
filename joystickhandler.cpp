@@ -99,15 +99,15 @@ void JoystickHandler::run()
 
                     switch (event.number)
                     {
-                        case GAMEPAD_L2:
+                    case GAMEPAD_L2:
                         if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -32768);
                         break;
 
-                        case GAMEPAD_R2:
+                    case GAMEPAD_R2:
                         if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -32768);
                         break;
 
-                        default:
+                    default:
                         break;
                     }
                 }
@@ -119,12 +119,12 @@ void JoystickHandler::run()
 
 
                     switch (event.number) {
-                        case GAMEPAD_L3Y:
+                    case GAMEPAD_L3Y:
                         mobility_tcp->writeData16(MOTOR_FRONT_LEFT, 0.62*JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
                         mobility_tcp->writeData16(MOTOR_REAR_LEFT, 0.62*JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
                         break;
 
-                        case GAMEPAD_R3Y:
+                    case GAMEPAD_R3Y:
                         mobility_tcp->writeData16(MOTOR_FRONT_RIGHT, 0.62*JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
                         mobility_tcp->writeData16(MOTOR_REAR_RIGHT, 0.62*JoystickHandler::inputRemap(event.value, DEATHZONE_VAL, FULLZONE_VAL, LINEARITY_EXP));
                         break;
@@ -132,16 +132,16 @@ void JoystickHandler::run()
                         // PAN L1-R!
                         // TILT L2-R2
                         //*TURRET CAMERA
-                        case GAMEPAD_L1:
+                    case GAMEPAD_L1:
                         turretCam_tcp->writeData16(TURRET_CAM_PAN, 32767);
                         break;
 
-                        case GAMEPAD_R1:
+                    case GAMEPAD_R1:
                         turretCam_tcp->writeData16(TURRET_CAM_PAN, 32767);
                         break;
                         /**/
 
-                        default:
+                    default:
                         break;
                     }
 
@@ -160,47 +160,51 @@ void JoystickHandler::run()
 
 
                     switch (event.number) {
-                        // First wrist rotary gear
-                        case JOYSTICK_3:
+                    // First wrist rotary gear
+                    case JOYSTICK_3:
                         if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, -32768);
                         else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
                         break;
 
-                        case JOYSTICK_4:
+                    case JOYSTICK_4:
                         if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT1, 32767);
                         else         arm_tcp->writeData16(ARM_WRIST_ROT1, 0);
                         break;
 
                         // Second wrist rotary gear
-                        case JOYSTICK_5:
+                    case JOYSTICK_5:
                         if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, -32768);
                         else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
-                        break;
+                        break;w
 
-                        case JOYSTICK_6:
+                    case JOYSTICK_6:
                         if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, 32767);
                         else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
                         break;
 
-                        case JOYSTICK_FIRE:
+                    case JOYSTICK_FIRE:
                         if (event.value == 0) verticalPlaneMode = 0;
                         else verticalPlaneMode = 1;
                         break;
 
-                        case JOYSTICK_9:
-                        armCam_tcp->writeData16(ARM_CAM_TOP, 32767);
+                    case JOYSTICK_9:
+                        if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_TOP, 32767);
+                        else armCam_tcp->writeData16(ARM_CAM_TOP, 0);
                         break;
 
-                        case JOYSTICK_10:
-                        armCam_tcp->writeData16(ARM_CAM_TOP, -32768);
+                    case JOYSTICK_10:
+                        if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_TOP, -32768);
+                        else armCam_tcp->writeData16(ARM_CAM_TOP, 0);
                         break;
 
-                        case JOYSTICK_11:
-                        armCam_tcp->writeData16(ARM_CAM_BOTTOM, 32767);
+                    case JOYSTICK_11:
+                        if (event.value == 1)  armCam_tcp->writeData16(ARM_CAM_BOTTOM, 32767);
+                        else armCam_tcp->writeData16(ARM_CAM_BOTTOM, 0);
                         break;
 
-                        case JOYSTICK_12:
-                        armCam_tcp->writeData16(ARM_CAM_BOTTOM, -32768);
+                    case JOYSTICK_12:
+                        if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_BOTTOM, -32768);
+                        else armCam_tcp->writeData16(ARM_CAM_BOTTOM, 0);
                         break;
                     }
 
@@ -213,31 +217,33 @@ void JoystickHandler::run()
                     if (inverseKinematicMode == 0)         // DIRECT KINEMATICS MODE ON
                     {
                         switch (event.number) {
-                            case JOYSTICK_PITCH:
+                        case JOYSTICK_PITCH:
                             arm_tcp->writeData16(ARM_SHOULDER, event.value);
                             //bar1->setPerc(event.value);
                             break;
 
-                            case JOYSTICK_ROLL:
+                        case JOYSTICK_ROLL:
                             arm_tcp->writeData16(ARM_ELBOW, event.value);
                             break;
 
-                            case JOYSTICK_YAW:
+                        case JOYSTICK_YAW:
                             arm_tcp->writeData16(ARM_SLEAWINGGEAR, event.value);
                             break;
 
-                            case JOYSTICK_THROTTLE:
+                        case JOYSTICK_THROTTLE:
                             if      (event.value < -30000) arm_tcp->writeData16(ARM_PINCH, -32768);
                             else if (event.value >  30000) arm_tcp->writeData16(ARM_PINCH,  32767);
                             else                           arm_tcp->writeData16(ARM_PINCH,      0);
                             break;
 
-                            case JOYSTICK_ARROWLR:
+                        case JOYSTICK_ARROWLR:
                             arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                            qDebug() << "Wrist " << event.value;
                             break;
 
-                            case JOYSTICK_ARROWUD:
+                        case JOYSTICK_ARROWUD:
                             arm_tcp->writeData16(ARM_WRIST_BEND, event.value);
+                            qDebug() << "Wrist " << event.value;
                             break;
                         }
                     }
@@ -246,16 +252,16 @@ void JoystickHandler::run()
                     {
                         // Get value from axis and update instance
                         switch (event.number) {
-                            case JOYSTICK_PITCH:
+                        case JOYSTICK_PITCH:
                             if (verticalPlaneMode == 1) dJZ=event.value;
                             else dJPitch = event.value;
                             break;
 
-                            case JOYSTICK_ROLL:
+                        case JOYSTICK_ROLL:
                             dJRoll = event.value;
                             break;
 
-                            case JOYSTICK_YAW:
+                        case JOYSTICK_YAW:
                             dJYaw = event.value;
                             break;
                         }
