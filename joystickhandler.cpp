@@ -175,7 +175,7 @@ void JoystickHandler::run()
                     case JOYSTICK_5:
                         if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, -32768);
                         else         arm_tcp->writeData16(ARM_WRIST_ROT2, 0);
-                        break;w
+                        break;
 
                     case JOYSTICK_6:
                         if (event.value) arm_tcp->writeData16(ARM_WRIST_ROT2, 32767);
