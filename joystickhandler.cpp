@@ -66,7 +66,7 @@ JoystickHandler::JoystickHandler(QWidget *parent, int _hidType) : QThread()
         arm_tcp->start();
 
         //* ARM CAMERA init
-        armCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_START, ARM_N_ACTUATORS);
+        armCam_tcp = new TcpClientHarbinger(nullptr, IP_ROVER, PORT_ARM_CAM_START, ARM_CAM_N_AXIS);
         armCam_tcp->start();
         /**/
     }
