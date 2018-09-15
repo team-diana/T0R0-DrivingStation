@@ -3,7 +3,7 @@
 
 #include <QDebug>
 
-#define DEBUG_TCP 1
+#define DEBUG_TCP 0
 
 TcpServerHarbinger::TcpServerHarbinger(QWidget *parent, int _startPort, int _nConnections)  : QThread(parent)
 {
