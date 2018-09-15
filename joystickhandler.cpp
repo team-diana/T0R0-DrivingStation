@@ -100,11 +100,11 @@ void JoystickHandler::run()
                     switch (event.number)
                     {
                         case GAMEPAD_L2:
-                        if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -1);
+                        if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -32768);
                         break;
 
                         case GAMEPAD_R2:
-                        if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -1);
+                        if (event.value == 0) turretCam_tcp->writeData16(TURRET_CAM_PAN, -32768);
                         break;
 
                         default:
@@ -133,11 +133,11 @@ void JoystickHandler::run()
                         // TILT L2-R2
                         //*TURRET CAMERA
                         case GAMEPAD_L1:
-                        turretCam_tcp->writeData16(TURRET_CAM_PAN, 1);
+                        turretCam_tcp->writeData16(TURRET_CAM_PAN, 32767);
                         break;
 
                         case GAMEPAD_R1:
-                        turretCam_tcp->writeData16(TURRET_CAM_PAN, 1);
+                        turretCam_tcp->writeData16(TURRET_CAM_PAN, 32767);
                         break;
                         /**/
 
