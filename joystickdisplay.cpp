@@ -27,7 +27,7 @@ void JoystickDisplay::paintEvent(QPaintEvent *)
     barThrottle->setGeometry(234, 25, 13, 221);
     barThrottle->show();
 
-    barThrottle->setPerc(joystickhandler->getAxisValue(JOYSTICK_THROTTLE));
+    barThrottle->setPerc(int16ToPerc(joystickhandler->getAxisValue(JOYSTICK_THROTTLE)));
 
 
     barYaw = new Bar (this, 1);
