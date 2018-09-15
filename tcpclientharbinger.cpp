@@ -42,7 +42,7 @@ void TcpClientHarbinger::run () {
         {
             if(!vecClients[i]->isConnected())   // If connection closed, RECONECT
                     {
-                        delete vecClients[i];
+                        //delete vecClients[i];
                         if (DEBUG_TCP) qDebug() << "TCP["<< i <<"]: Reconnecting TCP port: ADD: " << address << "[" << startPort + i << "]";
                         vecClients[i] = new TcpClient(address, startPort + i);
 

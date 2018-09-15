@@ -26,7 +26,7 @@ TcpClient::TcpClient(const char* address, int port)
 
     if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
     {
-        printf("\nConnection Failed \n");
+        //printf("\nConnection Failed \n");
         close(sock);
         return;
     }

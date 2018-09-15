@@ -16,7 +16,7 @@
 ///////////
 
 //* IPs *//
-#define IP_ROVER "10.0.0.10"
+#define IP_ROVER "10.0.0.4"
 //#define IP_ROVER "127.0.0.1"
 ///////////
 

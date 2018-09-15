@@ -19,7 +19,7 @@
 #include "config.h"
 #include "inputmapping.h"
 
-#define DEBUG_GAMEPAD 1
+#define DEBUG_GAMEPAD 0
 #define DEBUG_JOYSTICK 0
 #define DEBUG_REMAP 0
 
@@ -152,11 +152,12 @@ void JoystickHandler::run()
 
         else if (hidType == THISIS_JOYSTICK)       ///// >>> JOYSTICK
         {
-            if (joystick->sample(&event))
+            if (joystick->sample(&event))///////////
+
             {
                 if (event.isButton())
                 {
-                    if (DEBUG_JOYSTICK) qDebug() << "Joystick > Button " << event.number << " is " << (event.value == 0 ? "up" : "down");
+                    if (1) qDebug() << "Joystick > Button " << event.number << " is " << (event.value == 0 ? "up" : "down");
 
 
                     switch (event.number) {
@@ -188,22 +189,22 @@ void JoystickHandler::run()
                         break;
 
                     case JOYSTICK_9:
-                        if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_TOP, 32767);
-                        else armCam_tcp->writeData16(ARM_CAM_TOP, 0);
-                        break;
-
-                    case JOYSTICK_10:
                         if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_TOP, -32768);
                         else armCam_tcp->writeData16(ARM_CAM_TOP, 0);
                         break;
 
+                    case JOYSTICK_10:
+                        if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_TOP, 32767);
+                        else armCam_tcp->writeData16(ARM_CAM_TOP, 0);
+                        break;
+
                     case JOYSTICK_11:
-                        if (event.value == 1)  armCam_tcp->writeData16(ARM_CAM_BOTTOM, 32767);
+                        if (event.value == 1)  armCam_tcp->writeData16(ARM_CAM_BOTTOM, -32768);
                         else armCam_tcp->writeData16(ARM_CAM_BOTTOM, 0);
                         break;
 
                     case JOYSTICK_12:
-                        if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_BOTTOM, -32768);
+                        if (event.value == 1) armCam_tcp->writeData16(ARM_CAM_BOTTOM, 32767);
                         else armCam_tcp->writeData16(ARM_CAM_BOTTOM, 0);
                         break;
                     }
@@ -217,12 +218,12 @@ void JoystickHandler::run()
                     if (inverseKinematicMode == 0)         // DIRECT KINEMATICS MODE ON
                     {
                         switch (event.number) {
-                        case JOYSTICK_PITCH:
+                        case JOYSTICK_ROLL:
                             arm_tcp->writeData16(ARM_SHOULDER, event.value);
                             //bar1->setPerc(event.value);
                             break;
 
-                        case JOYSTICK_ROLL:
+                        case JOYSTICK_PITCH:
                             arm_tcp->writeData16(ARM_ELBOW, event.value);
                             break;
 
